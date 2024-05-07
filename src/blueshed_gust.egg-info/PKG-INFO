@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: blueshed-gust
+Version: 0.0.6
+Summary: a library.
+Author-email: Peter Bunyan <pete@blueshed.co.uk>
+License: BSD-3-Clause
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: python-dotenv
+Requires-Dist: tornado
+Provides-Extra: dev
+Requires-Dist: invoke; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-coverage; extra == "dev"
+Requires-Dist: pytest-tornado; extra == "dev"
+Requires-Dist: pytest-tornasync; extra == "dev"
+Requires-Dist: bump-my-version; extra == "dev"
+Requires-Dist: twine; extra == "dev"
+Requires-Dist: build; extra == "dev"
+
+# Gust
+
+Gust is a wrapper of tornado. It allows for a hello world such as:
+
+```python
+from blueshed.gust import Gust, web
+
+@web.get('/(.*)')
+def get(request):
+    """just a get"""
+    return 'hello, world'
+
+def main():
+    """seperate construction from run"""
+    Gust().run()
+
+if __name__ == '__main__':
+    main()
+```

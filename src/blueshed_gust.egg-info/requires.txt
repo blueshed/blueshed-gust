@@ -1,0 +1,13 @@
+python-dotenv
+tornado
+
+[dev]
+invoke
+ruff
+pytest
+pytest-coverage
+pytest-tornado
+pytest-tornasync
+bump-my-version
+twine
+build

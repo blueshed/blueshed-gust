@@ -1,0 +1,87 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blueshed-gust"
+dynamic = ["version"]
+authors = [{ name = "Peter Bunyan", email = "pete@blueshed.co.uk" }]
+description = "a library."
+readme = { file = "README.md", content-type = "text/markdown" }
+license = { text = "BSD-3-Clause" }
+classifiers = ["Programming Language :: Python :: 3"]
+requires-python = ">=3.12"
+dependencies = ["python-dotenv", "tornado"]
+
+[project.optional-dependencies]
+dev = [
+    "invoke",
+    "ruff",
+    "pytest",
+    "pytest-coverage",
+    "pytest-tornado",
+    "pytest-tornasync",
+    "bump-my-version",
+    "twine",
+    "build",
+]
+
+
+[tool.setuptools.packages.find]
+where = ["src/"]
+include = ["blueshed.gust"]
+exclude = ["tests*"]
+namespaces = false
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"*" = [
+    "**/*.html",
+    "**/*.js",
+    "**/*.json",
+    "**/*.css",
+    "**/*.ico",
+    "**/*.svg",
+    "**/*.png",
+    "**/*.jpeg",
+]
+
+[tool.setuptools.dynamic]
+version = { attr = "blueshed.gust.VERSION" }
+
+[tool.ruff]
+cache-dir = ".venv/cache/ruff"
+line-length = 79
+include = ["pyproject.toml", "src/**/*.py"]
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.pyright]
+exclude = ["**/node_modules", "**/__pycache__"]
+include = ["src"]
+venvPath = "."
+venv = ".venv"
+executionEnvironments = [{ root = "src" }]
+
+[tool.pytest.ini_options]
+addopts = "-p no:warnings --capture=sys --cov blueshed.gust --cov-report term-missing"
+filterwarnings = ["ignore::DeprecationWarning"]
+testpaths = ["src/tests"]
+cache_dir = ".venv/cache/pytest"
+
+[tool.coverage.run]
+data_file = ".venv/cache/.coverage"
+[tool.coverage.report]
+data_file = ".venv/cache/.coverage"
+
+[tool.bumpversion]
+current_version = "0.0.6"
+commit = false
+tag = true
+allow_dirty = true
+
+[[tool.bumpversion.files]]
+filename = "src/blueshed/gust/__init__.py"
