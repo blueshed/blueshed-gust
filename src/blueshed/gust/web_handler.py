@@ -45,7 +45,7 @@ class WebHandler(UserMixin, RequestHandler):
 
         try:
             result = await self.application.perform(
-                self.current_user, settings.func, self
+                self, self.current_user, settings.func, self
             )
             log.debug('http outcome: %s', result)
         except Redirect as ex:

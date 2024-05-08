@@ -82,7 +82,7 @@ class Websocket(UserMixin, WebSocketHandler):
             try:
                 log.debug('calling: %s %r, %r', handling, args, kwargs)
                 result = await self.application.perform(
-                    self.current_user, handling, *args, **kwargs
+                    self, self.current_user, handling, *args, **kwargs
                 )
                 if ref:
                     log.debug('have result: %s', result)

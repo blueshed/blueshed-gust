@@ -15,7 +15,9 @@ def build(ctx):
     ctx.run('python3 -m build --sdist', pty=True)
 
 @task
-def release(ctx, part="patch"):
+def release(ctx, message, part="patch"):
     ctx.run(f'bump-my-version bump {part}', pty=True)
     build(ctx)
+    ctx.run(f"git add . && git commit -m '{message}'", pty=True)
+    ctx.run('git push', pty=True)
     ctx.run('twine upload dist/*', pty=True)
