@@ -78,7 +78,7 @@ data_file = ".venv/cache/.coverage"
 data_file = ".venv/cache/.coverage"
 
 [tool.bumpversion]
-current_version = "0.0.8"
+current_version = "0.0.9"
 commit = false
 tag = true
 allow_dirty = true

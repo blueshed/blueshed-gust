@@ -74,7 +74,7 @@ class Gust(Application):
 
     def run(self):  # pragma: no cover
         try:
-            asyncio.run(self._run_())
+            asyncio.get_event_loop().run_until_complete(self._run_())
         except (KeyboardInterrupt, SystemExit):
             # graceful shutdown
             pass
