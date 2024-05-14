@@ -80,3 +80,7 @@ class Gust(Application):
         except (KeyboardInterrupt, SystemExit):
             # graceful shutdown
             pass
+
+    async def on_line(self, handler: Websocket): ...
+
+    async def off_line(self, handler: Websocket): ...

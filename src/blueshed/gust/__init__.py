@@ -7,4 +7,4 @@ from .routes import Routes
 from .utils import Redirect
 from .web import web
 
-VERSION = '0.0.12'
+VERSION = '0.0.13'

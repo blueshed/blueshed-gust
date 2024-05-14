@@ -120,6 +120,7 @@ class Websocket(UserMixin, WebSocketHandler):
         """websocket open"""
         log.debug('open')
         self._clients_[self.request.path].append(self)
+        await self.application.on_line(self)
         await self.call_func('ws_open')
 
     async def on_message(self, message):
@@ -139,7 +140,11 @@ class Websocket(UserMixin, WebSocketHandler):
         close is a synchronous so call_func will tidy up
         """
         log.debug('close')
-        self.io_loop.add_callback(self.call_func, 'ws_close')
+        task = asyncio.create_task(self.call_func('ws_close'))
+        task.add_done_callback(self._done_)
+        task = asyncio.create_task(self.application.off_line(self))
+        task.add_done_callback(self._done_)
+
 
     def remove_client(self):
         """remove self from clients"""
