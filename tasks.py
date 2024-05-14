@@ -16,9 +16,15 @@ def build(ctx):
     ctx.run('pdoc ./src/blueshed/gust -o ./docs', pty=True)
 
 @task
-def release(ctx, message, part="patch"):
-    ctx.run(f'bump-my-version bump {part}', pty=True)
-    build(ctx)
+def commit(ctx, message):
+    """ commit to github """
+    ctx.run('pdoc ./src/blueshed/gust -o ./docs', pty=True)
     ctx.run(f"git add . && git commit -m '{message}'", pty=True)
     ctx.run('git push', pty=True)
+
+@task
+def release(ctx, message, part="patch"):
+    ctx.run(f'bump-my-version bump {part}', pty=True)
+    commit(ctx, message)
+    build(ctx)
     ctx.run('twine upload dist/*', pty=True)

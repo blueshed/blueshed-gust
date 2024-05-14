@@ -1,7 +1,7 @@
-<h1>
-  <img src="https://s3.eu-west-1.amazonaws.com/blueshed.info/published/noun-windy-weather-6420809.svg" width="64" title="windy weather" style="float:right">
-  Gust
-</h1>
+<div style="float: left;">
+<img src="https://s3.eu-west-1.amazonaws.com/blueshed.info/published/noun-windy-weather-6420809.svg" width="64" title="windy weather">
+</div>
+# Gust
 
 Gust is a wrapper of [tornado](https://www.tornadoweb.org/en/stable/). It allows for a hello world such as:
 
