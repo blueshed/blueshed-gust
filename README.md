@@ -1,5 +1,5 @@
 <h1>
-  <img src="https://s3.eu-west-1.amazonaws.com/blueshed.info/published/noun-windy-weather-6420809.svg" width="64" title="windy weather">
+  <img src="https://s3.eu-west-1.amazonaws.com/blueshed.info/published/noun-windy-weather-6420809.svg" width="64" title="windy weather" style="float:right">
   Gust
 </h1>
 
