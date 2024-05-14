@@ -31,7 +31,7 @@ class Gust(Application):
         port: Optional[int] = None,
         **kwargs,
     ):
-        self.port = port if port else os.getenv('PORT', options.port)
+        self.port:int = port if port else int(os.getenv('PORT', options.port))
         super().__init__(routes, debug=options.debug, **kwargs)
         web.install(self)
 

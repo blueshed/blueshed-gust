@@ -2,9 +2,9 @@
 .. include:: ../../../README.md
 """
 
-from .main import Gust
+from .app import Gust
 from .routes import Routes
 from .utils import Redirect
 from .web import web
 
-VERSION = '0.0.10'
+VERSION = '0.0.11'
