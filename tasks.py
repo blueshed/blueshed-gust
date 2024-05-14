@@ -7,18 +7,21 @@ def lint(ctx):
     ctx.run('ruff check --select I --fix', pty=True)
 
 
-@task(lint)
+@task
+def docs(ctx):
+   ctx.run('pdoc ./src/blueshed/gust -o ./docs', pty=True)
+
+
+@task(lint, docs)
 def build(ctx):
     """ build packages """
     ctx.run('rm -rf dist')
     ctx.run('python3 -m build --wheel', pty=True)
     ctx.run('python3 -m build --sdist', pty=True)
-    ctx.run('pdoc ./src/blueshed/gust -o ./docs', pty=True)
 
-@task
+@task(docs)
 def commit(ctx, message):
     """ commit to github """
-    ctx.run('pdoc ./src/blueshed/gust -o ./docs', pty=True)
     ctx.run(f"git add . && git commit -m '{message}'", pty=True)
     ctx.run('git push', pty=True)
 

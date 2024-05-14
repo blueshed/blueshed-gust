@@ -26,6 +26,10 @@ dev = [
     "build",
 ]
 
+[project.urls]
+Homepage = "https://github.com/blueshed/blueshed-gust"
+Documentation = "https://blueshed.github.io/blueshed-gust/blueshed/gust.html"
+
 
 [tool.setuptools.packages.find]
 where = ["src/"]
@@ -78,7 +82,7 @@ data_file = ".venv/cache/.coverage"
 data_file = ".venv/cache/.coverage"
 
 [tool.bumpversion]
-current_version = "0.0.11"
+current_version = "0.0.12"
 commit = false
 tag = true
 allow_dirty = true
