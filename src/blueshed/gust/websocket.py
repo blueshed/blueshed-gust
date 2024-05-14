@@ -1,5 +1,6 @@
 """We handle websocket methods"""
 
+import asyncio
 import logging
 from collections import defaultdict
 from typing import List
@@ -18,12 +19,18 @@ class Websocket(UserMixin, WebSocketHandler):
     """Websocket Class"""
 
     _clients_ = defaultdict(list)
+    _tasks_ = set()
 
     def initialize(self, method_settings):
         """setup variables"""
         self.method_settings = method_settings
         self.io_loop = IOLoop.current()
         log.debug('%r', method_settings)
+
+    @classmethod
+    def _done_(cls, task):
+        """ task complete, remove reference """
+        cls._tasks_.remove(task)
 
     def check_origin(self, origin):
         """in development allow ws from anywhere"""
@@ -116,7 +123,9 @@ class Websocket(UserMixin, WebSocketHandler):
         """handle the action"""
         log.debug(message)
         try:
-            await self.call_func('ws_message', message)
+            task = asyncio.create_task(self.call_func('ws_message', message))
+            self._tasks_.add(task)
+            task.add_done_callback(self._done_)
         except Exception:
             log.exception(message)
             raise
