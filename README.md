@@ -55,3 +55,5 @@ ws.onmessage = function (evt) {
   document.body.appendChild(pre);
 };
 ```
+
+There are simple sample apps in src/tests.
