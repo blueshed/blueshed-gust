@@ -35,6 +35,12 @@ class Websocket(UserMixin, WebSocketHandler):
         except KeyError:
             log.warning('Task [%s] not found in _tasks_ set', task.get_name())
 
+    @classmethod
+    def _background_(cls, *tasks: asyncio.Task):
+        for task in tasks:
+            cls._tasks_.add(task)
+            task.add_done_callback(cls._done_)
+
     def check_origin(self, origin):
         """in development allow ws from anywhere"""
         if self.settings.get('debug', False):
@@ -128,9 +134,8 @@ class Websocket(UserMixin, WebSocketHandler):
         log.debug(message)
         try:
             task = asyncio.create_task(self.call_func('ws_message', message))
-            self._tasks_.add(task)
-            task.add_done_callback(self._done_)
-        except Exception:
+            self._background_(task)
+        except Exception:   # pragma no cover
             log.exception(message)
             raise
 
@@ -140,10 +145,10 @@ class Websocket(UserMixin, WebSocketHandler):
         close is a synchronous so call_func will tidy up
         """
         log.debug('close')
-        task = asyncio.create_task(self.call_func('ws_close'))
-        task.add_done_callback(self._done_)
-        task = asyncio.create_task(self.application.off_line(self))
-        task.add_done_callback(self._done_)
+        self._background_(
+            asyncio.create_task(self.call_func('ws_close')),
+            asyncio.create_task(self.application.off_line(self))
+        )
 
 
     def remove_client(self):
@@ -154,11 +159,11 @@ class Websocket(UserMixin, WebSocketHandler):
         except ValueError:
             pass
 
-    def send_message(self, message):
+    async def send_message(self, message):
         """make sure we're not closed"""
         log.debug('sending: %r', message)
         if self.ws_connection:
-            self.write_message(message)
+            await self.write_message(message)
         else:
             log.warning('message sent after close: %s', message)
 
@@ -169,7 +174,8 @@ class Websocket(UserMixin, WebSocketHandler):
         method is thread safe and will schedule the
         function for next iteration.
         """
-        self.io_loop.add_callback(self.send_message, message)
+        task = asyncio.create_task(self.send_message(message))
+        self._background_(task)
 
     @classmethod
     def broadcast(

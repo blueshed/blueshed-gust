@@ -11,7 +11,6 @@ from tornado.options import options
 def get(request):
     """websocket test page"""
     return """
-<div id="output"></div>
 <script>
 const ws = new WebSocket('ws://localhost:8080/ws');
 ws.onopen = () => {
@@ -29,9 +28,9 @@ ws.onopen = () => {
     }))
 }
 ws.onmessage = (evt) => {
-    console.log(evt);
-    let elem = document.getElementById("output");
-    elem.innerHTML += (evt.data + "<br/>")
+    const pre = document.createElement("pre");
+    pre.textContent = evt.data;
+    document.body.appendChild(pre);
 }
 </script>
 """
@@ -52,7 +51,7 @@ async def a_add(a: int, b: int, nap: float = 0.01) -> int:
 
 def make_app():
     """seperate construction from run"""
-    return Gust(debug=True)
+    return Gust()
 
 
 if __name__ == '__main__':

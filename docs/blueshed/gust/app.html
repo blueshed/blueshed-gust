@@ -54,6 +54,12 @@
                         <li>
                                 <a class="function" href="#Gust.run">run</a>
                         </li>
+                        <li>
+                                <a class="function" href="#Gust.on_line">on_line</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Gust.off_line">off_line</a>
+                        </li>
                 </ul>
 
             </li>
@@ -162,6 +168,10 @@ blueshed<wbr>.<a href="./../gust.html">gust</a><wbr>.app    </h1>
 </span><span id="L-80"><a href="#L-80"><span class="linenos">80</span></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="ne">SystemExit</span><span class="p">):</span>
 </span><span id="L-81"><a href="#L-81"><span class="linenos">81</span></a>            <span class="c1"># graceful shutdown</span>
 </span><span id="L-82"><a href="#L-82"><span class="linenos">82</span></a>            <span class="k">pass</span>
+</span><span id="L-83"><a href="#L-83"><span class="linenos">83</span></a>
+</span><span id="L-84"><a href="#L-84"><span class="linenos">84</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span> <span class="o">...</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos">85</span></a>
+</span><span id="L-86"><a href="#L-86"><span class="linenos">86</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">off_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span> <span class="o">...</span>
 </span></pre></div>
 
 
@@ -247,6 +257,10 @@ blueshed<wbr>.<a href="./../gust.html">gust</a><wbr>.app    </h1>
 </span><span id="Gust-81"><a href="#Gust-81"><span class="linenos">81</span></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="ne">SystemExit</span><span class="p">):</span>
 </span><span id="Gust-82"><a href="#Gust-82"><span class="linenos">82</span></a>            <span class="c1"># graceful shutdown</span>
 </span><span id="Gust-83"><a href="#Gust-83"><span class="linenos">83</span></a>            <span class="k">pass</span>
+</span><span id="Gust-84"><a href="#Gust-84"><span class="linenos">84</span></a>
+</span><span id="Gust-85"><a href="#Gust-85"><span class="linenos">85</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span> <span class="o">...</span>
+</span><span id="Gust-86"><a href="#Gust-86"><span class="linenos">86</span></a>
+</span><span id="Gust-87"><a href="#Gust-87"><span class="linenos">87</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">off_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span> <span class="o">...</span>
 </span></pre></div>
 
 
@@ -388,6 +402,42 @@ blueshed<wbr>.<a href="./../gust.html">gust</a><wbr>.app    </h1>
 </span><span id="Gust.run-81"><a href="#Gust.run-81"><span class="linenos">81</span></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="ne">SystemExit</span><span class="p">):</span>
 </span><span id="Gust.run-82"><a href="#Gust.run-82"><span class="linenos">82</span></a>            <span class="c1"># graceful shutdown</span>
 </span><span id="Gust.run-83"><a href="#Gust.run-83"><span class="linenos">83</span></a>            <span class="k">pass</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="Gust.on_line" class="classattr">
+                                        <input id="Gust.on_line-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">async def</span>
+        <span class="name">on_line</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">handler</span><span class="p">:</span> <span class="n"><a href="websocket.html#Websocket">blueshed.gust.websocket.Websocket</a></span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Gust.on_line-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Gust.on_line"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.on_line-85"><a href="#Gust.on_line-85"><span class="linenos">85</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span> <span class="o">...</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="Gust.off_line" class="classattr">
+                                        <input id="Gust.off_line-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">async def</span>
+        <span class="name">off_line</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">handler</span><span class="p">:</span> <span class="n"><a href="websocket.html#Websocket">blueshed.gust.websocket.Websocket</a></span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Gust.off_line-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Gust.off_line"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.off_line-87"><a href="#Gust.off_line-87"><span class="linenos">87</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">off_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span> <span class="o">...</span>
 </span></pre></div>
 
 

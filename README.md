@@ -1,5 +1,5 @@
 <div style="float: right;">
-<img src="https://s3.eu-west-1.amazonaws.com/blueshed.info/published/noun-windy-weather-6420809.svg" width="64" title="windy weather">
+<img src="https://s3.eu-west-1.amazonaws.com/blueshed.info/published/gust3.webp" width="64" title="windy weather">
 </div>
 
 # Gust
@@ -24,8 +24,34 @@ if __name__ == '__main__':
     main()
 ```
 
-<p align="center">
-  <img src="https://s3.eu-west-1.amazonaws.com/blueshed.info/published/noun-windy-weather-6420809.svg" width="350" title="windy weather">
-</p>
+Similarly, you can write:
 
-windy weather image by bsd studio from [Noun Project](https://thenounproject.com/browse/icons/term/windy-weather/)(CC BY 3.0)
+```python
+
+@web.ws_json_rpc('/websocket')
+def add(a:float, b:float) -> float:
+    """simple addition"""
+    return a + b
+
+```
+
+And use a javascript websocket client to call the function:
+
+```javascript
+const ws = new WebSocket("ws://localhost:8080/websocket");
+ws.onopen = function () {
+  ws.send(
+    JSON.stringigy({
+      jsonrpc: "2.0",
+      id: 1,
+      method: "add",
+      params: { a: 2.0, b: 2.0 }, // or [2.0, 2.0]
+    }),
+  );
+};
+ws.onmessage = function (evt) {
+  const pre = document.createElement("pre");
+  pre.textContent = evt.data;
+  document.body.appendChild(pre);
+};
+```
