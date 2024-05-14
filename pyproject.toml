@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "blueshed-gust"
 dynamic = ["version"]
 authors = [{ name = "Peter Bunyan", email = "pete@blueshed.co.uk" }]
-description = "a library."
+description = "lite additions to tornado."
 readme = { file = "README.md", content-type = "text/markdown" }
 license = { text = "BSD-3-Clause" }
 classifiers = ["Programming Language :: Python :: 3"]
@@ -82,7 +82,7 @@ data_file = ".venv/cache/.coverage"
 data_file = ".venv/cache/.coverage"
 
 [tool.bumpversion]
-current_version = "0.0.18"
+current_version = "0.0.19"
 commit = false
 tag = true
 allow_dirty = true

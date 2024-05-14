@@ -41,19 +41,19 @@ class Gust(Application):
         """await a function or call in a thread_pool, better yet call redis"""
         if inspect.iscoroutinefunction(func):
             log.debug('aperform: %s', func)
-            with context.gust(self, user, handler):
+            with context.gust(handler):
                 result = await func(*args, **kwargs)
         else:
             log.debug('perform: %s', func)
             partial = functools.partial(
-                self.call_in_context, user, handler, func, args, kwargs
+                self.call_in_context, handler, func, args, kwargs
             )
             result = await asyncio.to_thread(partial)
         return result
 
-    def call_in_context(self, user, handler, func, args, kwargs):
+    def call_in_context(self, handler, func, args, kwargs):
         """set the context and call function"""
-        with context.gust(self, user, handler):
+        with context.gust(handler):
             return func(*args, **kwargs)
 
     @classmethod
