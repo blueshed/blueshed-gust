@@ -5,7 +5,7 @@ import functools
 import inspect
 import logging
 import os
-from typing import Any, List, Optional, Callable
+from typing import Any, Callable, List, Optional
 
 from tornado.options import define, options
 from tornado.web import Application
@@ -35,7 +35,9 @@ class Gust(Application):
         super().__init__(routes, debug=options.debug, **kwargs)
         web.install(self)
 
-    async def perform(self, handler, user, func: Callable, *args, **kwargs) -> Any:
+    async def perform(
+        self, handler, user, func: Callable, *args, **kwargs
+    ) -> Any:
         """await a function or call in a thread_pool, better yet call redis"""
         if inspect.iscoroutinefunction(func):
             log.debug('aperform: %s', func)

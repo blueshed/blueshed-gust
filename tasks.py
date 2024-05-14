@@ -13,6 +13,7 @@ def build(ctx):
     ctx.run('rm -rf dist')
     ctx.run('python3 -m build --wheel', pty=True)
     ctx.run('python3 -m build --sdist', pty=True)
+    ctx.run('pdoc ./src/blueshed/gust -o ./docs', pty=True)
 
 @task
 def release(ctx, message, part="patch"):

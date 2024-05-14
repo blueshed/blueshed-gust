@@ -22,7 +22,7 @@ def app(web_context):
     appl = Gust(
         login_url='/bar/login',
         cookie_name='test_auth_cookie',
-        cookie_secret='it was a dark and stormy test'
+        cookie_secret='it was a dark and stormy test',
     )
     return appl
 

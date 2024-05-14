@@ -31,6 +31,7 @@ def get_handler():
     """get the current handler"""
     return HANDLER.get(None)
 
+
 def get_current_user():
     """get the context app"""
     return USER.get(None)

@@ -1,4 +1,6 @@
-"""A decorated tornado"""
+"""
+.. include:: ../../../README.md
+"""
 
 from .main import Gust
 from .routes import Routes

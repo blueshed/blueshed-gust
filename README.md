@@ -1,6 +1,6 @@
 # Gust
 
-Gust is a wrapper of tornado. It allows for a hello world such as:
+Gust is a wrapper of [tornado](https://www.tornadoweb.org/en/stable/). It allows for a hello world such as:
 
 ```python
 from blueshed.gust import Gust, web
