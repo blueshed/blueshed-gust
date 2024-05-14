@@ -28,12 +28,12 @@ class Websocket(UserMixin, WebSocketHandler):
         log.debug('%r', method_settings)
 
     @classmethod
-    def _done_(cls, task):
+    def _done_(cls, task:asyncio.Task):
         """task complete, remove reference"""
         try:
             cls._tasks_.remove(task)
         except KeyError:
-            log.warning('Task [%s] not found in _tasks_ set', task.name)
+            log.warning('Task [%s] not found in _tasks_ set', task.get_name())
 
     def check_origin(self, origin):
         """in development allow ws from anywhere"""
