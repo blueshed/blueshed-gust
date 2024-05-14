@@ -25,7 +25,7 @@ def commit(ctx, message):
     ctx.run(f"git add . && git commit -m '{message}'", pty=True)
     ctx.run('git push', pty=True)
 
-@task
+@task(lint, docs)
 def release(ctx, message, part="patch"):
     ctx.run(f'bump-my-version bump {part}', pty=True)
     commit(ctx, message)

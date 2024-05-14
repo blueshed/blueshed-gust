@@ -28,7 +28,7 @@ class Websocket(UserMixin, WebSocketHandler):
         log.debug('%r', method_settings)
 
     @classmethod
-    def _done_(cls, task:asyncio.Task):
+    def _done_(cls, task: asyncio.Task):
         """task complete, remove reference"""
         try:
             cls._tasks_.remove(task)
@@ -135,7 +135,7 @@ class Websocket(UserMixin, WebSocketHandler):
         try:
             task = asyncio.create_task(self.call_func('ws_message', message))
             self._background_(task)
-        except Exception:   # pragma no cover
+        except Exception:  # pragma no cover
             log.exception(message)
             raise
 
@@ -147,9 +147,8 @@ class Websocket(UserMixin, WebSocketHandler):
         log.debug('close')
         self._background_(
             asyncio.create_task(self.call_func('ws_close')),
-            asyncio.create_task(self.application.off_line(self))
+            asyncio.create_task(self.application.off_line(self)),
         )
-
 
     def remove_client(self):
         """remove self from clients"""

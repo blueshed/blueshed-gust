@@ -88,6 +88,40 @@ blueshed<wbr>.gust    </h1>
     <span class="n">main</span><span class="p">()</span>
 </code></pre>
 </div>
+
+<p>Similarly, you can write:</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="nd">@web</span><span class="o">.</span><span class="n">ws_json_rpc</span><span class="p">(</span><span class="s1">&#39;/websocket&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;simple addition&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre>
+</div>
+
+<p>And use a javascript websocket client to call the function:</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">ws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">WebSocket</span><span class="p">(</span><span class="s2">&quot;ws://localhost:8080/websocket&quot;</span><span class="p">);</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">onopen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">ws</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span>
+<span class="w">    </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringigy</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">jsonrpc</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;add&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// or [2.0, 2.0]</span>
+<span class="w">    </span><span class="p">}),</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">};</span>
+<span class="nx">ws</span><span class="p">.</span><span class="nx">onmessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">pre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;pre&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">pre</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evt</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+<span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">pre</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<p>There are simple sample apps in src/tests.</p>
 </div>
 
                         <input id="mod-gust-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
@@ -103,7 +137,7 @@ blueshed<wbr>.gust    </h1>
 </span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">Redirect</span>
 </span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">from</span> <span class="nn">.web</span> <span class="kn">import</span> <span class="n">web</span>
 </span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="n">VERSION</span> <span class="o">=</span> <span class="s1">&#39;0.0.14&#39;</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="n">VERSION</span> <span class="o">=</span> <span class="s1">&#39;0.0.16&#39;</span>
 </span></pre></div>
 
 
@@ -111,7 +145,7 @@ blueshed<wbr>.gust    </h1>
                 <section id="VERSION">
                     <div class="attr variable">
             <span class="name">VERSION</span>        =
-<span class="default_value">&#39;0.0.14&#39;</span>
+<span class="default_value">&#39;0.0.16&#39;</span>
 
         
     </div>
