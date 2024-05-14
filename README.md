@@ -1,4 +1,7 @@
-# Gust
+<h1>
+  <img src="https://s3.eu-west-1.amazonaws.com/blueshed.info/published/noun-windy-weather-6420809.svg" width="64" title="windy weather">
+  Gust
+</h1>
 
 Gust is a wrapper of [tornado](https://www.tornadoweb.org/en/stable/). It allows for a hello world such as:
 
@@ -17,3 +20,9 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+<p align="center">
+  <img src="https://s3.eu-west-1.amazonaws.com/blueshed.info/published/noun-windy-weather-6420809.svg" width="350" title="windy weather">
+</p>
+
+windy weather image by bsd studio from [Noun Project](https://thenounproject.com/browse/icons/term/windy-weather/)(CC BY 3.0)
