@@ -3,13 +3,12 @@
 import asyncio
 import logging
 from collections import defaultdict
-from typing import List
+from typing import List, Optional
 
-from tornado.ioloop import IOLoop
 from tornado.util import unicode_type
 from tornado.websocket import WebSocketHandler
 
-from . import json_utils
+from . import context, json_utils
 from .utils import JsonRpcException, JsonRpcResponse, UserMixin
 
 log = logging.getLogger(__name__)
@@ -24,7 +23,6 @@ class Websocket(UserMixin, WebSocketHandler):
     def initialize(self, method_settings):
         """setup variables"""
         self.method_settings = method_settings
-        self.io_loop = IOLoop.current()
         log.debug('%r', method_settings)
 
     @classmethod
@@ -67,7 +65,7 @@ class Websocket(UserMixin, WebSocketHandler):
             if proc is None:
                 error = JsonRpcException(-32600, 'no method')
 
-            elif not proc in self.method_settings.ws_rpc:
+            elif proc not in self.method_settings.ws_rpc:
                 error = JsonRpcException(-32600, 'not method')
 
             if error is None:
@@ -98,7 +96,7 @@ class Websocket(UserMixin, WebSocketHandler):
             try:
                 log.debug('calling: %s %r, %r', handling, args, kwargs)
                 result = await self.application.perform(
-                    self, self.current_user, handling, *args, **kwargs
+                    self, handling, *args, **kwargs
                 )
                 if ref:
                     log.debug('have result: %s', result)
@@ -126,7 +124,8 @@ class Websocket(UserMixin, WebSocketHandler):
         """websocket open"""
         log.debug('open')
         self._clients_[self.request.path].append(self)
-        await self.application.on_line(self)
+        with context.gust(self):
+            await self.application.on_line(self)
         await self.call_func('ws_open')
 
     async def on_message(self, message):
@@ -145,10 +144,11 @@ class Websocket(UserMixin, WebSocketHandler):
         close is a synchronous so call_func will tidy up
         """
         log.debug('close')
-        self._background_(
-            asyncio.create_task(self.call_func('ws_close')),
-            asyncio.create_task(self.application.off_line(self)),
-        )
+        with context.gust(self):
+            self._background_(
+                asyncio.create_task(self.call_func('ws_close')),
+                asyncio.create_task(self.application.off_line(self)),
+            )
 
     def remove_client(self):
         """remove self from clients"""
@@ -156,7 +156,7 @@ class Websocket(UserMixin, WebSocketHandler):
             self._clients_[self.request.path].remove(self)
             log.debug('removed from clients')
         except ValueError:
-            pass
+            log.warning('client removal failed')
 
     async def send_message(self, message):
         """make sure we're not closed"""
@@ -178,7 +178,10 @@ class Websocket(UserMixin, WebSocketHandler):
 
     @classmethod
     def broadcast(
-        cls, tornado_path: str, message: str, client_ids: List[int] = None
+        cls,
+        tornado_path: str,
+        message: str,
+        client_ids: Optional[List[int]] = None,
     ):
         """send to all connected"""
         if not isinstance(message, (bytes, unicode_type)):

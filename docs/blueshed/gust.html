@@ -29,22 +29,118 @@
 
             <h2>Submodules</h2>
             <ul>
-                    <li><a href="gust/app.html">app</a></li>
-                    <li><a href="gust/configs.html">configs</a></li>
-                    <li><a href="gust/context.html">context</a></li>
-                    <li><a href="gust/json_utils.html">json_utils</a></li>
-                    <li><a href="gust/routes.html">routes</a></li>
-                    <li><a href="gust/static_file_handler.html">static_file_handler</a></li>
-                    <li><a href="gust/utils.html">utils</a></li>
                     <li><a href="gust/web.html">web</a></li>
-                    <li><a href="gust/web_handler.html">web_handler</a></li>
-                    <li><a href="gust/websocket.html">websocket</a></li>
             </ul>
 
             <h2>API Documentation</h2>
                 <ul class="memberlist">
             <li>
-                    <a class="variable" href="#VERSION">VERSION</a>
+                    <a class="class" href="#Gust">Gust</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#Gust.__init__">Gust</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Gust.port">port</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Gust.perform">perform</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Gust.call_in_context">call_in_context</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Gust.broadcast">broadcast</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Gust.run">run</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Gust.on_line">on_line</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Gust.off_line">off_line</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#Routes">Routes</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#Routes.route_map">route_map</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Routes.broadcaster">broadcaster</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Routes.get">get</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Routes.post">post</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Routes.put">put</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Routes.delete">delete</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Routes.head">head</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Routes.ws_open">ws_open</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Routes.ws_message">ws_message</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Routes.ws_close">ws_close</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Routes.ws_json_rpc">ws_json_rpc</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Routes.broadcast">broadcast</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Routes.default_wrap">default_wrap</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Routes.install">install</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#Redirect">Redirect</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#Redirect.__init__">Redirect</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Redirect.url">url</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="variable" href="#web">web</a>
+            </li>
+            <li>
+                    <a class="function" href="#get_handler">get_handler</a>
+            </li>
+            <li>
+                    <a class="class" href="#AuthStaticFileHandler">AuthStaticFileHandler</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#AuthStaticFileHandler.initialize">initialize</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#AuthStaticFileHandler.get">get</a>
+                        </li>
+                </ul>
+
             </li>
     </ul>
 
@@ -133,26 +229,1169 @@ blueshed<wbr>.gust    </h1>
 </span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>
 </span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="kn">from</span> <span class="nn">.app</span> <span class="kn">import</span> <span class="n">Gust</span>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="kn">from</span> <span class="nn">.routes</span> <span class="kn">import</span> <span class="n">Routes</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">Redirect</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">from</span> <span class="nn">.web</span> <span class="kn">import</span> <span class="n">web</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="n">VERSION</span> <span class="o">=</span> <span class="s1">&#39;0.0.19&#39;</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="kn">from</span> <span class="nn">.context</span> <span class="kn">import</span> <span class="n">get_handler</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">.routes</span> <span class="kn">import</span> <span class="n">Routes</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">from</span> <span class="nn">.static_file_handler</span> <span class="kn">import</span> <span class="n">AuthStaticFileHandler</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">Redirect</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="kn">from</span> <span class="nn">.web</span> <span class="kn">import</span> <span class="n">web</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="n">VERSION</span> <span class="o">=</span> <span class="s1">&#39;0.0.20&#39;</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>
+</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>    <span class="s1">&#39;Gust&#39;</span><span class="p">,</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>    <span class="s1">&#39;Routes&#39;</span><span class="p">,</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>    <span class="s1">&#39;Redirect&#39;</span><span class="p">,</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>    <span class="s1">&#39;web&#39;</span><span class="p">,</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>    <span class="s1">&#39;get_handler&#39;</span><span class="p">,</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>    <span class="s1">&#39;AuthStaticFileHandler&#39;</span><span class="p">,</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="p">]</span>
 </span></pre></div>
 
 
             </section>
-                <section id="VERSION">
-                    <div class="attr variable">
-            <span class="name">VERSION</span>        =
-<span class="default_value">&#39;0.0.19&#39;</span>
+                <section id="Gust">
+                            <input id="Gust-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">Gust</span><wbr>(<span class="base">tornado.web.Application</span>):
+
+                <label class="view-source-button" for="Gust-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Gust"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust-24"><a href="#Gust-24"><span class="linenos">24</span></a><span class="k">class</span> <span class="nc">Gust</span><span class="p">(</span><span class="n">Application</span><span class="p">):</span>
+</span><span id="Gust-25"><a href="#Gust-25"><span class="linenos">25</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A minimal sub-class of tornado.web.Application&quot;&quot;&quot;</span>
+</span><span id="Gust-26"><a href="#Gust-26"><span class="linenos">26</span></a>
+</span><span id="Gust-27"><a href="#Gust-27"><span class="linenos">27</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+</span><span id="Gust-28"><a href="#Gust-28"><span class="linenos">28</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Gust-29"><a href="#Gust-29"><span class="linenos">29</span></a>        <span class="n">routes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="Gust-30"><a href="#Gust-30"><span class="linenos">30</span></a>        <span class="n">port</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="Gust-31"><a href="#Gust-31"><span class="linenos">31</span></a>        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+</span><span id="Gust-32"><a href="#Gust-32"><span class="linenos">32</span></a>    <span class="p">):</span>
+</span><span id="Gust-33"><a href="#Gust-33"><span class="linenos">33</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">port</span> <span class="k">if</span> <span class="n">port</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;PORT&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">port</span><span class="p">))</span>
+</span><span id="Gust-34"><a href="#Gust-34"><span class="linenos">34</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">routes</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="Gust-35"><a href="#Gust-35"><span class="linenos">35</span></a>        <span class="n">web</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span><span id="Gust-36"><a href="#Gust-36"><span class="linenos">36</span></a>
+</span><span id="Gust-37"><a href="#Gust-37"><span class="linenos">37</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">perform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+</span><span id="Gust-38"><a href="#Gust-38"><span class="linenos">38</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;await a function or call in a thread_pool, better yet call redis&quot;&quot;&quot;</span>
+</span><span id="Gust-39"><a href="#Gust-39"><span class="linenos">39</span></a>        <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="Gust-40"><a href="#Gust-40"><span class="linenos">40</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;aperform: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+</span><span id="Gust-41"><a href="#Gust-41"><span class="linenos">41</span></a>            <span class="k">with</span> <span class="n">context</span><span class="o">.</span><span class="n">gust</span><span class="p">(</span><span class="n">handler</span><span class="p">):</span>
+</span><span id="Gust-42"><a href="#Gust-42"><span class="linenos">42</span></a>                <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="Gust-43"><a href="#Gust-43"><span class="linenos">43</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="Gust-44"><a href="#Gust-44"><span class="linenos">44</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;perform: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+</span><span id="Gust-45"><a href="#Gust-45"><span class="linenos">45</span></a>            <span class="n">partial</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+</span><span id="Gust-46"><a href="#Gust-46"><span class="linenos">46</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">call_in_context</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
+</span><span id="Gust-47"><a href="#Gust-47"><span class="linenos">47</span></a>            <span class="p">)</span>
+</span><span id="Gust-48"><a href="#Gust-48"><span class="linenos">48</span></a>            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">to_thread</span><span class="p">(</span><span class="n">partial</span><span class="p">)</span>
+</span><span id="Gust-49"><a href="#Gust-49"><span class="linenos">49</span></a>        <span class="k">return</span> <span class="n">result</span>
+</span><span id="Gust-50"><a href="#Gust-50"><span class="linenos">50</span></a>
+</span><span id="Gust-51"><a href="#Gust-51"><span class="linenos">51</span></a>    <span class="k">def</span> <span class="nf">call_in_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+</span><span id="Gust-52"><a href="#Gust-52"><span class="linenos">52</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set the context and call function&quot;&quot;&quot;</span>
+</span><span id="Gust-53"><a href="#Gust-53"><span class="linenos">53</span></a>        <span class="k">with</span> <span class="n">context</span><span class="o">.</span><span class="n">gust</span><span class="p">(</span><span class="n">handler</span><span class="p">):</span>
+</span><span id="Gust-54"><a href="#Gust-54"><span class="linenos">54</span></a>            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="Gust-55"><a href="#Gust-55"><span class="linenos">55</span></a>
+</span><span id="Gust-56"><a href="#Gust-56"><span class="linenos">56</span></a>    <span class="nd">@classmethod</span>
+</span><span id="Gust-57"><a href="#Gust-57"><span class="linenos">57</span></a>    <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">):</span>
+</span><span id="Gust-58"><a href="#Gust-58"><span class="linenos">58</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;pass through, maybe point for redis gust&quot;&quot;&quot;</span>
+</span><span id="Gust-59"><a href="#Gust-59"><span class="linenos">59</span></a>        <span class="n">Websocket</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">)</span>
+</span><span id="Gust-60"><a href="#Gust-60"><span class="linenos">60</span></a>
+</span><span id="Gust-61"><a href="#Gust-61"><span class="linenos">61</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">_run_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+</span><span id="Gust-62"><a href="#Gust-62"><span class="linenos">62</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;listen on self.port and run io_loop&quot;&quot;&quot;</span>
+</span><span id="Gust-63"><a href="#Gust-63"><span class="linenos">63</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">:</span>
+</span><span id="Gust-64"><a href="#Gust-64"><span class="linenos">64</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+</span><span id="Gust-65"><a href="#Gust-65"><span class="linenos">65</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;listening on port: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+</span><span id="Gust-66"><a href="#Gust-66"><span class="linenos">66</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="Gust-67"><a href="#Gust-67"><span class="linenos">67</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No &#39;port&#39; in settings&quot;</span><span class="p">)</span>
+</span><span id="Gust-68"><a href="#Gust-68"><span class="linenos">68</span></a>
+</span><span id="Gust-69"><a href="#Gust-69"><span class="linenos">69</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="Gust-70"><a href="#Gust-70"><span class="linenos">70</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;running in debug mode&#39;</span><span class="p">)</span>
+</span><span id="Gust-71"><a href="#Gust-71"><span class="linenos">71</span></a>
+</span><span id="Gust-72"><a href="#Gust-72"><span class="linenos">72</span></a>        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</span><span id="Gust-73"><a href="#Gust-73"><span class="linenos">73</span></a>
+</span><span id="Gust-74"><a href="#Gust-74"><span class="linenos">74</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+</span><span id="Gust-75"><a href="#Gust-75"><span class="linenos">75</span></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="Gust-76"><a href="#Gust-76"><span class="linenos">76</span></a>            <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_run_</span><span class="p">())</span>
+</span><span id="Gust-77"><a href="#Gust-77"><span class="linenos">77</span></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="ne">SystemExit</span><span class="p">):</span>
+</span><span id="Gust-78"><a href="#Gust-78"><span class="linenos">78</span></a>            <span class="c1"># graceful shutdown</span>
+</span><span id="Gust-79"><a href="#Gust-79"><span class="linenos">79</span></a>            <span class="k">pass</span>
+</span><span id="Gust-80"><a href="#Gust-80"><span class="linenos">80</span></a>
+</span><span id="Gust-81"><a href="#Gust-81"><span class="linenos">81</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span>
+</span><span id="Gust-82"><a href="#Gust-82"><span class="linenos">82</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;called when a websocket opens&quot;&quot;&quot;</span>
+</span><span id="Gust-83"><a href="#Gust-83"><span class="linenos">83</span></a>
+</span><span id="Gust-84"><a href="#Gust-84"><span class="linenos">84</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">off_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span>
+</span><span id="Gust-85"><a href="#Gust-85"><span class="linenos">85</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;called when a websocket closes&quot;&quot;&quot;</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>A minimal sub-class of tornado.web.Application</p>
+</div>
+
+
+                            <div id="Gust.__init__" class="classattr">
+                                        <input id="Gust.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">Gust</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">routes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>, </span><span class="param"><span class="n">port</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>, </span><span class="param"><span class="o">**</span><span class="n">kwargs</span></span>)</span>
+
+                <label class="view-source-button" for="Gust.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Gust.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.__init__-27"><a href="#Gust.__init__-27"><span class="linenos">27</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+</span><span id="Gust.__init__-28"><a href="#Gust.__init__-28"><span class="linenos">28</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Gust.__init__-29"><a href="#Gust.__init__-29"><span class="linenos">29</span></a>        <span class="n">routes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="Gust.__init__-30"><a href="#Gust.__init__-30"><span class="linenos">30</span></a>        <span class="n">port</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="Gust.__init__-31"><a href="#Gust.__init__-31"><span class="linenos">31</span></a>        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+</span><span id="Gust.__init__-32"><a href="#Gust.__init__-32"><span class="linenos">32</span></a>    <span class="p">):</span>
+</span><span id="Gust.__init__-33"><a href="#Gust.__init__-33"><span class="linenos">33</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">port</span> <span class="k">if</span> <span class="n">port</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;PORT&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">port</span><span class="p">))</span>
+</span><span id="Gust.__init__-34"><a href="#Gust.__init__-34"><span class="linenos">34</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">routes</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="Gust.__init__-35"><a href="#Gust.__init__-35"><span class="linenos">35</span></a>        <span class="n">web</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="Gust.port" class="classattr">
+                                <div class="attr variable">
+            <span class="name">port</span><span class="annotation">: int</span>
 
         
     </div>
-    <a class="headerlink" href="#VERSION"></a>
+    <a class="headerlink" href="#Gust.port"></a>
     
     
 
+                            </div>
+                            <div id="Gust.perform" class="classattr">
+                                        <input id="Gust.perform-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">async def</span>
+        <span class="name">perform</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">handler</span>, </span><span class="param"><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span>, </span><span class="param"><span class="o">*</span><span class="n">args</span>, </span><span class="param"><span class="o">**</span><span class="n">kwargs</span></span><span class="return-annotation">) -> <span class="n">Any</span>:</span></span>
+
+                <label class="view-source-button" for="Gust.perform-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Gust.perform"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.perform-37"><a href="#Gust.perform-37"><span class="linenos">37</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">perform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+</span><span id="Gust.perform-38"><a href="#Gust.perform-38"><span class="linenos">38</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;await a function or call in a thread_pool, better yet call redis&quot;&quot;&quot;</span>
+</span><span id="Gust.perform-39"><a href="#Gust.perform-39"><span class="linenos">39</span></a>        <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="Gust.perform-40"><a href="#Gust.perform-40"><span class="linenos">40</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;aperform: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+</span><span id="Gust.perform-41"><a href="#Gust.perform-41"><span class="linenos">41</span></a>            <span class="k">with</span> <span class="n">context</span><span class="o">.</span><span class="n">gust</span><span class="p">(</span><span class="n">handler</span><span class="p">):</span>
+</span><span id="Gust.perform-42"><a href="#Gust.perform-42"><span class="linenos">42</span></a>                <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="Gust.perform-43"><a href="#Gust.perform-43"><span class="linenos">43</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="Gust.perform-44"><a href="#Gust.perform-44"><span class="linenos">44</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;perform: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+</span><span id="Gust.perform-45"><a href="#Gust.perform-45"><span class="linenos">45</span></a>            <span class="n">partial</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+</span><span id="Gust.perform-46"><a href="#Gust.perform-46"><span class="linenos">46</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">call_in_context</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
+</span><span id="Gust.perform-47"><a href="#Gust.perform-47"><span class="linenos">47</span></a>            <span class="p">)</span>
+</span><span id="Gust.perform-48"><a href="#Gust.perform-48"><span class="linenos">48</span></a>            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">to_thread</span><span class="p">(</span><span class="n">partial</span><span class="p">)</span>
+</span><span id="Gust.perform-49"><a href="#Gust.perform-49"><span class="linenos">49</span></a>        <span class="k">return</span> <span class="n">result</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>await a function or call in a thread_pool, better yet call redis</p>
+</div>
+
+
+                            </div>
+                            <div id="Gust.call_in_context" class="classattr">
+                                        <input id="Gust.call_in_context-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">call_in_context</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">handler</span>, </span><span class="param"><span class="n">func</span>, </span><span class="param"><span class="n">args</span>, </span><span class="param"><span class="n">kwargs</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Gust.call_in_context-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Gust.call_in_context"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.call_in_context-51"><a href="#Gust.call_in_context-51"><span class="linenos">51</span></a>    <span class="k">def</span> <span class="nf">call_in_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+</span><span id="Gust.call_in_context-52"><a href="#Gust.call_in_context-52"><span class="linenos">52</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set the context and call function&quot;&quot;&quot;</span>
+</span><span id="Gust.call_in_context-53"><a href="#Gust.call_in_context-53"><span class="linenos">53</span></a>        <span class="k">with</span> <span class="n">context</span><span class="o">.</span><span class="n">gust</span><span class="p">(</span><span class="n">handler</span><span class="p">):</span>
+</span><span id="Gust.call_in_context-54"><a href="#Gust.call_in_context-54"><span class="linenos">54</span></a>            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>set the context and call function</p>
+</div>
+
+
+                            </div>
+                            <div id="Gust.broadcast" class="classattr">
+                                        <input id="Gust.broadcast-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@classmethod</div>
+
+        <span class="def">def</span>
+        <span class="name">broadcast</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">cls</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">message</span>, </span><span class="param"><span class="n">client_ids</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Gust.broadcast-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Gust.broadcast"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.broadcast-56"><a href="#Gust.broadcast-56"><span class="linenos">56</span></a>    <span class="nd">@classmethod</span>
+</span><span id="Gust.broadcast-57"><a href="#Gust.broadcast-57"><span class="linenos">57</span></a>    <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">):</span>
+</span><span id="Gust.broadcast-58"><a href="#Gust.broadcast-58"><span class="linenos">58</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;pass through, maybe point for redis gust&quot;&quot;&quot;</span>
+</span><span id="Gust.broadcast-59"><a href="#Gust.broadcast-59"><span class="linenos">59</span></a>        <span class="n">Websocket</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>pass through, maybe point for redis gust</p>
+</div>
+
+
+                            </div>
+                            <div id="Gust.run" class="classattr">
+                                        <input id="Gust.run-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">run</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Gust.run-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Gust.run"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.run-74"><a href="#Gust.run-74"><span class="linenos">74</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+</span><span id="Gust.run-75"><a href="#Gust.run-75"><span class="linenos">75</span></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="Gust.run-76"><a href="#Gust.run-76"><span class="linenos">76</span></a>            <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_run_</span><span class="p">())</span>
+</span><span id="Gust.run-77"><a href="#Gust.run-77"><span class="linenos">77</span></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="ne">SystemExit</span><span class="p">):</span>
+</span><span id="Gust.run-78"><a href="#Gust.run-78"><span class="linenos">78</span></a>            <span class="c1"># graceful shutdown</span>
+</span><span id="Gust.run-79"><a href="#Gust.run-79"><span class="linenos">79</span></a>            <span class="k">pass</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="Gust.on_line" class="classattr">
+                                        <input id="Gust.on_line-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">async def</span>
+        <span class="name">on_line</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">handler</span><span class="p">:</span> <span class="n">blueshed</span><span class="o">.</span><span class="n">gust</span><span class="o">.</span><span class="n">websocket</span><span class="o">.</span><span class="n">Websocket</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Gust.on_line-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Gust.on_line"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.on_line-81"><a href="#Gust.on_line-81"><span class="linenos">81</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span>
+</span><span id="Gust.on_line-82"><a href="#Gust.on_line-82"><span class="linenos">82</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;called when a websocket opens&quot;&quot;&quot;</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>called when a websocket opens</p>
+</div>
+
+
+                            </div>
+                            <div id="Gust.off_line" class="classattr">
+                                        <input id="Gust.off_line-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">async def</span>
+        <span class="name">off_line</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">handler</span><span class="p">:</span> <span class="n">blueshed</span><span class="o">.</span><span class="n">gust</span><span class="o">.</span><span class="n">websocket</span><span class="o">.</span><span class="n">Websocket</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Gust.off_line-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Gust.off_line"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.off_line-84"><a href="#Gust.off_line-84"><span class="linenos">84</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">off_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span>
+</span><span id="Gust.off_line-85"><a href="#Gust.off_line-85"><span class="linenos">85</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;called when a websocket closes&quot;&quot;&quot;</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>called when a websocket closes</p>
+</div>
+
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt>tornado.web.Application</dt>
+                                <dd id="Gust.default_host" class="variable">default_host</dd>
+                <dd id="Gust.settings" class="variable">settings</dd>
+                <dd id="Gust.ui_modules" class="variable">ui_modules</dd>
+                <dd id="Gust.ui_methods" class="variable">ui_methods</dd>
+                <dd id="Gust.wildcard_router" class="variable">wildcard_router</dd>
+                <dd id="Gust.default_router" class="variable">default_router</dd>
+                <dd id="Gust.listen" class="function">listen</dd>
+                <dd id="Gust.add_handlers" class="function">add_handlers</dd>
+                <dd id="Gust.add_transform" class="function">add_transform</dd>
+                <dd id="Gust.find_handler" class="function">find_handler</dd>
+                <dd id="Gust.get_handler_delegate" class="function">get_handler_delegate</dd>
+                <dd id="Gust.reverse_url" class="function">reverse_url</dd>
+                <dd id="Gust.log_request" class="function">log_request</dd>
+
+            </div>
+            <div><dt>tornado.routing.Router</dt>
+                                <dd id="Gust.start_request" class="function">start_request</dd>
+
+            </div>
+            <div><dt>tornado.httputil.HTTPServerConnectionDelegate</dt>
+                                <dd id="Gust.on_close" class="function">on_close</dd>
+
+            </div>
+                                </dl>
+                            </div>
+                </section>
+                <section id="Routes">
+                            <input id="Routes-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">Routes</span>:
+
+                <label class="view-source-button" for="Routes-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes-14"><a href="#Routes-14"><span class="linenos"> 14</span></a><span class="k">class</span> <span class="nc">Routes</span><span class="p">:</span>
+</span><span id="Routes-15"><a href="#Routes-15"><span class="linenos"> 15</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;to organise our decorators&quot;&quot;&quot;</span>
+</span><span id="Routes-16"><a href="#Routes-16"><span class="linenos"> 16</span></a>
+</span><span id="Routes-17"><a href="#Routes-17"><span class="linenos"> 17</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="Routes-18"><a href="#Routes-18"><span class="linenos"> 18</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">route_map</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="Routes-19"><a href="#Routes-19"><span class="linenos"> 19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">broadcaster</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="Routes-20"><a href="#Routes-20"><span class="linenos"> 20</span></a>
+</span><span id="Routes-21"><a href="#Routes-21"><span class="linenos"> 21</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
+</span><span id="Routes-22"><a href="#Routes-22"><span class="linenos"> 22</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes-23"><a href="#Routes-23"><span class="linenos"> 23</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes-24"><a href="#Routes-24"><span class="linenos"> 24</span></a>        <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="Routes-25"><a href="#Routes-25"><span class="linenos"> 25</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes-26"><a href="#Routes-26"><span class="linenos"> 26</span></a>    <span class="p">):</span>
+</span><span id="Routes-27"><a href="#Routes-27"><span class="linenos"> 27</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a GET&quot;&quot;&quot;</span>
+</span><span id="Routes-28"><a href="#Routes-28"><span class="linenos"> 28</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes-29"><a href="#Routes-29"><span class="linenos"> 29</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes-30"><a href="#Routes-30"><span class="linenos"> 30</span></a>        <span class="p">)</span>
+</span><span id="Routes-31"><a href="#Routes-31"><span class="linenos"> 31</span></a>
+</span><span id="Routes-32"><a href="#Routes-32"><span class="linenos"> 32</span></a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span>
+</span><span id="Routes-33"><a href="#Routes-33"><span class="linenos"> 33</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes-34"><a href="#Routes-34"><span class="linenos"> 34</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes-35"><a href="#Routes-35"><span class="linenos"> 35</span></a>        <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="Routes-36"><a href="#Routes-36"><span class="linenos"> 36</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes-37"><a href="#Routes-37"><span class="linenos"> 37</span></a>    <span class="p">):</span>
+</span><span id="Routes-38"><a href="#Routes-38"><span class="linenos"> 38</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a POST&quot;&quot;&quot;</span>
+</span><span id="Routes-39"><a href="#Routes-39"><span class="linenos"> 39</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes-40"><a href="#Routes-40"><span class="linenos"> 40</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes-41"><a href="#Routes-41"><span class="linenos"> 41</span></a>        <span class="p">)</span>
+</span><span id="Routes-42"><a href="#Routes-42"><span class="linenos"> 42</span></a>
+</span><span id="Routes-43"><a href="#Routes-43"><span class="linenos"> 43</span></a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span>
+</span><span id="Routes-44"><a href="#Routes-44"><span class="linenos"> 44</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes-45"><a href="#Routes-45"><span class="linenos"> 45</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes-46"><a href="#Routes-46"><span class="linenos"> 46</span></a>        <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="Routes-47"><a href="#Routes-47"><span class="linenos"> 47</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes-48"><a href="#Routes-48"><span class="linenos"> 48</span></a>    <span class="p">):</span>
+</span><span id="Routes-49"><a href="#Routes-49"><span class="linenos"> 49</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a PUT&quot;&quot;&quot;</span>
+</span><span id="Routes-50"><a href="#Routes-50"><span class="linenos"> 50</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes-51"><a href="#Routes-51"><span class="linenos"> 51</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes-52"><a href="#Routes-52"><span class="linenos"> 52</span></a>        <span class="p">)</span>
+</span><span id="Routes-53"><a href="#Routes-53"><span class="linenos"> 53</span></a>
+</span><span id="Routes-54"><a href="#Routes-54"><span class="linenos"> 54</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span>
+</span><span id="Routes-55"><a href="#Routes-55"><span class="linenos"> 55</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes-56"><a href="#Routes-56"><span class="linenos"> 56</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes-57"><a href="#Routes-57"><span class="linenos"> 57</span></a>        <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="Routes-58"><a href="#Routes-58"><span class="linenos"> 58</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes-59"><a href="#Routes-59"><span class="linenos"> 59</span></a>    <span class="p">):</span>
+</span><span id="Routes-60"><a href="#Routes-60"><span class="linenos"> 60</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a DELETE&quot;&quot;&quot;</span>
+</span><span id="Routes-61"><a href="#Routes-61"><span class="linenos"> 61</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes-62"><a href="#Routes-62"><span class="linenos"> 62</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes-63"><a href="#Routes-63"><span class="linenos"> 63</span></a>        <span class="p">)</span>
+</span><span id="Routes-64"><a href="#Routes-64"><span class="linenos"> 64</span></a>
+</span><span id="Routes-65"><a href="#Routes-65"><span class="linenos"> 65</span></a>    <span class="k">def</span> <span class="nf">head</span><span class="p">(</span>
+</span><span id="Routes-66"><a href="#Routes-66"><span class="linenos"> 66</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes-67"><a href="#Routes-67"><span class="linenos"> 67</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes-68"><a href="#Routes-68"><span class="linenos"> 68</span></a>        <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="Routes-69"><a href="#Routes-69"><span class="linenos"> 69</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes-70"><a href="#Routes-70"><span class="linenos"> 70</span></a>    <span class="p">):</span>
+</span><span id="Routes-71"><a href="#Routes-71"><span class="linenos"> 71</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a HEAD&quot;&quot;&quot;</span>
+</span><span id="Routes-72"><a href="#Routes-72"><span class="linenos"> 72</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes-73"><a href="#Routes-73"><span class="linenos"> 73</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;head&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes-74"><a href="#Routes-74"><span class="linenos"> 74</span></a>        <span class="p">)</span>
+</span><span id="Routes-75"><a href="#Routes-75"><span class="linenos"> 75</span></a>
+</span><span id="Routes-76"><a href="#Routes-76"><span class="linenos"> 76</span></a>    <span class="k">def</span> <span class="nf">ws_open</span><span class="p">(</span>
+</span><span id="Routes-77"><a href="#Routes-77"><span class="linenos"> 77</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes-78"><a href="#Routes-78"><span class="linenos"> 78</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes-79"><a href="#Routes-79"><span class="linenos"> 79</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes-80"><a href="#Routes-80"><span class="linenos"> 80</span></a>    <span class="p">):</span>
+</span><span id="Routes-81"><a href="#Routes-81"><span class="linenos"> 81</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap an on_open&quot;&quot;&quot;</span>
+</span><span id="Routes-82"><a href="#Routes-82"><span class="linenos"> 82</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes-83"><a href="#Routes-83"><span class="linenos"> 83</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ws_open&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes-84"><a href="#Routes-84"><span class="linenos"> 84</span></a>        <span class="p">)</span>
+</span><span id="Routes-85"><a href="#Routes-85"><span class="linenos"> 85</span></a>
+</span><span id="Routes-86"><a href="#Routes-86"><span class="linenos"> 86</span></a>    <span class="k">def</span> <span class="nf">ws_message</span><span class="p">(</span>
+</span><span id="Routes-87"><a href="#Routes-87"><span class="linenos"> 87</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes-88"><a href="#Routes-88"><span class="linenos"> 88</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes-89"><a href="#Routes-89"><span class="linenos"> 89</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes-90"><a href="#Routes-90"><span class="linenos"> 90</span></a>    <span class="p">):</span>
+</span><span id="Routes-91"><a href="#Routes-91"><span class="linenos"> 91</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap an on_message&quot;&quot;&quot;</span>
+</span><span id="Routes-92"><a href="#Routes-92"><span class="linenos"> 92</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes-93"><a href="#Routes-93"><span class="linenos"> 93</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ws_message&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes-94"><a href="#Routes-94"><span class="linenos"> 94</span></a>        <span class="p">)</span>
+</span><span id="Routes-95"><a href="#Routes-95"><span class="linenos"> 95</span></a>
+</span><span id="Routes-96"><a href="#Routes-96"><span class="linenos"> 96</span></a>    <span class="k">def</span> <span class="nf">ws_close</span><span class="p">(</span>
+</span><span id="Routes-97"><a href="#Routes-97"><span class="linenos"> 97</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes-98"><a href="#Routes-98"><span class="linenos"> 98</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes-99"><a href="#Routes-99"><span class="linenos"> 99</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes-100"><a href="#Routes-100"><span class="linenos">100</span></a>    <span class="p">):</span>
+</span><span id="Routes-101"><a href="#Routes-101"><span class="linenos">101</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap an on_close&quot;&quot;&quot;</span>
+</span><span id="Routes-102"><a href="#Routes-102"><span class="linenos">102</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes-103"><a href="#Routes-103"><span class="linenos">103</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ws_close&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes-104"><a href="#Routes-104"><span class="linenos">104</span></a>        <span class="p">)</span>
+</span><span id="Routes-105"><a href="#Routes-105"><span class="linenos">105</span></a>
+</span><span id="Routes-106"><a href="#Routes-106"><span class="linenos">106</span></a>    <span class="k">def</span> <span class="nf">ws_json_rpc</span><span class="p">(</span>
+</span><span id="Routes-107"><a href="#Routes-107"><span class="linenos">107</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes-108"><a href="#Routes-108"><span class="linenos">108</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes-109"><a href="#Routes-109"><span class="linenos">109</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes-110"><a href="#Routes-110"><span class="linenos">110</span></a>    <span class="p">):</span>
+</span><span id="Routes-111"><a href="#Routes-111"><span class="linenos">111</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a json remote procedure&quot;&quot;&quot;</span>
+</span><span id="Routes-112"><a href="#Routes-112"><span class="linenos">112</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes-113"><a href="#Routes-113"><span class="linenos">113</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ws_rpc&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes-114"><a href="#Routes-114"><span class="linenos">114</span></a>        <span class="p">)</span>
+</span><span id="Routes-115"><a href="#Routes-115"><span class="linenos">115</span></a>
+</span><span id="Routes-116"><a href="#Routes-116"><span class="linenos">116</span></a>    <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+</span><span id="Routes-117"><a href="#Routes-117"><span class="linenos">117</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;broadcast to a path&quot;&quot;&quot;</span>
+</span><span id="Routes-118"><a href="#Routes-118"><span class="linenos">118</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">broadcaster</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">)</span>
+</span><span id="Routes-119"><a href="#Routes-119"><span class="linenos">119</span></a>
+</span><span id="Routes-120"><a href="#Routes-120"><span class="linenos">120</span></a>    <span class="k">def</span> <span class="nf">default_wrap</span><span class="p">(</span>
+</span><span id="Routes-121"><a href="#Routes-121"><span class="linenos">121</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes-122"><a href="#Routes-122"><span class="linenos">122</span></a>        <span class="n">method</span><span class="p">,</span>
+</span><span id="Routes-123"><a href="#Routes-123"><span class="linenos">123</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes-124"><a href="#Routes-124"><span class="linenos">124</span></a>        <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="Routes-125"><a href="#Routes-125"><span class="linenos">125</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes-126"><a href="#Routes-126"><span class="linenos">126</span></a>    <span class="p">):</span>
+</span><span id="Routes-127"><a href="#Routes-127"><span class="linenos">127</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a method&quot;&quot;&quot;</span>
+</span><span id="Routes-128"><a href="#Routes-128"><span class="linenos">128</span></a>
+</span><span id="Routes-129"><a href="#Routes-129"><span class="linenos">129</span></a>        <span class="k">def</span> <span class="nf">inner_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="Routes-130"><a href="#Routes-130"><span class="linenos">130</span></a><span class="w">            </span><span class="sd">&quot;&quot;&quot;we have the function&quot;&quot;&quot;</span>
+</span><span id="Routes-131"><a href="#Routes-131"><span class="linenos">131</span></a>            <span class="n">web_method</span> <span class="o">=</span> <span class="n">WebMethod</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
+</span><span id="Routes-132"><a href="#Routes-132"><span class="linenos">132</span></a>            <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ws_&#39;</span><span class="p">):</span>
+</span><span id="Routes-133"><a href="#Routes-133"><span class="linenos">133</span></a>                <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">route_map</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">WsConfig</span><span class="p">())</span>
+</span><span id="Routes-134"><a href="#Routes-134"><span class="linenos">134</span></a>                <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ws_rpc&#39;</span><span class="p">):</span>
+</span><span id="Routes-135"><a href="#Routes-135"><span class="linenos">135</span></a>                    <span class="n">cfg</span><span class="o">.</span><span class="n">ws_rpc</span><span class="p">[</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">web_method</span>
+</span><span id="Routes-136"><a href="#Routes-136"><span class="linenos">136</span></a>                <span class="k">else</span><span class="p">:</span>
+</span><span id="Routes-137"><a href="#Routes-137"><span class="linenos">137</span></a>                    <span class="nb">setattr</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">web_method</span><span class="p">)</span>
+</span><span id="Routes-138"><a href="#Routes-138"><span class="linenos">138</span></a>                <span class="k">if</span> <span class="n">auth</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="Routes-139"><a href="#Routes-139"><span class="linenos">139</span></a>                    <span class="n">cfg</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="Routes-140"><a href="#Routes-140"><span class="linenos">140</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="Routes-141"><a href="#Routes-141"><span class="linenos">141</span></a>                <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">route_map</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">WebConfig</span><span class="p">())</span>
+</span><span id="Routes-142"><a href="#Routes-142"><span class="linenos">142</span></a>                <span class="nb">setattr</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">web_method</span><span class="p">)</span>
+</span><span id="Routes-143"><a href="#Routes-143"><span class="linenos">143</span></a>            <span class="k">return</span> <span class="n">func</span>
+</span><span id="Routes-144"><a href="#Routes-144"><span class="linenos">144</span></a>
+</span><span id="Routes-145"><a href="#Routes-145"><span class="linenos">145</span></a>        <span class="k">return</span> <span class="n">inner_decorator</span>
+</span><span id="Routes-146"><a href="#Routes-146"><span class="linenos">146</span></a>
+</span><span id="Routes-147"><a href="#Routes-147"><span class="linenos">147</span></a>    <span class="k">def</span> <span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+</span><span id="Routes-148"><a href="#Routes-148"><span class="linenos">148</span></a>        <span class="n">routes</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="Routes-149"><a href="#Routes-149"><span class="linenos">149</span></a>        <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">cfg</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">route_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span id="Routes-150"><a href="#Routes-150"><span class="linenos">150</span></a>            <span class="n">handler</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="Routes-151"><a href="#Routes-151"><span class="linenos">151</span></a>                <span class="n">WebHandler</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="p">(</span><span class="n">WebConfig</span><span class="p">,))</span> <span class="k">else</span> <span class="n">Websocket</span>
+</span><span id="Routes-152"><a href="#Routes-152"><span class="linenos">152</span></a>            <span class="p">)</span>
+</span><span id="Routes-153"><a href="#Routes-153"><span class="linenos">153</span></a>            <span class="n">routes</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="sa">rf</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;method_settings&#39;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">}))</span>
+</span><span id="Routes-154"><a href="#Routes-154"><span class="linenos">154</span></a>        <span class="n">routes</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="Routes-155"><a href="#Routes-155"><span class="linenos">155</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">broadcaster</span> <span class="o">=</span> <span class="n">app</span>
+</span><span id="Routes-156"><a href="#Routes-156"><span class="linenos">156</span></a>        <span class="n">app</span><span class="o">.</span><span class="n">add_handlers</span><span class="p">(</span><span class="s1">&#39;.*&#39;</span><span class="p">,</span> <span class="n">routes</span><span class="p">)</span>
+</span><span id="Routes-157"><a href="#Routes-157"><span class="linenos">157</span></a>        <span class="k">return</span> <span class="n">routes</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>to organise our decorators</p>
+</div>
+
+
+                            <div id="Routes.route_map" class="classattr">
+                                <div class="attr variable">
+            <span class="name">route_map</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Routes.route_map"></a>
+    
+    
+
+                            </div>
+                            <div id="Routes.broadcaster" class="classattr">
+                                <div class="attr variable">
+            <span class="name">broadcaster</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Routes.broadcaster"></a>
+    
+    
+
+                            </div>
+                            <div id="Routes.get" class="classattr">
+                                        <input id="Routes.get-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">template</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="n">auth</span><span class="o">=</span><span class="kc">False</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Routes.get-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes.get"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes.get-21"><a href="#Routes.get-21"><span class="linenos">21</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
+</span><span id="Routes.get-22"><a href="#Routes.get-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes.get-23"><a href="#Routes.get-23"><span class="linenos">23</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes.get-24"><a href="#Routes.get-24"><span class="linenos">24</span></a>        <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="Routes.get-25"><a href="#Routes.get-25"><span class="linenos">25</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes.get-26"><a href="#Routes.get-26"><span class="linenos">26</span></a>    <span class="p">):</span>
+</span><span id="Routes.get-27"><a href="#Routes.get-27"><span class="linenos">27</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a GET&quot;&quot;&quot;</span>
+</span><span id="Routes.get-28"><a href="#Routes.get-28"><span class="linenos">28</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes.get-29"><a href="#Routes.get-29"><span class="linenos">29</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes.get-30"><a href="#Routes.get-30"><span class="linenos">30</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>wrap a GET</p>
+</div>
+
+
+                            </div>
+                            <div id="Routes.post" class="classattr">
+                                        <input id="Routes.post-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">post</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">template</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="n">auth</span><span class="o">=</span><span class="kc">False</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Routes.post-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes.post"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes.post-32"><a href="#Routes.post-32"><span class="linenos">32</span></a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span>
+</span><span id="Routes.post-33"><a href="#Routes.post-33"><span class="linenos">33</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes.post-34"><a href="#Routes.post-34"><span class="linenos">34</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes.post-35"><a href="#Routes.post-35"><span class="linenos">35</span></a>        <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="Routes.post-36"><a href="#Routes.post-36"><span class="linenos">36</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes.post-37"><a href="#Routes.post-37"><span class="linenos">37</span></a>    <span class="p">):</span>
+</span><span id="Routes.post-38"><a href="#Routes.post-38"><span class="linenos">38</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a POST&quot;&quot;&quot;</span>
+</span><span id="Routes.post-39"><a href="#Routes.post-39"><span class="linenos">39</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes.post-40"><a href="#Routes.post-40"><span class="linenos">40</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes.post-41"><a href="#Routes.post-41"><span class="linenos">41</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>wrap a POST</p>
+</div>
+
+
+                            </div>
+                            <div id="Routes.put" class="classattr">
+                                        <input id="Routes.put-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">put</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">template</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="n">auth</span><span class="o">=</span><span class="kc">False</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Routes.put-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes.put"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes.put-43"><a href="#Routes.put-43"><span class="linenos">43</span></a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span>
+</span><span id="Routes.put-44"><a href="#Routes.put-44"><span class="linenos">44</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes.put-45"><a href="#Routes.put-45"><span class="linenos">45</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes.put-46"><a href="#Routes.put-46"><span class="linenos">46</span></a>        <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="Routes.put-47"><a href="#Routes.put-47"><span class="linenos">47</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes.put-48"><a href="#Routes.put-48"><span class="linenos">48</span></a>    <span class="p">):</span>
+</span><span id="Routes.put-49"><a href="#Routes.put-49"><span class="linenos">49</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a PUT&quot;&quot;&quot;</span>
+</span><span id="Routes.put-50"><a href="#Routes.put-50"><span class="linenos">50</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes.put-51"><a href="#Routes.put-51"><span class="linenos">51</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes.put-52"><a href="#Routes.put-52"><span class="linenos">52</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>wrap a PUT</p>
+</div>
+
+
+                            </div>
+                            <div id="Routes.delete" class="classattr">
+                                        <input id="Routes.delete-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">delete</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">template</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="n">auth</span><span class="o">=</span><span class="kc">False</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Routes.delete-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes.delete"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes.delete-54"><a href="#Routes.delete-54"><span class="linenos">54</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span>
+</span><span id="Routes.delete-55"><a href="#Routes.delete-55"><span class="linenos">55</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes.delete-56"><a href="#Routes.delete-56"><span class="linenos">56</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes.delete-57"><a href="#Routes.delete-57"><span class="linenos">57</span></a>        <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="Routes.delete-58"><a href="#Routes.delete-58"><span class="linenos">58</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes.delete-59"><a href="#Routes.delete-59"><span class="linenos">59</span></a>    <span class="p">):</span>
+</span><span id="Routes.delete-60"><a href="#Routes.delete-60"><span class="linenos">60</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a DELETE&quot;&quot;&quot;</span>
+</span><span id="Routes.delete-61"><a href="#Routes.delete-61"><span class="linenos">61</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes.delete-62"><a href="#Routes.delete-62"><span class="linenos">62</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes.delete-63"><a href="#Routes.delete-63"><span class="linenos">63</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>wrap a DELETE</p>
+</div>
+
+
+                            </div>
+                            <div id="Routes.head" class="classattr">
+                                        <input id="Routes.head-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">head</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">template</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="n">auth</span><span class="o">=</span><span class="kc">False</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Routes.head-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes.head"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes.head-65"><a href="#Routes.head-65"><span class="linenos">65</span></a>    <span class="k">def</span> <span class="nf">head</span><span class="p">(</span>
+</span><span id="Routes.head-66"><a href="#Routes.head-66"><span class="linenos">66</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes.head-67"><a href="#Routes.head-67"><span class="linenos">67</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes.head-68"><a href="#Routes.head-68"><span class="linenos">68</span></a>        <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="Routes.head-69"><a href="#Routes.head-69"><span class="linenos">69</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes.head-70"><a href="#Routes.head-70"><span class="linenos">70</span></a>    <span class="p">):</span>
+</span><span id="Routes.head-71"><a href="#Routes.head-71"><span class="linenos">71</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a HEAD&quot;&quot;&quot;</span>
+</span><span id="Routes.head-72"><a href="#Routes.head-72"><span class="linenos">72</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes.head-73"><a href="#Routes.head-73"><span class="linenos">73</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;head&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes.head-74"><a href="#Routes.head-74"><span class="linenos">74</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>wrap a HEAD</p>
+</div>
+
+
+                            </div>
+                            <div id="Routes.ws_open" class="classattr">
+                                        <input id="Routes.ws_open-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">ws_open</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">auth</span><span class="o">=</span><span class="kc">False</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Routes.ws_open-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes.ws_open"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes.ws_open-76"><a href="#Routes.ws_open-76"><span class="linenos">76</span></a>    <span class="k">def</span> <span class="nf">ws_open</span><span class="p">(</span>
+</span><span id="Routes.ws_open-77"><a href="#Routes.ws_open-77"><span class="linenos">77</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes.ws_open-78"><a href="#Routes.ws_open-78"><span class="linenos">78</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes.ws_open-79"><a href="#Routes.ws_open-79"><span class="linenos">79</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes.ws_open-80"><a href="#Routes.ws_open-80"><span class="linenos">80</span></a>    <span class="p">):</span>
+</span><span id="Routes.ws_open-81"><a href="#Routes.ws_open-81"><span class="linenos">81</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap an on_open&quot;&quot;&quot;</span>
+</span><span id="Routes.ws_open-82"><a href="#Routes.ws_open-82"><span class="linenos">82</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes.ws_open-83"><a href="#Routes.ws_open-83"><span class="linenos">83</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ws_open&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes.ws_open-84"><a href="#Routes.ws_open-84"><span class="linenos">84</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>wrap an on_open</p>
+</div>
+
+
+                            </div>
+                            <div id="Routes.ws_message" class="classattr">
+                                        <input id="Routes.ws_message-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">ws_message</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">auth</span><span class="o">=</span><span class="kc">False</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Routes.ws_message-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes.ws_message"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes.ws_message-86"><a href="#Routes.ws_message-86"><span class="linenos">86</span></a>    <span class="k">def</span> <span class="nf">ws_message</span><span class="p">(</span>
+</span><span id="Routes.ws_message-87"><a href="#Routes.ws_message-87"><span class="linenos">87</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes.ws_message-88"><a href="#Routes.ws_message-88"><span class="linenos">88</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes.ws_message-89"><a href="#Routes.ws_message-89"><span class="linenos">89</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes.ws_message-90"><a href="#Routes.ws_message-90"><span class="linenos">90</span></a>    <span class="p">):</span>
+</span><span id="Routes.ws_message-91"><a href="#Routes.ws_message-91"><span class="linenos">91</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap an on_message&quot;&quot;&quot;</span>
+</span><span id="Routes.ws_message-92"><a href="#Routes.ws_message-92"><span class="linenos">92</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes.ws_message-93"><a href="#Routes.ws_message-93"><span class="linenos">93</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ws_message&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes.ws_message-94"><a href="#Routes.ws_message-94"><span class="linenos">94</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>wrap an on_message</p>
+</div>
+
+
+                            </div>
+                            <div id="Routes.ws_close" class="classattr">
+                                        <input id="Routes.ws_close-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">ws_close</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">auth</span><span class="o">=</span><span class="kc">False</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Routes.ws_close-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes.ws_close"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes.ws_close-96"><a href="#Routes.ws_close-96"><span class="linenos"> 96</span></a>    <span class="k">def</span> <span class="nf">ws_close</span><span class="p">(</span>
+</span><span id="Routes.ws_close-97"><a href="#Routes.ws_close-97"><span class="linenos"> 97</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes.ws_close-98"><a href="#Routes.ws_close-98"><span class="linenos"> 98</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes.ws_close-99"><a href="#Routes.ws_close-99"><span class="linenos"> 99</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes.ws_close-100"><a href="#Routes.ws_close-100"><span class="linenos">100</span></a>    <span class="p">):</span>
+</span><span id="Routes.ws_close-101"><a href="#Routes.ws_close-101"><span class="linenos">101</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap an on_close&quot;&quot;&quot;</span>
+</span><span id="Routes.ws_close-102"><a href="#Routes.ws_close-102"><span class="linenos">102</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes.ws_close-103"><a href="#Routes.ws_close-103"><span class="linenos">103</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ws_close&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes.ws_close-104"><a href="#Routes.ws_close-104"><span class="linenos">104</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>wrap an on_close</p>
+</div>
+
+
+                            </div>
+                            <div id="Routes.ws_json_rpc" class="classattr">
+                                        <input id="Routes.ws_json_rpc-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">ws_json_rpc</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">auth</span><span class="o">=</span><span class="kc">False</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Routes.ws_json_rpc-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes.ws_json_rpc"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes.ws_json_rpc-106"><a href="#Routes.ws_json_rpc-106"><span class="linenos">106</span></a>    <span class="k">def</span> <span class="nf">ws_json_rpc</span><span class="p">(</span>
+</span><span id="Routes.ws_json_rpc-107"><a href="#Routes.ws_json_rpc-107"><span class="linenos">107</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes.ws_json_rpc-108"><a href="#Routes.ws_json_rpc-108"><span class="linenos">108</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes.ws_json_rpc-109"><a href="#Routes.ws_json_rpc-109"><span class="linenos">109</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes.ws_json_rpc-110"><a href="#Routes.ws_json_rpc-110"><span class="linenos">110</span></a>    <span class="p">):</span>
+</span><span id="Routes.ws_json_rpc-111"><a href="#Routes.ws_json_rpc-111"><span class="linenos">111</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a json remote procedure&quot;&quot;&quot;</span>
+</span><span id="Routes.ws_json_rpc-112"><a href="#Routes.ws_json_rpc-112"><span class="linenos">112</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_wrap</span><span class="p">(</span>
+</span><span id="Routes.ws_json_rpc-113"><a href="#Routes.ws_json_rpc-113"><span class="linenos">113</span></a>            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ws_rpc&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span>
+</span><span id="Routes.ws_json_rpc-114"><a href="#Routes.ws_json_rpc-114"><span class="linenos">114</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>wrap a json remote procedure</p>
+</div>
+
+
+                            </div>
+                            <div id="Routes.broadcast" class="classattr">
+                                        <input id="Routes.broadcast-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">broadcast</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">path</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">message</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">client_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Routes.broadcast-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes.broadcast"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes.broadcast-116"><a href="#Routes.broadcast-116"><span class="linenos">116</span></a>    <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+</span><span id="Routes.broadcast-117"><a href="#Routes.broadcast-117"><span class="linenos">117</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;broadcast to a path&quot;&quot;&quot;</span>
+</span><span id="Routes.broadcast-118"><a href="#Routes.broadcast-118"><span class="linenos">118</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">broadcaster</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>broadcast to a path</p>
+</div>
+
+
+                            </div>
+                            <div id="Routes.default_wrap" class="classattr">
+                                        <input id="Routes.default_wrap-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">default_wrap</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">method</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">template</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="n">auth</span><span class="o">=</span><span class="kc">False</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Routes.default_wrap-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes.default_wrap"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes.default_wrap-120"><a href="#Routes.default_wrap-120"><span class="linenos">120</span></a>    <span class="k">def</span> <span class="nf">default_wrap</span><span class="p">(</span>
+</span><span id="Routes.default_wrap-121"><a href="#Routes.default_wrap-121"><span class="linenos">121</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Routes.default_wrap-122"><a href="#Routes.default_wrap-122"><span class="linenos">122</span></a>        <span class="n">method</span><span class="p">,</span>
+</span><span id="Routes.default_wrap-123"><a href="#Routes.default_wrap-123"><span class="linenos">123</span></a>        <span class="n">path</span><span class="p">,</span>
+</span><span id="Routes.default_wrap-124"><a href="#Routes.default_wrap-124"><span class="linenos">124</span></a>        <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="Routes.default_wrap-125"><a href="#Routes.default_wrap-125"><span class="linenos">125</span></a>        <span class="n">auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="Routes.default_wrap-126"><a href="#Routes.default_wrap-126"><span class="linenos">126</span></a>    <span class="p">):</span>
+</span><span id="Routes.default_wrap-127"><a href="#Routes.default_wrap-127"><span class="linenos">127</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;wrap a method&quot;&quot;&quot;</span>
+</span><span id="Routes.default_wrap-128"><a href="#Routes.default_wrap-128"><span class="linenos">128</span></a>
+</span><span id="Routes.default_wrap-129"><a href="#Routes.default_wrap-129"><span class="linenos">129</span></a>        <span class="k">def</span> <span class="nf">inner_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="Routes.default_wrap-130"><a href="#Routes.default_wrap-130"><span class="linenos">130</span></a><span class="w">            </span><span class="sd">&quot;&quot;&quot;we have the function&quot;&quot;&quot;</span>
+</span><span id="Routes.default_wrap-131"><a href="#Routes.default_wrap-131"><span class="linenos">131</span></a>            <span class="n">web_method</span> <span class="o">=</span> <span class="n">WebMethod</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
+</span><span id="Routes.default_wrap-132"><a href="#Routes.default_wrap-132"><span class="linenos">132</span></a>            <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ws_&#39;</span><span class="p">):</span>
+</span><span id="Routes.default_wrap-133"><a href="#Routes.default_wrap-133"><span class="linenos">133</span></a>                <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">route_map</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">WsConfig</span><span class="p">())</span>
+</span><span id="Routes.default_wrap-134"><a href="#Routes.default_wrap-134"><span class="linenos">134</span></a>                <span class="k">if</span> <span class="n">method</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ws_rpc&#39;</span><span class="p">):</span>
+</span><span id="Routes.default_wrap-135"><a href="#Routes.default_wrap-135"><span class="linenos">135</span></a>                    <span class="n">cfg</span><span class="o">.</span><span class="n">ws_rpc</span><span class="p">[</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">web_method</span>
+</span><span id="Routes.default_wrap-136"><a href="#Routes.default_wrap-136"><span class="linenos">136</span></a>                <span class="k">else</span><span class="p">:</span>
+</span><span id="Routes.default_wrap-137"><a href="#Routes.default_wrap-137"><span class="linenos">137</span></a>                    <span class="nb">setattr</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">web_method</span><span class="p">)</span>
+</span><span id="Routes.default_wrap-138"><a href="#Routes.default_wrap-138"><span class="linenos">138</span></a>                <span class="k">if</span> <span class="n">auth</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="Routes.default_wrap-139"><a href="#Routes.default_wrap-139"><span class="linenos">139</span></a>                    <span class="n">cfg</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="Routes.default_wrap-140"><a href="#Routes.default_wrap-140"><span class="linenos">140</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="Routes.default_wrap-141"><a href="#Routes.default_wrap-141"><span class="linenos">141</span></a>                <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">route_map</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">WebConfig</span><span class="p">())</span>
+</span><span id="Routes.default_wrap-142"><a href="#Routes.default_wrap-142"><span class="linenos">142</span></a>                <span class="nb">setattr</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">web_method</span><span class="p">)</span>
+</span><span id="Routes.default_wrap-143"><a href="#Routes.default_wrap-143"><span class="linenos">143</span></a>            <span class="k">return</span> <span class="n">func</span>
+</span><span id="Routes.default_wrap-144"><a href="#Routes.default_wrap-144"><span class="linenos">144</span></a>
+</span><span id="Routes.default_wrap-145"><a href="#Routes.default_wrap-145"><span class="linenos">145</span></a>        <span class="k">return</span> <span class="n">inner_decorator</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>wrap a method</p>
+</div>
+
+
+                            </div>
+                            <div id="Routes.install" class="classattr">
+                                        <input id="Routes.install-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">install</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">app</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Routes.install-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Routes.install"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Routes.install-147"><a href="#Routes.install-147"><span class="linenos">147</span></a>    <span class="k">def</span> <span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+</span><span id="Routes.install-148"><a href="#Routes.install-148"><span class="linenos">148</span></a>        <span class="n">routes</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="Routes.install-149"><a href="#Routes.install-149"><span class="linenos">149</span></a>        <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">cfg</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">route_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span id="Routes.install-150"><a href="#Routes.install-150"><span class="linenos">150</span></a>            <span class="n">handler</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="Routes.install-151"><a href="#Routes.install-151"><span class="linenos">151</span></a>                <span class="n">WebHandler</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="p">(</span><span class="n">WebConfig</span><span class="p">,))</span> <span class="k">else</span> <span class="n">Websocket</span>
+</span><span id="Routes.install-152"><a href="#Routes.install-152"><span class="linenos">152</span></a>            <span class="p">)</span>
+</span><span id="Routes.install-153"><a href="#Routes.install-153"><span class="linenos">153</span></a>            <span class="n">routes</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="sa">rf</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;method_settings&#39;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">}))</span>
+</span><span id="Routes.install-154"><a href="#Routes.install-154"><span class="linenos">154</span></a>        <span class="n">routes</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="Routes.install-155"><a href="#Routes.install-155"><span class="linenos">155</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">broadcaster</span> <span class="o">=</span> <span class="n">app</span>
+</span><span id="Routes.install-156"><a href="#Routes.install-156"><span class="linenos">156</span></a>        <span class="n">app</span><span class="o">.</span><span class="n">add_handlers</span><span class="p">(</span><span class="s1">&#39;.*&#39;</span><span class="p">,</span> <span class="n">routes</span><span class="p">)</span>
+</span><span id="Routes.install-157"><a href="#Routes.install-157"><span class="linenos">157</span></a>        <span class="k">return</span> <span class="n">routes</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                </section>
+                <section id="Redirect">
+                            <input id="Redirect-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">Redirect</span><wbr>(<span class="base">builtins.Exception</span>):
+
+                <label class="view-source-button" for="Redirect-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Redirect"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Redirect-14"><a href="#Redirect-14"><span class="linenos">14</span></a><span class="k">class</span> <span class="nc">Redirect</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span id="Redirect-15"><a href="#Redirect-15"><span class="linenos">15</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;redirect to url and if cookie set it&quot;&quot;&quot;</span>
+</span><span id="Redirect-16"><a href="#Redirect-16"><span class="linenos">16</span></a>
+</span><span id="Redirect-17"><a href="#Redirect-17"><span class="linenos">17</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
+</span><span id="Redirect-18"><a href="#Redirect-18"><span class="linenos">18</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
+</span><span id="Redirect-19"><a href="#Redirect-19"><span class="linenos">19</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>redirect to url and if cookie set it</p>
+</div>
+
+
+                            <div id="Redirect.__init__" class="classattr">
+                                        <input id="Redirect.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">Redirect</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">url</span><span class="o">=</span><span class="s1">&#39;/&#39;</span></span>)</span>
+
+                <label class="view-source-button" for="Redirect.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Redirect.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Redirect.__init__-17"><a href="#Redirect.__init__-17"><span class="linenos">17</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
+</span><span id="Redirect.__init__-18"><a href="#Redirect.__init__-18"><span class="linenos">18</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
+</span><span id="Redirect.__init__-19"><a href="#Redirect.__init__-19"><span class="linenos">19</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="Redirect.url" class="classattr">
+                                <div class="attr variable">
+            <span class="name">url</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Redirect.url"></a>
+    
+    
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt>builtins.BaseException</dt>
+                                <dd id="Redirect.with_traceback" class="function">with_traceback</dd>
+                <dd id="Redirect.add_note" class="function">add_note</dd>
+                <dd id="Redirect.args" class="variable">args</dd>
+
+            </div>
+                                </dl>
+                            </div>
+                </section>
+                <section id="web">
+                    <div class="attr variable">
+            <span class="name">web</span>        =
+<span class="default_value">&lt;<a href="#Routes">Routes</a> object&gt;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#web"></a>
+    
+    
+
+                </section>
+                <section id="get_handler">
+                            <input id="get_handler-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_handler</span><span class="signature pdoc-code condensed">(<span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="get_handler-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#get_handler"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_handler-20"><a href="#get_handler-20"><span class="linenos">20</span></a><span class="k">def</span> <span class="nf">get_handler</span><span class="p">():</span>
+</span><span id="get_handler-21"><a href="#get_handler-21"><span class="linenos">21</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;get the current handler&quot;&quot;&quot;</span>
+</span><span id="get_handler-22"><a href="#get_handler-22"><span class="linenos">22</span></a>    <span class="k">return</span> <span class="n">HANDLER</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>get the current handler</p>
+</div>
+
+
+                </section>
+                <section id="AuthStaticFileHandler">
+                            <input id="AuthStaticFileHandler-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">AuthStaticFileHandler</span><wbr>(<span class="base">blueshed.gust.utils.UserMixin</span>, <span class="base">tornado.web.StaticFileHandler</span>):
+
+                <label class="view-source-button" for="AuthStaticFileHandler-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AuthStaticFileHandler"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AuthStaticFileHandler-11"><a href="#AuthStaticFileHandler-11"><span class="linenos">11</span></a><span class="k">class</span> <span class="nc">AuthStaticFileHandler</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">,</span> <span class="n">StaticFileHandler</span><span class="p">):</span>
+</span><span id="AuthStaticFileHandler-12"><a href="#AuthStaticFileHandler-12"><span class="linenos">12</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AuthStaticFileHandler-13"><a href="#AuthStaticFileHandler-13"><span class="linenos">13</span></a><span class="sd">    This provide integration between tornado.web.authenticated</span>
+</span><span id="AuthStaticFileHandler-14"><a href="#AuthStaticFileHandler-14"><span class="linenos">14</span></a><span class="sd">    and tornado.web.StaticFileHandler.</span>
+</span><span id="AuthStaticFileHandler-15"><a href="#AuthStaticFileHandler-15"><span class="linenos">15</span></a>
+</span><span id="AuthStaticFileHandler-16"><a href="#AuthStaticFileHandler-16"><span class="linenos">16</span></a><span class="sd">    It assumes you have set up the cookie name in the application</span>
+</span><span id="AuthStaticFileHandler-17"><a href="#AuthStaticFileHandler-17"><span class="linenos">17</span></a><span class="sd">    settings and that the request already has the cookie set. In</span>
+</span><span id="AuthStaticFileHandler-18"><a href="#AuthStaticFileHandler-18"><span class="linenos">18</span></a><span class="sd">    other words the user has already authenticated.</span>
+</span><span id="AuthStaticFileHandler-19"><a href="#AuthStaticFileHandler-19"><span class="linenos">19</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="AuthStaticFileHandler-20"><a href="#AuthStaticFileHandler-20"><span class="linenos">20</span></a>
+</span><span id="AuthStaticFileHandler-21"><a href="#AuthStaticFileHandler-21"><span class="linenos">21</span></a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">allow</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="AuthStaticFileHandler-22"><a href="#AuthStaticFileHandler-22"><span class="linenos">22</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;allow some paths through&quot;&quot;&quot;</span>
+</span><span id="AuthStaticFileHandler-23"><a href="#AuthStaticFileHandler-23"><span class="linenos">23</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="AuthStaticFileHandler-24"><a href="#AuthStaticFileHandler-24"><span class="linenos">24</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">allow</span> <span class="o">=</span> <span class="n">allow</span> <span class="k">if</span> <span class="n">allow</span> <span class="k">else</span> <span class="p">[]</span>
+</span><span id="AuthStaticFileHandler-25"><a href="#AuthStaticFileHandler-25"><span class="linenos">25</span></a>
+</span><span id="AuthStaticFileHandler-26"><a href="#AuthStaticFileHandler-26"><span class="linenos">26</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">include_body</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span><span id="AuthStaticFileHandler-27"><a href="#AuthStaticFileHandler-27"><span class="linenos">27</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;safe to return what you need&quot;&quot;&quot;</span>
+</span><span id="AuthStaticFileHandler-28"><a href="#AuthStaticFileHandler-28"><span class="linenos">28</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_user</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow</span><span class="p">:</span>
+</span><span id="AuthStaticFileHandler-29"><a href="#AuthStaticFileHandler-29"><span class="linenos">29</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">not_authenticated</span><span class="p">()</span>
+</span><span id="AuthStaticFileHandler-30"><a href="#AuthStaticFileHandler-30"><span class="linenos">30</span></a>        <span class="k">return</span> <span class="n">StaticFileHandler</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">include_body</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>This provide integration between tornado.web.authenticated
+and tornado.web.StaticFileHandler.</p>
+
+<p>It assumes you have set up the cookie name in the application
+settings and that the request already has the cookie set. In
+other words the user has already authenticated.</p>
+</div>
+
+
+                            <div id="AuthStaticFileHandler.initialize" class="classattr">
+                                        <input id="AuthStaticFileHandler.initialize-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">initialize</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">allow</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span>, </span><span class="param"><span class="o">**</span><span class="n">kwargs</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AuthStaticFileHandler.initialize-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AuthStaticFileHandler.initialize"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AuthStaticFileHandler.initialize-21"><a href="#AuthStaticFileHandler.initialize-21"><span class="linenos">21</span></a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">allow</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="AuthStaticFileHandler.initialize-22"><a href="#AuthStaticFileHandler.initialize-22"><span class="linenos">22</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;allow some paths through&quot;&quot;&quot;</span>
+</span><span id="AuthStaticFileHandler.initialize-23"><a href="#AuthStaticFileHandler.initialize-23"><span class="linenos">23</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="AuthStaticFileHandler.initialize-24"><a href="#AuthStaticFileHandler.initialize-24"><span class="linenos">24</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">allow</span> <span class="o">=</span> <span class="n">allow</span> <span class="k">if</span> <span class="n">allow</span> <span class="k">else</span> <span class="p">[]</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Hook for subclass initialization. Called for each request.</p>
+
+<p>A dictionary passed as the third argument of a <code>URLSpec</code> will be
+supplied as keyword arguments to <code><a href="#AuthStaticFileHandler.initialize">initialize()</a></code>.</p>
+
+<p>Example::</p>
+
+<pre><code>class ProfileHandler(RequestHandler):
+    def initialize(self, database):
+        self.database = database
+
+    def get(self, username):
+        ...
+
+app = Application([
+    (r'/user/(.*)', ProfileHandler, dict(database=database)),
+    ])
+</code></pre>
+</div>
+
+
+                            </div>
+                            <div id="AuthStaticFileHandler.get" class="classattr">
+                                        <input id="AuthStaticFileHandler.get-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">include_body</span><span class="o">=</span><span class="kc">True</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AuthStaticFileHandler.get-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AuthStaticFileHandler.get"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AuthStaticFileHandler.get-26"><a href="#AuthStaticFileHandler.get-26"><span class="linenos">26</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">include_body</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span><span id="AuthStaticFileHandler.get-27"><a href="#AuthStaticFileHandler.get-27"><span class="linenos">27</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;safe to return what you need&quot;&quot;&quot;</span>
+</span><span id="AuthStaticFileHandler.get-28"><a href="#AuthStaticFileHandler.get-28"><span class="linenos">28</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_user</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow</span><span class="p">:</span>
+</span><span id="AuthStaticFileHandler.get-29"><a href="#AuthStaticFileHandler.get-29"><span class="linenos">29</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">not_authenticated</span><span class="p">()</span>
+</span><span id="AuthStaticFileHandler.get-30"><a href="#AuthStaticFileHandler.get-30"><span class="linenos">30</span></a>        <span class="k">return</span> <span class="n">StaticFileHandler</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">include_body</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>safe to return what you need</p>
+</div>
+
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt>tornado.web.RequestHandler</dt>
+                                <dd id="AuthStaticFileHandler.__init__" class="function">RequestHandler</dd>
+                <dd id="AuthStaticFileHandler.SUPPORTED_METHODS" class="variable">SUPPORTED_METHODS</dd>
+                <dd id="AuthStaticFileHandler.path_args" class="variable">path_args</dd>
+                <dd id="AuthStaticFileHandler.path_kwargs" class="variable">path_kwargs</dd>
+                <dd id="AuthStaticFileHandler.application" class="variable">application</dd>
+                <dd id="AuthStaticFileHandler.request" class="variable">request</dd>
+                <dd id="AuthStaticFileHandler.ui" class="variable">ui</dd>
+                <dd id="AuthStaticFileHandler.settings" class="variable">settings</dd>
+                <dd id="AuthStaticFileHandler.post" class="function">post</dd>
+                <dd id="AuthStaticFileHandler.delete" class="function">delete</dd>
+                <dd id="AuthStaticFileHandler.patch" class="function">patch</dd>
+                <dd id="AuthStaticFileHandler.put" class="function">put</dd>
+                <dd id="AuthStaticFileHandler.options" class="function">options</dd>
+                <dd id="AuthStaticFileHandler.prepare" class="function">prepare</dd>
+                <dd id="AuthStaticFileHandler.on_finish" class="function">on_finish</dd>
+                <dd id="AuthStaticFileHandler.on_connection_close" class="function">on_connection_close</dd>
+                <dd id="AuthStaticFileHandler.clear" class="function">clear</dd>
+                <dd id="AuthStaticFileHandler.set_default_headers" class="function">set_default_headers</dd>
+                <dd id="AuthStaticFileHandler.set_status" class="function">set_status</dd>
+                <dd id="AuthStaticFileHandler.get_status" class="function">get_status</dd>
+                <dd id="AuthStaticFileHandler.set_header" class="function">set_header</dd>
+                <dd id="AuthStaticFileHandler.add_header" class="function">add_header</dd>
+                <dd id="AuthStaticFileHandler.clear_header" class="function">clear_header</dd>
+                <dd id="AuthStaticFileHandler.get_argument" class="function">get_argument</dd>
+                <dd id="AuthStaticFileHandler.get_arguments" class="function">get_arguments</dd>
+                <dd id="AuthStaticFileHandler.get_body_argument" class="function">get_body_argument</dd>
+                <dd id="AuthStaticFileHandler.get_body_arguments" class="function">get_body_arguments</dd>
+                <dd id="AuthStaticFileHandler.get_query_argument" class="function">get_query_argument</dd>
+                <dd id="AuthStaticFileHandler.get_query_arguments" class="function">get_query_arguments</dd>
+                <dd id="AuthStaticFileHandler.decode_argument" class="function">decode_argument</dd>
+                <dd id="AuthStaticFileHandler.cookies" class="variable">cookies</dd>
+                <dd id="AuthStaticFileHandler.get_cookie" class="function">get_cookie</dd>
+                <dd id="AuthStaticFileHandler.set_cookie" class="function">set_cookie</dd>
+                <dd id="AuthStaticFileHandler.clear_cookie" class="function">clear_cookie</dd>
+                <dd id="AuthStaticFileHandler.clear_all_cookies" class="function">clear_all_cookies</dd>
+                <dd id="AuthStaticFileHandler.set_signed_cookie" class="function">set_signed_cookie</dd>
+                <dd id="AuthStaticFileHandler.set_secure_cookie" class="function">set_secure_cookie</dd>
+                <dd id="AuthStaticFileHandler.create_signed_value" class="function">create_signed_value</dd>
+                <dd id="AuthStaticFileHandler.get_signed_cookie" class="function">get_signed_cookie</dd>
+                <dd id="AuthStaticFileHandler.get_secure_cookie" class="function">get_secure_cookie</dd>
+                <dd id="AuthStaticFileHandler.get_signed_cookie_key_version" class="function">get_signed_cookie_key_version</dd>
+                <dd id="AuthStaticFileHandler.get_secure_cookie_key_version" class="function">get_secure_cookie_key_version</dd>
+                <dd id="AuthStaticFileHandler.redirect" class="function">redirect</dd>
+                <dd id="AuthStaticFileHandler.write" class="function">write</dd>
+                <dd id="AuthStaticFileHandler.render" class="function">render</dd>
+                <dd id="AuthStaticFileHandler.render_linked_js" class="function">render_linked_js</dd>
+                <dd id="AuthStaticFileHandler.render_embed_js" class="function">render_embed_js</dd>
+                <dd id="AuthStaticFileHandler.render_linked_css" class="function">render_linked_css</dd>
+                <dd id="AuthStaticFileHandler.render_embed_css" class="function">render_embed_css</dd>
+                <dd id="AuthStaticFileHandler.render_string" class="function">render_string</dd>
+                <dd id="AuthStaticFileHandler.get_template_namespace" class="function">get_template_namespace</dd>
+                <dd id="AuthStaticFileHandler.create_template_loader" class="function">create_template_loader</dd>
+                <dd id="AuthStaticFileHandler.flush" class="function">flush</dd>
+                <dd id="AuthStaticFileHandler.finish" class="function">finish</dd>
+                <dd id="AuthStaticFileHandler.detach" class="function">detach</dd>
+                <dd id="AuthStaticFileHandler.send_error" class="function">send_error</dd>
+                <dd id="AuthStaticFileHandler.write_error" class="function">write_error</dd>
+                <dd id="AuthStaticFileHandler.locale" class="variable">locale</dd>
+                <dd id="AuthStaticFileHandler.get_user_locale" class="function">get_user_locale</dd>
+                <dd id="AuthStaticFileHandler.get_browser_locale" class="function">get_browser_locale</dd>
+                <dd id="AuthStaticFileHandler.current_user" class="variable">current_user</dd>
+                <dd id="AuthStaticFileHandler.get_login_url" class="function">get_login_url</dd>
+                <dd id="AuthStaticFileHandler.get_template_path" class="function">get_template_path</dd>
+                <dd id="AuthStaticFileHandler.xsrf_token" class="variable">xsrf_token</dd>
+                <dd id="AuthStaticFileHandler.check_xsrf_cookie" class="function">check_xsrf_cookie</dd>
+                <dd id="AuthStaticFileHandler.xsrf_form_html" class="function">xsrf_form_html</dd>
+                <dd id="AuthStaticFileHandler.static_url" class="function">static_url</dd>
+                <dd id="AuthStaticFileHandler.require_setting" class="function">require_setting</dd>
+                <dd id="AuthStaticFileHandler.reverse_url" class="function">reverse_url</dd>
+                <dd id="AuthStaticFileHandler.set_etag_header" class="function">set_etag_header</dd>
+                <dd id="AuthStaticFileHandler.check_etag_header" class="function">check_etag_header</dd>
+                <dd id="AuthStaticFileHandler.data_received" class="function">data_received</dd>
+                <dd id="AuthStaticFileHandler.log_exception" class="function">log_exception</dd>
+
+            </div>
+            <div><dt>blueshed.gust.utils.UserMixin</dt>
+                                <dd id="AuthStaticFileHandler.cookie_name" class="variable">cookie_name</dd>
+                <dd id="AuthStaticFileHandler.get_current_user" class="function">get_current_user</dd>
+                <dd id="AuthStaticFileHandler.set_current_user" class="function">set_current_user</dd>
+                <dd id="AuthStaticFileHandler.not_authenticated" class="function">not_authenticated</dd>
+
+            </div>
+            <div><dt>tornado.web.StaticFileHandler</dt>
+                                <dd id="AuthStaticFileHandler.CACHE_MAX_AGE" class="variable">CACHE_MAX_AGE</dd>
+                <dd id="AuthStaticFileHandler.reset" class="function">reset</dd>
+                <dd id="AuthStaticFileHandler.head" class="function">head</dd>
+                <dd id="AuthStaticFileHandler.compute_etag" class="function">compute_etag</dd>
+                <dd id="AuthStaticFileHandler.set_headers" class="function">set_headers</dd>
+                <dd id="AuthStaticFileHandler.should_return_304" class="function">should_return_304</dd>
+                <dd id="AuthStaticFileHandler.get_absolute_path" class="function">get_absolute_path</dd>
+                <dd id="AuthStaticFileHandler.validate_absolute_path" class="function">validate_absolute_path</dd>
+                <dd id="AuthStaticFileHandler.get_content" class="function">get_content</dd>
+                <dd id="AuthStaticFileHandler.get_content_version" class="function">get_content_version</dd>
+                <dd id="AuthStaticFileHandler.get_content_size" class="function">get_content_size</dd>
+                <dd id="AuthStaticFileHandler.get_modified_time" class="function">get_modified_time</dd>
+                <dd id="AuthStaticFileHandler.get_content_type" class="function">get_content_type</dd>
+                <dd id="AuthStaticFileHandler.set_extra_headers" class="function">set_extra_headers</dd>
+                <dd id="AuthStaticFileHandler.get_cache_time" class="function">get_cache_time</dd>
+                <dd id="AuthStaticFileHandler.make_static_url" class="function">make_static_url</dd>
+                <dd id="AuthStaticFileHandler.parse_url_path" class="function">parse_url_path</dd>
+                <dd id="AuthStaticFileHandler.get_version" class="function">get_version</dd>
+
+            </div>
+                                </dl>
+                            </div>
                 </section>
     </main>
 <script>

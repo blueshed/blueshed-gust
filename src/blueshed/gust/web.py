@@ -1,4 +1,7 @@
-"""We gather routes"""
+"""
+The default routes allowing the user to create
+routes without having to construct one...
+"""
 
 from .routes import Routes
 

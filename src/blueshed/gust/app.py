@@ -11,9 +11,7 @@ from tornado.options import define, options
 from tornado.web import Application
 
 from . import context
-from .configs import WebConfig
 from .web import web
-from .web_handler import WebHandler
 from .websocket import Websocket
 
 log = logging.getLogger(__name__)
@@ -35,9 +33,7 @@ class Gust(Application):
         super().__init__(routes, debug=options.debug, **kwargs)
         web.install(self)
 
-    async def perform(
-        self, handler, user, func: Callable, *args, **kwargs
-    ) -> Any:
+    async def perform(self, handler, func: Callable, *args, **kwargs) -> Any:
         """await a function or call in a thread_pool, better yet call redis"""
         if inspect.iscoroutinefunction(func):
             log.debug('aperform: %s', func)
@@ -81,6 +77,8 @@ class Gust(Application):
             # graceful shutdown
             pass
 
-    async def on_line(self, handler: Websocket): ...
+    async def on_line(self, handler: Websocket):
+        """called when a websocket opens"""
 
-    async def off_line(self, handler: Websocket): ...
+    async def off_line(self, handler: Websocket):
+        """called when a websocket closes"""

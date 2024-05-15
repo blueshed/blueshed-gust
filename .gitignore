@@ -4,4 +4,5 @@
 .env
 build
 dist
+src/artwork
 src/blueshed_gust.egg-info

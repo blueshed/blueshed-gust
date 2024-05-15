@@ -6,7 +6,6 @@ import logging
 
 import pytest
 from blueshed.gust import Gust, json_utils, web
-from tornado.httpclient import HTTPRequest
 from tornado.template import DictLoader
 from tornado.websocket import websocket_connect
 
@@ -17,6 +16,8 @@ PATH = '/foo/'
 def app(web_context):
     """return the app for pytest-asyncio"""
     from . import web_assets as assets
+
+    logging.info(assets)  # aggressive linter
 
     appl = Gust(
         template_loader=DictLoader({'home': 'welcome to: {{message}}!'})

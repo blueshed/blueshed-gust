@@ -6,9 +6,8 @@ import logging
 import urllib.parse
 
 import pytest
-from blueshed.gust import Gust, json_utils, web
+from blueshed.gust import Gust, web
 from tornado.httpclient import HTTPRequest
-from tornado.template import DictLoader
 from tornado.websocket import websocket_connect
 
 PATH = '/bar/'
@@ -18,6 +17,8 @@ PATH = '/bar/'
 def app(web_context):
     """return the app for pytest-asyncio"""
     from . import auth_assets as assets
+
+    logging.info(assets)  # aggressive linter
 
     appl = Gust(
         login_url='/bar/login',

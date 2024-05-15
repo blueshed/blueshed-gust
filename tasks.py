@@ -3,13 +3,15 @@ from invoke import task
 @task
 def lint(ctx):
     """format and check"""
-    ctx.run('ruff format', pty=True)
-    ctx.run('ruff check --select I --fix', pty=True)
+    ctx.run('ruff format src/', pty=True)
+    ctx.run('ruff check src/ --select I --fix', pty=True)
 
 
 @task
-def docs(ctx):
+def docs(ctx, view=False):
    ctx.run('pdoc ./src/blueshed/gust -o ./docs', pty=True)
+   if view:
+       ctx.run('open ./docs/index.html', pty=True)
 
 
 @task(lint, docs)

@@ -44,9 +44,7 @@ class WebHandler(UserMixin, RequestHandler):
             self.not_authenticated()
 
         try:
-            result = await self.application.perform(
-                self, self.current_user, settings.func, self
-            )
+            result = await self.application.perform(self, settings.func, self)
             log.debug('http outcome: %s', result)
         except Redirect as ex:
             self.redirect(ex.url)
