@@ -9,6 +9,7 @@ def lint(ctx):
 
 @task
 def docs(ctx, view=False):
+   """ create documentation """
    ctx.run('pdoc ./src/blueshed/gust -o ./docs', pty=True)
    if view:
        ctx.run('open ./docs/index.html', pty=True)
@@ -29,6 +30,7 @@ def commit(ctx, message):
 
 @task(lint)
 def release(ctx, message, part="patch"):
+    """ release to pypi """
     ctx.run(f'bump-my-version bump {part}', pty=True)
     docs(ctx)
     commit(ctx, message)
