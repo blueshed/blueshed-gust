@@ -30,7 +30,9 @@ class Gust(Application):
         **kwargs,
     ):
         self.port: int = port if port else int(os.getenv('PORT', options.port))
-        super().__init__(routes, debug=options.debug, **kwargs)
+        if 'debug' not in kwargs:
+            kwargs['debug'] = options.debug
+        super().__init__(routes, **kwargs)
         web.install(self)
 
     async def perform(self, handler, func: Callable, *args, **kwargs) -> Any:

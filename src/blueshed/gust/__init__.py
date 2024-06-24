@@ -9,7 +9,7 @@ from .static_file_handler import AuthStaticFileHandler
 from .utils import Redirect
 from .web import web
 
-VERSION = '0.0.20'
+VERSION = '0.0.21'
 
 __all__ = [
     'Gust',
