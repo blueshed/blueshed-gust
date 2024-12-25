@@ -5,9 +5,9 @@ import asyncio
 import logging
 
 import pytest
-from blueshed.gust import Gust, json_utils, web
 from tornado.template import DictLoader
-from tornado.websocket import websocket_connect
+
+from blueshed.gust import Gust, json_utils, web
 
 PATH = '/foo/'
 
@@ -23,15 +23,6 @@ def app(web_context):
         template_loader=DictLoader({'home': 'welcome to: {{message}}!'})
     )
     return appl
-
-
-@pytest.fixture
-async def ws_client(http_server, http_server_port):
-    """return a websocket client"""
-    result = await websocket_connect(
-        f'ws://localhost:{http_server_port[1]}/ws', connect_timeout=0.1
-    )
-    return result
 
 
 async def test_hello_get(http_server_client):

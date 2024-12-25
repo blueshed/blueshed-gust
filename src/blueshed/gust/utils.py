@@ -1,13 +1,17 @@
 """Authentication"""
 
+import logging
 import urllib.parse
 from dataclasses import dataclass
+from functools import wraps
 from typing import Any, Dict, Union
 from urllib.parse import urlencode
 
 from tornado.web import HTTPError
 
 from . import json_utils
+
+log = logging.getLogger(__name__)
 
 
 class Redirect(Exception):
@@ -90,3 +94,22 @@ class UserMixin:
             self.redirect(url)
             return None
         raise HTTPError(403)
+
+
+def stream(func):
+    """Decorator to stream results"""
+
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        """Wrapper"""
+        if kwargs.get('stream_id', False):
+            stream_id = kwargs.pop('stream_id')
+        else:
+            stream_id = args[0]
+            args = args[1:]
+        log.debug('stream: %s %s %s - %s', func, args, kwargs, stream_id)
+        yield stream_id
+        async for item in func(*args, **kwargs):
+            yield item
+
+    return wrapper

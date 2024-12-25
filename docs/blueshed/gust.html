@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="pdoc 14.4.0"/>
+    <meta name="generator" content="pdoc 15.0.1"/>
     <title>blueshed.gust API documentation</title>
 
     <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
     <style>/*! syntax-highlighting.css */pre{line-height:125%;}span.linenos{color:inherit; background-color:transparent; padding-left:5px; padding-right:20px;}.pdoc-code .hll{background-color:#ffffcc}.pdoc-code{background:#f8f8f8;}.pdoc-code .c{color:#3D7B7B; font-style:italic}.pdoc-code .err{border:1px solid #FF0000}.pdoc-code .k{color:#008000; font-weight:bold}.pdoc-code .o{color:#666666}.pdoc-code .ch{color:#3D7B7B; font-style:italic}.pdoc-code .cm{color:#3D7B7B; font-style:italic}.pdoc-code .cp{color:#9C6500}.pdoc-code .cpf{color:#3D7B7B; font-style:italic}.pdoc-code .c1{color:#3D7B7B; font-style:italic}.pdoc-code .cs{color:#3D7B7B; font-style:italic}.pdoc-code .gd{color:#A00000}.pdoc-code .ge{font-style:italic}.pdoc-code .gr{color:#E40000}.pdoc-code .gh{color:#000080; font-weight:bold}.pdoc-code .gi{color:#008400}.pdoc-code .go{color:#717171}.pdoc-code .gp{color:#000080; font-weight:bold}.pdoc-code .gs{font-weight:bold}.pdoc-code .gu{color:#800080; font-weight:bold}.pdoc-code .gt{color:#0044DD}.pdoc-code .kc{color:#008000; font-weight:bold}.pdoc-code .kd{color:#008000; font-weight:bold}.pdoc-code .kn{color:#008000; font-weight:bold}.pdoc-code .kp{color:#008000}.pdoc-code .kr{color:#008000; font-weight:bold}.pdoc-code .kt{color:#B00040}.pdoc-code .m{color:#666666}.pdoc-code .s{color:#BA2121}.pdoc-code .na{color:#687822}.pdoc-code .nb{color:#008000}.pdoc-code .nc{color:#0000FF; font-weight:bold}.pdoc-code .no{color:#880000}.pdoc-code .nd{color:#AA22FF}.pdoc-code .ni{color:#717171; font-weight:bold}.pdoc-code .ne{color:#CB3F38; font-weight:bold}.pdoc-code .nf{color:#0000FF}.pdoc-code .nl{color:#767600}.pdoc-code .nn{color:#0000FF; font-weight:bold}.pdoc-code .nt{color:#008000; font-weight:bold}.pdoc-code .nv{color:#19177C}.pdoc-code .ow{color:#AA22FF; font-weight:bold}.pdoc-code .w{color:#bbbbbb}.pdoc-code .mb{color:#666666}.pdoc-code .mf{color:#666666}.pdoc-code .mh{color:#666666}.pdoc-code .mi{color:#666666}.pdoc-code .mo{color:#666666}.pdoc-code .sa{color:#BA2121}.pdoc-code .sb{color:#BA2121}.pdoc-code .sc{color:#BA2121}.pdoc-code .dl{color:#BA2121}.pdoc-code .sd{color:#BA2121; font-style:italic}.pdoc-code .s2{color:#BA2121}.pdoc-code .se{color:#AA5D1F; font-weight:bold}.pdoc-code .sh{color:#BA2121}.pdoc-code .si{color:#A45A77; font-weight:bold}.pdoc-code .sx{color:#008000}.pdoc-code .sr{color:#A45A77}.pdoc-code .s1{color:#BA2121}.pdoc-code .ss{color:#19177C}.pdoc-code .bp{color:#008000}.pdoc-code .fm{color:#0000FF}.pdoc-code .vc{color:#19177C}.pdoc-code .vg{color:#19177C}.pdoc-code .vi{color:#19177C}.pdoc-code .vm{color:#19177C}.pdoc-code .il{color:#666666}</style>
     <style>/*! theme.css */:root{--pdoc-background:#fff;}.pdoc{--text:#212529;--muted:#6c757d;--link:#3660a5;--link-hover:#1659c5;--code:#f8f8f8;--active:#fff598;--accent:#eee;--accent2:#c1c1c1;--nav-hover:rgba(255, 255, 255, 0.5);--name:#0066BB;--def:#008800;--annotation:#007020;}</style>
     <style>/*! layout.css */html, body{width:100%;height:100%;}html, main{scroll-behavior:smooth;}body{background-color:var(--pdoc-background);}@media (max-width:769px){#navtoggle{cursor:pointer;position:absolute;width:50px;height:40px;top:1rem;right:1rem;border-color:var(--text);color:var(--text);display:flex;opacity:0.8;z-index:999;}#navtoggle:hover{opacity:1;}#togglestate + div{display:none;}#togglestate:checked + div{display:inherit;}main, header{padding:2rem 3vw;}header + main{margin-top:-3rem;}.git-button{display:none !important;}nav input[type="search"]{max-width:77%;}nav input[type="search"]:first-child{margin-top:-6px;}nav input[type="search"]:valid ~ *{display:none !important;}}@media (min-width:770px){:root{--sidebar-width:clamp(12.5rem, 28vw, 22rem);}nav{position:fixed;overflow:auto;height:100vh;width:var(--sidebar-width);}main, header{padding:3rem 2rem 3rem calc(var(--sidebar-width) + 3rem);width:calc(54rem + var(--sidebar-width));max-width:100%;}header + main{margin-top:-4rem;}#navtoggle{display:none;}}#togglestate{position:absolute;height:0;opacity:0;}nav.pdoc{--pad:clamp(0.5rem, 2vw, 1.75rem);--indent:1.5rem;background-color:var(--accent);border-right:1px solid var(--accent2);box-shadow:0 0 20px rgba(50, 50, 50, .2) inset;padding:0 0 0 var(--pad);overflow-wrap:anywhere;scrollbar-width:thin; scrollbar-color:var(--accent2) transparent; z-index:1}nav.pdoc::-webkit-scrollbar{width:.4rem; }nav.pdoc::-webkit-scrollbar-thumb{background-color:var(--accent2); }nav.pdoc > div{padding:var(--pad) 0;}nav.pdoc .module-list-button{display:inline-flex;align-items:center;color:var(--text);border-color:var(--muted);margin-bottom:1rem;}nav.pdoc .module-list-button:hover{border-color:var(--text);}nav.pdoc input[type=search]{display:block;outline-offset:0;width:calc(100% - var(--pad));}nav.pdoc .logo{max-width:calc(100% - var(--pad));max-height:35vh;display:block;margin:0 auto 1rem;transform:translate(calc(-.5 * var(--pad)), 0);}nav.pdoc ul{list-style:none;padding-left:0;}nav.pdoc > div > ul{margin-left:calc(0px - var(--pad));}nav.pdoc li a{padding:.2rem 0 .2rem calc(var(--pad) + var(--indent));}nav.pdoc > div > ul > li > a{padding-left:var(--pad);}nav.pdoc li{transition:all 100ms;}nav.pdoc li:hover{background-color:var(--nav-hover);}nav.pdoc a, nav.pdoc a:hover{color:var(--text);}nav.pdoc a{display:block;}nav.pdoc > h2:first-of-type{margin-top:1.5rem;}nav.pdoc .class:before{content:"class ";color:var(--muted);}nav.pdoc .function:after{content:"()";color:var(--muted);}nav.pdoc footer:before{content:"";display:block;width:calc(100% - var(--pad));border-top:solid var(--accent2) 1px;margin-top:1.5rem;padding-top:.5rem;}nav.pdoc footer{font-size:small;}</style>
-    <style>/*! content.css */.pdoc{color:var(--text);box-sizing:border-box;line-height:1.5;background:none;}.pdoc .pdoc-button{cursor:pointer;display:inline-block;border:solid black 1px;border-radius:2px;font-size:.75rem;padding:calc(0.5em - 1px) 1em;transition:100ms all;}.pdoc .pdoc-alert{padding:1rem 1rem 1rem calc(1.5rem + 24px);border:1px solid transparent;border-radius:.25rem;background-repeat:no-repeat;background-position:1rem center;margin-bottom:1rem;}.pdoc .pdoc-alert > *:last-child{margin-bottom:0;}.pdoc .pdoc-alert-note {color:#084298;background-color:#cfe2ff;border-color:#b6d4fe;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23084298%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8%2016A8%208%200%201%200%208%200a8%208%200%200%200%200%2016zm.93-9.412-1%204.705c-.07.34.029.533.304.533.194%200%20.487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703%200-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381%202.29-.287zM8%205.5a1%201%200%201%201%200-2%201%201%200%200%201%200%202z%22/%3E%3C/svg%3E");}.pdoc .pdoc-alert-warning{color:#664d03;background-color:#fff3cd;border-color:#ffecb5;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23664d03%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8.982%201.566a1.13%201.13%200%200%200-1.96%200L.165%2013.233c-.457.778.091%201.767.98%201.767h13.713c.889%200%201.438-.99.98-1.767L8.982%201.566zM8%205c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%205.995A.905.905%200%200%201%208%205zm.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2z%22/%3E%3C/svg%3E");}.pdoc .pdoc-alert-danger{color:#842029;background-color:#f8d7da;border-color:#f5c2c7;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23842029%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5.52.359A.5.5%200%200%201%206%200h4a.5.5%200%200%201%20.474.658L8.694%206H12.5a.5.5%200%200%201%20.395.807l-7%209a.5.5%200%200%201-.873-.454L6.823%209.5H3.5a.5.5%200%200%201-.48-.641l2.5-8.5z%22/%3E%3C/svg%3E");}.pdoc .visually-hidden{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0, 0, 0, 0) !important;white-space:nowrap !important;border:0 !important;}.pdoc h1, .pdoc h2, .pdoc h3{font-weight:300;margin:.3em 0;padding:.2em 0;}.pdoc > section:not(.module-info) h1{font-size:1.5rem;font-weight:500;}.pdoc > section:not(.module-info) h2{font-size:1.4rem;font-weight:500;}.pdoc > section:not(.module-info) h3{font-size:1.3rem;font-weight:500;}.pdoc > section:not(.module-info) h4{font-size:1.2rem;}.pdoc > section:not(.module-info) h5{font-size:1.1rem;}.pdoc a{text-decoration:none;color:var(--link);}.pdoc a:hover{color:var(--link-hover);}.pdoc blockquote{margin-left:2rem;}.pdoc pre{border-top:1px solid var(--accent2);border-bottom:1px solid var(--accent2);margin-top:0;margin-bottom:1em;padding:.5rem 0 .5rem .5rem;overflow-x:auto;background-color:var(--code);}.pdoc code{color:var(--text);padding:.2em .4em;margin:0;font-size:85%;background-color:var(--accent);border-radius:6px;}.pdoc a > code{color:inherit;}.pdoc pre > code{display:inline-block;font-size:inherit;background:none;border:none;padding:0;}.pdoc > section:not(.module-info){margin-bottom:1.5rem;}.pdoc .modulename{margin-top:0;font-weight:bold;}.pdoc .modulename a{color:var(--link);transition:100ms all;}.pdoc .git-button{float:right;border:solid var(--link) 1px;}.pdoc .git-button:hover{background-color:var(--link);color:var(--pdoc-background);}.view-source-toggle-state,.view-source-toggle-state ~ .pdoc-code{display:none;}.view-source-toggle-state:checked ~ .pdoc-code{display:block;}.view-source-button{display:inline-block;float:right;font-size:.75rem;line-height:1.5rem;color:var(--muted);padding:0 .4rem 0 1.3rem;cursor:pointer;text-indent:-2px;}.view-source-button > span{visibility:hidden;}.module-info .view-source-button{float:none;display:flex;justify-content:flex-end;margin:-1.2rem .4rem -.2rem 0;}.view-source-button::before{position:absolute;content:"View Source";display:list-item;list-style-type:disclosure-closed;}.view-source-toggle-state:checked ~ .attr .view-source-button::before,.view-source-toggle-state:checked ~ .view-source-button::before{list-style-type:disclosure-open;}.pdoc .docstring{margin-bottom:1.5rem;}.pdoc section:not(.module-info) .docstring{margin-left:clamp(0rem, 5vw - 2rem, 1rem);}.pdoc .docstring .pdoc-code{margin-left:1em;margin-right:1em;}.pdoc h1:target,.pdoc h2:target,.pdoc h3:target,.pdoc h4:target,.pdoc h5:target,.pdoc h6:target,.pdoc .pdoc-code > pre > span:target{background-color:var(--active);box-shadow:-1rem 0 0 0 var(--active);}.pdoc .pdoc-code > pre > span:target{display:block;}.pdoc div:target > .attr,.pdoc section:target > .attr,.pdoc dd:target > a{background-color:var(--active);}.pdoc *{scroll-margin:2rem;}.pdoc .pdoc-code .linenos{user-select:none;}.pdoc .attr:hover{filter:contrast(0.95);}.pdoc section, .pdoc .classattr{position:relative;}.pdoc .headerlink{--width:clamp(1rem, 3vw, 2rem);position:absolute;top:0;left:calc(0rem - var(--width));transition:all 100ms ease-in-out;opacity:0;}.pdoc .headerlink::before{content:"#";display:block;text-align:center;width:var(--width);height:2.3rem;line-height:2.3rem;font-size:1.5rem;}.pdoc .attr:hover ~ .headerlink,.pdoc *:target > .headerlink,.pdoc .headerlink:hover{opacity:1;}.pdoc .attr{display:block;margin:.5rem 0 .5rem;padding:.4rem .4rem .4rem 1rem;background-color:var(--accent);overflow-x:auto;}.pdoc .classattr{margin-left:2rem;}.pdoc .name{color:var(--name);font-weight:bold;}.pdoc .def{color:var(--def);font-weight:bold;}.pdoc .signature{background-color:transparent;}.pdoc .param, .pdoc .return-annotation{white-space:pre;}.pdoc .signature.multiline .param{display:block;}.pdoc .signature.condensed .param{display:inline-block;}.pdoc .annotation{color:var(--annotation);}.pdoc .view-value-toggle-state,.pdoc .view-value-toggle-state ~ .default_value{display:none;}.pdoc .view-value-toggle-state:checked ~ .default_value{display:inherit;}.pdoc .view-value-button{font-size:.5rem;vertical-align:middle;border-style:dashed;margin-top:-0.1rem;}.pdoc .view-value-button:hover{background:white;}.pdoc .view-value-button::before{content:"show";text-align:center;width:2.2em;display:inline-block;}.pdoc .view-value-toggle-state:checked ~ .view-value-button::before{content:"hide";}.pdoc .inherited{margin-left:2rem;}.pdoc .inherited dt{font-weight:700;}.pdoc .inherited dt, .pdoc .inherited dd{display:inline;margin-left:0;margin-bottom:.5rem;}.pdoc .inherited dd:not(:last-child):after{content:", ";}.pdoc .inherited .class:before{content:"class ";}.pdoc .inherited .function a:after{content:"()";}.pdoc .search-result .docstring{overflow:auto;max-height:25vh;}.pdoc .search-result.focused > .attr{background-color:var(--active);}.pdoc .attribution{margin-top:2rem;display:block;opacity:0.5;transition:all 200ms;filter:grayscale(100%);}.pdoc .attribution:hover{opacity:1;filter:grayscale(0%);}.pdoc .attribution img{margin-left:5px;height:35px;vertical-align:middle;width:70px;transition:all 200ms;}.pdoc table{display:block;width:max-content;max-width:100%;overflow:auto;margin-bottom:1rem;}.pdoc table th{font-weight:600;}.pdoc table th, .pdoc table td{padding:6px 13px;border:1px solid var(--accent2);}</style>
+    <style>/*! content.css */.pdoc{color:var(--text);box-sizing:border-box;line-height:1.5;background:none;}.pdoc .pdoc-button{cursor:pointer;display:inline-block;border:solid black 1px;border-radius:2px;font-size:.75rem;padding:calc(0.5em - 1px) 1em;transition:100ms all;}.pdoc .alert{padding:1rem 1rem 1rem calc(1.5rem + 24px);border:1px solid transparent;border-radius:.25rem;background-repeat:no-repeat;background-position:.75rem center;margin-bottom:1rem;}.pdoc .alert > em{display:none;}.pdoc .alert > *:last-child{margin-bottom:0;}.pdoc .alert.note {color:#084298;background-color:#cfe2ff;border-color:#b6d4fe;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23084298%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8%2016A8%208%200%201%200%208%200a8%208%200%200%200%200%2016zm.93-9.412-1%204.705c-.07.34.029.533.304.533.194%200%20.487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703%200-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381%202.29-.287zM8%205.5a1%201%200%201%201%200-2%201%201%200%200%201%200%202z%22/%3E%3C/svg%3E");}.pdoc .alert.warning{color:#664d03;background-color:#fff3cd;border-color:#ffecb5;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23664d03%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8.982%201.566a1.13%201.13%200%200%200-1.96%200L.165%2013.233c-.457.778.091%201.767.98%201.767h13.713c.889%200%201.438-.99.98-1.767L8.982%201.566zM8%205c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%205.995A.905.905%200%200%201%208%205zm.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2z%22/%3E%3C/svg%3E");}.pdoc .alert.danger{color:#842029;background-color:#f8d7da;border-color:#f5c2c7;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23842029%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5.52.359A.5.5%200%200%201%206%200h4a.5.5%200%200%201%20.474.658L8.694%206H12.5a.5.5%200%200%201%20.395.807l-7%209a.5.5%200%200%201-.873-.454L6.823%209.5H3.5a.5.5%200%200%201-.48-.641l2.5-8.5z%22/%3E%3C/svg%3E");}.pdoc .visually-hidden{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0, 0, 0, 0) !important;white-space:nowrap !important;border:0 !important;}.pdoc h1, .pdoc h2, .pdoc h3{font-weight:300;margin:.3em 0;padding:.2em 0;}.pdoc > section:not(.module-info) h1{font-size:1.5rem;font-weight:500;}.pdoc > section:not(.module-info) h2{font-size:1.4rem;font-weight:500;}.pdoc > section:not(.module-info) h3{font-size:1.3rem;font-weight:500;}.pdoc > section:not(.module-info) h4{font-size:1.2rem;}.pdoc > section:not(.module-info) h5{font-size:1.1rem;}.pdoc a{text-decoration:none;color:var(--link);}.pdoc a:hover{color:var(--link-hover);}.pdoc blockquote{margin-left:2rem;}.pdoc pre{border-top:1px solid var(--accent2);border-bottom:1px solid var(--accent2);margin-top:0;margin-bottom:1em;padding:.5rem 0 .5rem .5rem;overflow-x:auto;background-color:var(--code);}.pdoc code{color:var(--text);padding:.2em .4em;margin:0;font-size:85%;background-color:var(--accent);border-radius:6px;}.pdoc a > code{color:inherit;}.pdoc pre > code{display:inline-block;font-size:inherit;background:none;border:none;padding:0;}.pdoc > section:not(.module-info){margin-bottom:1.5rem;}.pdoc .modulename{margin-top:0;font-weight:bold;}.pdoc .modulename a{color:var(--link);transition:100ms all;}.pdoc .git-button{float:right;border:solid var(--link) 1px;}.pdoc .git-button:hover{background-color:var(--link);color:var(--pdoc-background);}.view-source-toggle-state,.view-source-toggle-state ~ .pdoc-code{display:none;}.view-source-toggle-state:checked ~ .pdoc-code{display:block;}.view-source-button{display:inline-block;float:right;font-size:.75rem;line-height:1.5rem;color:var(--muted);padding:0 .4rem 0 1.3rem;cursor:pointer;text-indent:-2px;}.view-source-button > span{visibility:hidden;}.module-info .view-source-button{float:none;display:flex;justify-content:flex-end;margin:-1.2rem .4rem -.2rem 0;}.view-source-button::before{position:absolute;content:"View Source";display:list-item;list-style-type:disclosure-closed;}.view-source-toggle-state:checked ~ .attr .view-source-button::before,.view-source-toggle-state:checked ~ .view-source-button::before{list-style-type:disclosure-open;}.pdoc .docstring{margin-bottom:1.5rem;}.pdoc section:not(.module-info) .docstring{margin-left:clamp(0rem, 5vw - 2rem, 1rem);}.pdoc .docstring .pdoc-code{margin-left:1em;margin-right:1em;}.pdoc h1:target,.pdoc h2:target,.pdoc h3:target,.pdoc h4:target,.pdoc h5:target,.pdoc h6:target,.pdoc .pdoc-code > pre > span:target{background-color:var(--active);box-shadow:-1rem 0 0 0 var(--active);}.pdoc .pdoc-code > pre > span:target{display:block;}.pdoc div:target > .attr,.pdoc section:target > .attr,.pdoc dd:target > a{background-color:var(--active);}.pdoc *{scroll-margin:2rem;}.pdoc .pdoc-code .linenos{user-select:none;}.pdoc .attr:hover{filter:contrast(0.95);}.pdoc section, .pdoc .classattr{position:relative;}.pdoc .headerlink{--width:clamp(1rem, 3vw, 2rem);position:absolute;top:0;left:calc(0rem - var(--width));transition:all 100ms ease-in-out;opacity:0;}.pdoc .headerlink::before{content:"#";display:block;text-align:center;width:var(--width);height:2.3rem;line-height:2.3rem;font-size:1.5rem;}.pdoc .attr:hover ~ .headerlink,.pdoc *:target > .headerlink,.pdoc .headerlink:hover{opacity:1;}.pdoc .attr{display:block;margin:.5rem 0 .5rem;padding:.4rem .4rem .4rem 1rem;background-color:var(--accent);overflow-x:auto;}.pdoc .classattr{margin-left:2rem;}.pdoc .decorator-deprecated{color:#842029;}.pdoc .decorator-deprecated ~ span{filter:grayscale(1) opacity(0.8);}.pdoc .name{color:var(--name);font-weight:bold;}.pdoc .def{color:var(--def);font-weight:bold;}.pdoc .signature{background-color:transparent;}.pdoc .param, .pdoc .return-annotation{white-space:pre;}.pdoc .signature.multiline .param{display:block;}.pdoc .signature.condensed .param{display:inline-block;}.pdoc .annotation{color:var(--annotation);}.pdoc .view-value-toggle-state,.pdoc .view-value-toggle-state ~ .default_value{display:none;}.pdoc .view-value-toggle-state:checked ~ .default_value{display:inherit;}.pdoc .view-value-button{font-size:.5rem;vertical-align:middle;border-style:dashed;margin-top:-0.1rem;}.pdoc .view-value-button:hover{background:white;}.pdoc .view-value-button::before{content:"show";text-align:center;width:2.2em;display:inline-block;}.pdoc .view-value-toggle-state:checked ~ .view-value-button::before{content:"hide";}.pdoc .inherited{margin-left:2rem;}.pdoc .inherited dt{font-weight:700;}.pdoc .inherited dt, .pdoc .inherited dd{display:inline;margin-left:0;margin-bottom:.5rem;}.pdoc .inherited dd:not(:last-child):after{content:", ";}.pdoc .inherited .class:before{content:"class ";}.pdoc .inherited .function a:after{content:"()";}.pdoc .search-result .docstring{overflow:auto;max-height:25vh;}.pdoc .search-result.focused > .attr{background-color:var(--active);}.pdoc .attribution{margin-top:2rem;display:block;opacity:0.5;transition:all 200ms;filter:grayscale(100%);}.pdoc .attribution:hover{opacity:1;filter:grayscale(0%);}.pdoc .attribution img{margin-left:5px;height:35px;vertical-align:middle;width:70px;transition:all 200ms;}.pdoc table{display:block;width:max-content;max-width:100%;overflow:auto;margin-bottom:1rem;}.pdoc table th{font-weight:600;}.pdoc table th, .pdoc table td{padding:6px 13px;border:1px solid var(--accent2);}</style>
     <style>/*! custom.css */</style></head>
 <body>
     <nav class="pdoc">
@@ -125,6 +125,9 @@
 
             </li>
             <li>
+                    <a class="function" href="#stream">stream</a>
+            </li>
+            <li>
                     <a class="variable" href="#web">web</a>
             </li>
             <li>
@@ -232,19 +235,20 @@ blueshed<wbr>.gust    </h1>
 </span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="kn">from</span> <span class="nn">.context</span> <span class="kn">import</span> <span class="n">get_handler</span>
 </span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">.routes</span> <span class="kn">import</span> <span class="n">Routes</span>
 </span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">from</span> <span class="nn">.static_file_handler</span> <span class="kn">import</span> <span class="n">AuthStaticFileHandler</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">Redirect</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">Redirect</span><span class="p">,</span> <span class="n">stream</span>
 </span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="kn">from</span> <span class="nn">.web</span> <span class="kn">import</span> <span class="n">web</span>
 </span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>
-</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="n">VERSION</span> <span class="o">=</span> <span class="s1">&#39;0.0.21&#39;</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="n">VERSION</span> <span class="o">=</span> <span class="s1">&#39;0.0.22&#39;</span>
 </span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>
 </span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
 </span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>    <span class="s1">&#39;Gust&#39;</span><span class="p">,</span>
 </span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>    <span class="s1">&#39;Routes&#39;</span><span class="p">,</span>
 </span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>    <span class="s1">&#39;Redirect&#39;</span><span class="p">,</span>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>    <span class="s1">&#39;web&#39;</span><span class="p">,</span>
-</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>    <span class="s1">&#39;get_handler&#39;</span><span class="p">,</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>    <span class="s1">&#39;AuthStaticFileHandler&#39;</span><span class="p">,</span>
-</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="p">]</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>    <span class="s1">&#39;stream&#39;</span><span class="p">,</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>    <span class="s1">&#39;web&#39;</span><span class="p">,</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>    <span class="s1">&#39;get_handler&#39;</span><span class="p">,</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>    <span class="s1">&#39;AuthStaticFileHandler&#39;</span><span class="p">,</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="p">]</span>
 </span></pre></div>
 
 
@@ -287,43 +291,48 @@ blueshed<wbr>.gust    </h1>
 </span><span id="Gust-48"><a href="#Gust-48"><span class="linenos">48</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">call_in_context</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
 </span><span id="Gust-49"><a href="#Gust-49"><span class="linenos">49</span></a>            <span class="p">)</span>
 </span><span id="Gust-50"><a href="#Gust-50"><span class="linenos">50</span></a>            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">to_thread</span><span class="p">(</span><span class="n">partial</span><span class="p">)</span>
-</span><span id="Gust-51"><a href="#Gust-51"><span class="linenos">51</span></a>        <span class="k">return</span> <span class="n">result</span>
-</span><span id="Gust-52"><a href="#Gust-52"><span class="linenos">52</span></a>
-</span><span id="Gust-53"><a href="#Gust-53"><span class="linenos">53</span></a>    <span class="k">def</span> <span class="nf">call_in_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
-</span><span id="Gust-54"><a href="#Gust-54"><span class="linenos">54</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set the context and call function&quot;&quot;&quot;</span>
-</span><span id="Gust-55"><a href="#Gust-55"><span class="linenos">55</span></a>        <span class="k">with</span> <span class="n">context</span><span class="o">.</span><span class="n">gust</span><span class="p">(</span><span class="n">handler</span><span class="p">):</span>
-</span><span id="Gust-56"><a href="#Gust-56"><span class="linenos">56</span></a>            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="Gust-51"><a href="#Gust-51"><span class="linenos">51</span></a>        <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+</span><span id="Gust-52"><a href="#Gust-52"><span class="linenos">52</span></a>            <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isawaitable</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+</span><span id="Gust-53"><a href="#Gust-53"><span class="linenos">53</span></a>                <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">result</span>
+</span><span id="Gust-54"><a href="#Gust-54"><span class="linenos">54</span></a>            <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isasyncgen</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+</span><span id="Gust-55"><a href="#Gust-55"><span class="linenos">55</span></a>                <span class="n">result</span> <span class="o">=</span> <span class="n">handler</span><span class="o">.</span><span class="n">create_stream</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span><span id="Gust-56"><a href="#Gust-56"><span class="linenos">56</span></a>        <span class="k">return</span> <span class="n">result</span>
 </span><span id="Gust-57"><a href="#Gust-57"><span class="linenos">57</span></a>
-</span><span id="Gust-58"><a href="#Gust-58"><span class="linenos">58</span></a>    <span class="nd">@classmethod</span>
-</span><span id="Gust-59"><a href="#Gust-59"><span class="linenos">59</span></a>    <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">):</span>
-</span><span id="Gust-60"><a href="#Gust-60"><span class="linenos">60</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;pass through, maybe point for redis gust&quot;&quot;&quot;</span>
-</span><span id="Gust-61"><a href="#Gust-61"><span class="linenos">61</span></a>        <span class="n">Websocket</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">)</span>
+</span><span id="Gust-58"><a href="#Gust-58"><span class="linenos">58</span></a>    <span class="k">def</span> <span class="nf">call_in_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+</span><span id="Gust-59"><a href="#Gust-59"><span class="linenos">59</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set the context and call function&quot;&quot;&quot;</span>
+</span><span id="Gust-60"><a href="#Gust-60"><span class="linenos">60</span></a>        <span class="k">with</span> <span class="n">context</span><span class="o">.</span><span class="n">gust</span><span class="p">(</span><span class="n">handler</span><span class="p">):</span>
+</span><span id="Gust-61"><a href="#Gust-61"><span class="linenos">61</span></a>            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </span><span id="Gust-62"><a href="#Gust-62"><span class="linenos">62</span></a>
-</span><span id="Gust-63"><a href="#Gust-63"><span class="linenos">63</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">_run_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
-</span><span id="Gust-64"><a href="#Gust-64"><span class="linenos">64</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;listen on self.port and run io_loop&quot;&quot;&quot;</span>
-</span><span id="Gust-65"><a href="#Gust-65"><span class="linenos">65</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">:</span>
-</span><span id="Gust-66"><a href="#Gust-66"><span class="linenos">66</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
-</span><span id="Gust-67"><a href="#Gust-67"><span class="linenos">67</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;listening on port: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
-</span><span id="Gust-68"><a href="#Gust-68"><span class="linenos">68</span></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="Gust-69"><a href="#Gust-69"><span class="linenos">69</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No &#39;port&#39; in settings&quot;</span><span class="p">)</span>
-</span><span id="Gust-70"><a href="#Gust-70"><span class="linenos">70</span></a>
-</span><span id="Gust-71"><a href="#Gust-71"><span class="linenos">71</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-</span><span id="Gust-72"><a href="#Gust-72"><span class="linenos">72</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;running in debug mode&#39;</span><span class="p">)</span>
-</span><span id="Gust-73"><a href="#Gust-73"><span class="linenos">73</span></a>
-</span><span id="Gust-74"><a href="#Gust-74"><span class="linenos">74</span></a>        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</span><span id="Gust-63"><a href="#Gust-63"><span class="linenos">63</span></a>    <span class="nd">@classmethod</span>
+</span><span id="Gust-64"><a href="#Gust-64"><span class="linenos">64</span></a>    <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">):</span>
+</span><span id="Gust-65"><a href="#Gust-65"><span class="linenos">65</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;pass through, maybe point for redis gust&quot;&quot;&quot;</span>
+</span><span id="Gust-66"><a href="#Gust-66"><span class="linenos">66</span></a>        <span class="n">Websocket</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">)</span>
+</span><span id="Gust-67"><a href="#Gust-67"><span class="linenos">67</span></a>
+</span><span id="Gust-68"><a href="#Gust-68"><span class="linenos">68</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">_run_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+</span><span id="Gust-69"><a href="#Gust-69"><span class="linenos">69</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;listen on self.port and run io_loop&quot;&quot;&quot;</span>
+</span><span id="Gust-70"><a href="#Gust-70"><span class="linenos">70</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">:</span>
+</span><span id="Gust-71"><a href="#Gust-71"><span class="linenos">71</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+</span><span id="Gust-72"><a href="#Gust-72"><span class="linenos">72</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;listening on port: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+</span><span id="Gust-73"><a href="#Gust-73"><span class="linenos">73</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="Gust-74"><a href="#Gust-74"><span class="linenos">74</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No &#39;port&#39; in settings&quot;</span><span class="p">)</span>
 </span><span id="Gust-75"><a href="#Gust-75"><span class="linenos">75</span></a>
-</span><span id="Gust-76"><a href="#Gust-76"><span class="linenos">76</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
-</span><span id="Gust-77"><a href="#Gust-77"><span class="linenos">77</span></a>        <span class="k">try</span><span class="p">:</span>
-</span><span id="Gust-78"><a href="#Gust-78"><span class="linenos">78</span></a>            <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_run_</span><span class="p">())</span>
-</span><span id="Gust-79"><a href="#Gust-79"><span class="linenos">79</span></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="ne">SystemExit</span><span class="p">):</span>
-</span><span id="Gust-80"><a href="#Gust-80"><span class="linenos">80</span></a>            <span class="c1"># graceful shutdown</span>
-</span><span id="Gust-81"><a href="#Gust-81"><span class="linenos">81</span></a>            <span class="k">pass</span>
-</span><span id="Gust-82"><a href="#Gust-82"><span class="linenos">82</span></a>
-</span><span id="Gust-83"><a href="#Gust-83"><span class="linenos">83</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span>
-</span><span id="Gust-84"><a href="#Gust-84"><span class="linenos">84</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;called when a websocket opens&quot;&quot;&quot;</span>
-</span><span id="Gust-85"><a href="#Gust-85"><span class="linenos">85</span></a>
-</span><span id="Gust-86"><a href="#Gust-86"><span class="linenos">86</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">off_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span>
-</span><span id="Gust-87"><a href="#Gust-87"><span class="linenos">87</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;called when a websocket closes&quot;&quot;&quot;</span>
+</span><span id="Gust-76"><a href="#Gust-76"><span class="linenos">76</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="Gust-77"><a href="#Gust-77"><span class="linenos">77</span></a>            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;running in debug mode&#39;</span><span class="p">)</span>
+</span><span id="Gust-78"><a href="#Gust-78"><span class="linenos">78</span></a>
+</span><span id="Gust-79"><a href="#Gust-79"><span class="linenos">79</span></a>        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</span><span id="Gust-80"><a href="#Gust-80"><span class="linenos">80</span></a>
+</span><span id="Gust-81"><a href="#Gust-81"><span class="linenos">81</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+</span><span id="Gust-82"><a href="#Gust-82"><span class="linenos">82</span></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="Gust-83"><a href="#Gust-83"><span class="linenos">83</span></a>            <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_run_</span><span class="p">())</span>
+</span><span id="Gust-84"><a href="#Gust-84"><span class="linenos">84</span></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="ne">SystemExit</span><span class="p">):</span>
+</span><span id="Gust-85"><a href="#Gust-85"><span class="linenos">85</span></a>            <span class="c1"># graceful shutdown</span>
+</span><span id="Gust-86"><a href="#Gust-86"><span class="linenos">86</span></a>            <span class="k">pass</span>
+</span><span id="Gust-87"><a href="#Gust-87"><span class="linenos">87</span></a>
+</span><span id="Gust-88"><a href="#Gust-88"><span class="linenos">88</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span>
+</span><span id="Gust-89"><a href="#Gust-89"><span class="linenos">89</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;called when a websocket opens&quot;&quot;&quot;</span>
+</span><span id="Gust-90"><a href="#Gust-90"><span class="linenos">90</span></a>
+</span><span id="Gust-91"><a href="#Gust-91"><span class="linenos">91</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">off_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span>
+</span><span id="Gust-92"><a href="#Gust-92"><span class="linenos">92</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;called when a websocket closes&quot;&quot;&quot;</span>
 </span></pre></div>
 
 
@@ -392,7 +401,12 @@ blueshed<wbr>.gust    </h1>
 </span><span id="Gust.perform-48"><a href="#Gust.perform-48"><span class="linenos">48</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">call_in_context</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
 </span><span id="Gust.perform-49"><a href="#Gust.perform-49"><span class="linenos">49</span></a>            <span class="p">)</span>
 </span><span id="Gust.perform-50"><a href="#Gust.perform-50"><span class="linenos">50</span></a>            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">to_thread</span><span class="p">(</span><span class="n">partial</span><span class="p">)</span>
-</span><span id="Gust.perform-51"><a href="#Gust.perform-51"><span class="linenos">51</span></a>        <span class="k">return</span> <span class="n">result</span>
+</span><span id="Gust.perform-51"><a href="#Gust.perform-51"><span class="linenos">51</span></a>        <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+</span><span id="Gust.perform-52"><a href="#Gust.perform-52"><span class="linenos">52</span></a>            <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isawaitable</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+</span><span id="Gust.perform-53"><a href="#Gust.perform-53"><span class="linenos">53</span></a>                <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">result</span>
+</span><span id="Gust.perform-54"><a href="#Gust.perform-54"><span class="linenos">54</span></a>            <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isasyncgen</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+</span><span id="Gust.perform-55"><a href="#Gust.perform-55"><span class="linenos">55</span></a>                <span class="n">result</span> <span class="o">=</span> <span class="n">handler</span><span class="o">.</span><span class="n">create_stream</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span><span id="Gust.perform-56"><a href="#Gust.perform-56"><span class="linenos">56</span></a>        <span class="k">return</span> <span class="n">result</span>
 </span></pre></div>
 
 
@@ -412,10 +426,10 @@ blueshed<wbr>.gust    </h1>
 
     </div>
     <a class="headerlink" href="#Gust.call_in_context"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.call_in_context-53"><a href="#Gust.call_in_context-53"><span class="linenos">53</span></a>    <span class="k">def</span> <span class="nf">call_in_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
-</span><span id="Gust.call_in_context-54"><a href="#Gust.call_in_context-54"><span class="linenos">54</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set the context and call function&quot;&quot;&quot;</span>
-</span><span id="Gust.call_in_context-55"><a href="#Gust.call_in_context-55"><span class="linenos">55</span></a>        <span class="k">with</span> <span class="n">context</span><span class="o">.</span><span class="n">gust</span><span class="p">(</span><span class="n">handler</span><span class="p">):</span>
-</span><span id="Gust.call_in_context-56"><a href="#Gust.call_in_context-56"><span class="linenos">56</span></a>            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.call_in_context-58"><a href="#Gust.call_in_context-58"><span class="linenos">58</span></a>    <span class="k">def</span> <span class="nf">call_in_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+</span><span id="Gust.call_in_context-59"><a href="#Gust.call_in_context-59"><span class="linenos">59</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set the context and call function&quot;&quot;&quot;</span>
+</span><span id="Gust.call_in_context-60"><a href="#Gust.call_in_context-60"><span class="linenos">60</span></a>        <span class="k">with</span> <span class="n">context</span><span class="o">.</span><span class="n">gust</span><span class="p">(</span><span class="n">handler</span><span class="p">):</span>
+</span><span id="Gust.call_in_context-61"><a href="#Gust.call_in_context-61"><span class="linenos">61</span></a>            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -427,7 +441,7 @@ blueshed<wbr>.gust    </h1>
                             <div id="Gust.broadcast" class="classattr">
                                         <input id="Gust.broadcast-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-                    <div class="decorator">@classmethod</div>
+                    <div class="decorator decorator-classmethod">@classmethod</div>
 
         <span class="def">def</span>
         <span class="name">broadcast</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">cls</span>, </span><span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">message</span>, </span><span class="param"><span class="n">client_ids</span></span><span class="return-annotation">):</span></span>
@@ -436,10 +450,10 @@ blueshed<wbr>.gust    </h1>
 
     </div>
     <a class="headerlink" href="#Gust.broadcast"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.broadcast-58"><a href="#Gust.broadcast-58"><span class="linenos">58</span></a>    <span class="nd">@classmethod</span>
-</span><span id="Gust.broadcast-59"><a href="#Gust.broadcast-59"><span class="linenos">59</span></a>    <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">):</span>
-</span><span id="Gust.broadcast-60"><a href="#Gust.broadcast-60"><span class="linenos">60</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;pass through, maybe point for redis gust&quot;&quot;&quot;</span>
-</span><span id="Gust.broadcast-61"><a href="#Gust.broadcast-61"><span class="linenos">61</span></a>        <span class="n">Websocket</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.broadcast-63"><a href="#Gust.broadcast-63"><span class="linenos">63</span></a>    <span class="nd">@classmethod</span>
+</span><span id="Gust.broadcast-64"><a href="#Gust.broadcast-64"><span class="linenos">64</span></a>    <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">):</span>
+</span><span id="Gust.broadcast-65"><a href="#Gust.broadcast-65"><span class="linenos">65</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;pass through, maybe point for redis gust&quot;&quot;&quot;</span>
+</span><span id="Gust.broadcast-66"><a href="#Gust.broadcast-66"><span class="linenos">66</span></a>        <span class="n">Websocket</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">client_ids</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -459,12 +473,12 @@ blueshed<wbr>.gust    </h1>
 
     </div>
     <a class="headerlink" href="#Gust.run"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.run-76"><a href="#Gust.run-76"><span class="linenos">76</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
-</span><span id="Gust.run-77"><a href="#Gust.run-77"><span class="linenos">77</span></a>        <span class="k">try</span><span class="p">:</span>
-</span><span id="Gust.run-78"><a href="#Gust.run-78"><span class="linenos">78</span></a>            <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_run_</span><span class="p">())</span>
-</span><span id="Gust.run-79"><a href="#Gust.run-79"><span class="linenos">79</span></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="ne">SystemExit</span><span class="p">):</span>
-</span><span id="Gust.run-80"><a href="#Gust.run-80"><span class="linenos">80</span></a>            <span class="c1"># graceful shutdown</span>
-</span><span id="Gust.run-81"><a href="#Gust.run-81"><span class="linenos">81</span></a>            <span class="k">pass</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.run-81"><a href="#Gust.run-81"><span class="linenos">81</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+</span><span id="Gust.run-82"><a href="#Gust.run-82"><span class="linenos">82</span></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="Gust.run-83"><a href="#Gust.run-83"><span class="linenos">83</span></a>            <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_run_</span><span class="p">())</span>
+</span><span id="Gust.run-84"><a href="#Gust.run-84"><span class="linenos">84</span></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="ne">SystemExit</span><span class="p">):</span>
+</span><span id="Gust.run-85"><a href="#Gust.run-85"><span class="linenos">85</span></a>            <span class="c1"># graceful shutdown</span>
+</span><span id="Gust.run-86"><a href="#Gust.run-86"><span class="linenos">86</span></a>            <span class="k">pass</span>
 </span></pre></div>
 
 
@@ -482,8 +496,8 @@ blueshed<wbr>.gust    </h1>
 
     </div>
     <a class="headerlink" href="#Gust.on_line"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.on_line-83"><a href="#Gust.on_line-83"><span class="linenos">83</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span>
-</span><span id="Gust.on_line-84"><a href="#Gust.on_line-84"><span class="linenos">84</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;called when a websocket opens&quot;&quot;&quot;</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.on_line-88"><a href="#Gust.on_line-88"><span class="linenos">88</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span>
+</span><span id="Gust.on_line-89"><a href="#Gust.on_line-89"><span class="linenos">89</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;called when a websocket opens&quot;&quot;&quot;</span>
 </span></pre></div>
 
 
@@ -503,8 +517,8 @@ blueshed<wbr>.gust    </h1>
 
     </div>
     <a class="headerlink" href="#Gust.off_line"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.off_line-86"><a href="#Gust.off_line-86"><span class="linenos">86</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">off_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span>
-</span><span id="Gust.off_line-87"><a href="#Gust.off_line-87"><span class="linenos">87</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;called when a websocket closes&quot;&quot;&quot;</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Gust.off_line-91"><a href="#Gust.off_line-91"><span class="linenos">91</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">off_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Websocket</span><span class="p">):</span>
+</span><span id="Gust.off_line-92"><a href="#Gust.off_line-92"><span class="linenos">92</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;called when a websocket closes&quot;&quot;&quot;</span>
 </span></pre></div>
 
 
@@ -512,35 +526,6 @@ blueshed<wbr>.gust    </h1>
 </div>
 
 
-                            </div>
-                            <div class="inherited">
-                                <h5>Inherited Members</h5>
-                                <dl>
-                                    <div><dt>tornado.web.Application</dt>
-                                <dd id="Gust.default_host" class="variable">default_host</dd>
-                <dd id="Gust.settings" class="variable">settings</dd>
-                <dd id="Gust.ui_modules" class="variable">ui_modules</dd>
-                <dd id="Gust.ui_methods" class="variable">ui_methods</dd>
-                <dd id="Gust.wildcard_router" class="variable">wildcard_router</dd>
-                <dd id="Gust.default_router" class="variable">default_router</dd>
-                <dd id="Gust.listen" class="function">listen</dd>
-                <dd id="Gust.add_handlers" class="function">add_handlers</dd>
-                <dd id="Gust.add_transform" class="function">add_transform</dd>
-                <dd id="Gust.find_handler" class="function">find_handler</dd>
-                <dd id="Gust.get_handler_delegate" class="function">get_handler_delegate</dd>
-                <dd id="Gust.reverse_url" class="function">reverse_url</dd>
-                <dd id="Gust.log_request" class="function">log_request</dd>
-
-            </div>
-            <div><dt>tornado.routing.Router</dt>
-                                <dd id="Gust.start_request" class="function">start_request</dd>
-
-            </div>
-            <div><dt>tornado.httputil.HTTPServerConnectionDelegate</dt>
-                                <dd id="Gust.on_close" class="function">on_close</dd>
-
-            </div>
-                                </dl>
                             </div>
                 </section>
                 <section id="Routes">
@@ -559,7 +544,7 @@ blueshed<wbr>.gust    </h1>
 </span><span id="Routes-16"><a href="#Routes-16"><span class="linenos"> 16</span></a>
 </span><span id="Routes-17"><a href="#Routes-17"><span class="linenos"> 17</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="Routes-18"><a href="#Routes-18"><span class="linenos"> 18</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">route_map</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="Routes-19"><a href="#Routes-19"><span class="linenos"> 19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">broadcaster</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="Routes-19"><a href="#Routes-19"><span class="linenos"> 19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">broadcaster</span><span class="p">:</span> <span class="n">Websocket</span>
 </span><span id="Routes-20"><a href="#Routes-20"><span class="linenos"> 20</span></a>
 </span><span id="Routes-21"><a href="#Routes-21"><span class="linenos"> 21</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
 </span><span id="Routes-22"><a href="#Routes-22"><span class="linenos"> 22</span></a>        <span class="bp">self</span><span class="p">,</span>
@@ -718,7 +703,7 @@ blueshed<wbr>.gust    </h1>
                             </div>
                             <div id="Routes.broadcaster" class="classattr">
                                 <div class="attr variable">
-            <span class="name">broadcaster</span>
+            <span class="name">broadcaster</span><span class="annotation">: blueshed.gust.websocket.Websocket</span>
 
         
     </div>
@@ -1091,12 +1076,12 @@ blueshed<wbr>.gust    </h1>
 
     </div>
     <a class="headerlink" href="#Redirect"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Redirect-14"><a href="#Redirect-14"><span class="linenos">14</span></a><span class="k">class</span> <span class="nc">Redirect</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-</span><span id="Redirect-15"><a href="#Redirect-15"><span class="linenos">15</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;redirect to url and if cookie set it&quot;&quot;&quot;</span>
-</span><span id="Redirect-16"><a href="#Redirect-16"><span class="linenos">16</span></a>
-</span><span id="Redirect-17"><a href="#Redirect-17"><span class="linenos">17</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
-</span><span id="Redirect-18"><a href="#Redirect-18"><span class="linenos">18</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
-</span><span id="Redirect-19"><a href="#Redirect-19"><span class="linenos">19</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Redirect-18"><a href="#Redirect-18"><span class="linenos">18</span></a><span class="k">class</span> <span class="nc">Redirect</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span id="Redirect-19"><a href="#Redirect-19"><span class="linenos">19</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;redirect to url and if cookie set it&quot;&quot;&quot;</span>
+</span><span id="Redirect-20"><a href="#Redirect-20"><span class="linenos">20</span></a>
+</span><span id="Redirect-21"><a href="#Redirect-21"><span class="linenos">21</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
+</span><span id="Redirect-22"><a href="#Redirect-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
+</span><span id="Redirect-23"><a href="#Redirect-23"><span class="linenos">23</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -1114,9 +1099,9 @@ blueshed<wbr>.gust    </h1>
 
     </div>
     <a class="headerlink" href="#Redirect.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Redirect.__init__-17"><a href="#Redirect.__init__-17"><span class="linenos">17</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
-</span><span id="Redirect.__init__-18"><a href="#Redirect.__init__-18"><span class="linenos">18</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
-</span><span id="Redirect.__init__-19"><a href="#Redirect.__init__-19"><span class="linenos">19</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Redirect.__init__-21"><a href="#Redirect.__init__-21"><span class="linenos">21</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
+</span><span id="Redirect.__init__-22"><a href="#Redirect.__init__-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
+</span><span id="Redirect.__init__-23"><a href="#Redirect.__init__-23"><span class="linenos">23</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -1134,17 +1119,42 @@ blueshed<wbr>.gust    </h1>
     
 
                             </div>
-                            <div class="inherited">
-                                <h5>Inherited Members</h5>
-                                <dl>
-                                    <div><dt>builtins.BaseException</dt>
-                                <dd id="Redirect.with_traceback" class="function">with_traceback</dd>
-                <dd id="Redirect.add_note" class="function">add_note</dd>
-                <dd id="Redirect.args" class="variable">args</dd>
+                </section>
+                <section id="stream">
+                            <input id="stream-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">stream</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">func</span></span><span class="return-annotation">):</span></span>
 
-            </div>
-                                </dl>
-                            </div>
+                <label class="view-source-button" for="stream-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#stream"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="stream-100"><a href="#stream-100"><span class="linenos">100</span></a><span class="k">def</span> <span class="nf">stream</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="stream-101"><a href="#stream-101"><span class="linenos">101</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator to stream results&quot;&quot;&quot;</span>
+</span><span id="stream-102"><a href="#stream-102"><span class="linenos">102</span></a>
+</span><span id="stream-103"><a href="#stream-103"><span class="linenos">103</span></a>    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+</span><span id="stream-104"><a href="#stream-104"><span class="linenos">104</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="stream-105"><a href="#stream-105"><span class="linenos">105</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Wrapper&quot;&quot;&quot;</span>
+</span><span id="stream-106"><a href="#stream-106"><span class="linenos">106</span></a>        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;stream_id&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+</span><span id="stream-107"><a href="#stream-107"><span class="linenos">107</span></a>            <span class="n">stream_id</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;stream_id&#39;</span><span class="p">)</span>
+</span><span id="stream-108"><a href="#stream-108"><span class="linenos">108</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="stream-109"><a href="#stream-109"><span class="linenos">109</span></a>            <span class="n">stream_id</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="stream-110"><a href="#stream-110"><span class="linenos">110</span></a>            <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</span><span id="stream-111"><a href="#stream-111"><span class="linenos">111</span></a>        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;stream: </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> - </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">stream_id</span><span class="p">)</span>
+</span><span id="stream-112"><a href="#stream-112"><span class="linenos">112</span></a>        <span class="k">yield</span> <span class="n">stream_id</span>
+</span><span id="stream-113"><a href="#stream-113"><span class="linenos">113</span></a>        <span class="k">async</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="stream-114"><a href="#stream-114"><span class="linenos">114</span></a>            <span class="k">yield</span> <span class="n">item</span>
+</span><span id="stream-115"><a href="#stream-115"><span class="linenos">115</span></a>
+</span><span id="stream-116"><a href="#stream-116"><span class="linenos">116</span></a>    <span class="k">return</span> <span class="n">wrapper</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Decorator to stream results</p>
+</div>
+
+
                 </section>
                 <section id="web">
                     <div class="attr variable">
@@ -1286,115 +1296,6 @@ app = Application([
 </div>
 
 
-                            </div>
-                            <div class="inherited">
-                                <h5>Inherited Members</h5>
-                                <dl>
-                                    <div><dt>tornado.web.RequestHandler</dt>
-                                <dd id="AuthStaticFileHandler.__init__" class="function">RequestHandler</dd>
-                <dd id="AuthStaticFileHandler.SUPPORTED_METHODS" class="variable">SUPPORTED_METHODS</dd>
-                <dd id="AuthStaticFileHandler.path_args" class="variable">path_args</dd>
-                <dd id="AuthStaticFileHandler.path_kwargs" class="variable">path_kwargs</dd>
-                <dd id="AuthStaticFileHandler.application" class="variable">application</dd>
-                <dd id="AuthStaticFileHandler.request" class="variable">request</dd>
-                <dd id="AuthStaticFileHandler.ui" class="variable">ui</dd>
-                <dd id="AuthStaticFileHandler.settings" class="variable">settings</dd>
-                <dd id="AuthStaticFileHandler.post" class="function">post</dd>
-                <dd id="AuthStaticFileHandler.delete" class="function">delete</dd>
-                <dd id="AuthStaticFileHandler.patch" class="function">patch</dd>
-                <dd id="AuthStaticFileHandler.put" class="function">put</dd>
-                <dd id="AuthStaticFileHandler.options" class="function">options</dd>
-                <dd id="AuthStaticFileHandler.prepare" class="function">prepare</dd>
-                <dd id="AuthStaticFileHandler.on_finish" class="function">on_finish</dd>
-                <dd id="AuthStaticFileHandler.on_connection_close" class="function">on_connection_close</dd>
-                <dd id="AuthStaticFileHandler.clear" class="function">clear</dd>
-                <dd id="AuthStaticFileHandler.set_default_headers" class="function">set_default_headers</dd>
-                <dd id="AuthStaticFileHandler.set_status" class="function">set_status</dd>
-                <dd id="AuthStaticFileHandler.get_status" class="function">get_status</dd>
-                <dd id="AuthStaticFileHandler.set_header" class="function">set_header</dd>
-                <dd id="AuthStaticFileHandler.add_header" class="function">add_header</dd>
-                <dd id="AuthStaticFileHandler.clear_header" class="function">clear_header</dd>
-                <dd id="AuthStaticFileHandler.get_argument" class="function">get_argument</dd>
-                <dd id="AuthStaticFileHandler.get_arguments" class="function">get_arguments</dd>
-                <dd id="AuthStaticFileHandler.get_body_argument" class="function">get_body_argument</dd>
-                <dd id="AuthStaticFileHandler.get_body_arguments" class="function">get_body_arguments</dd>
-                <dd id="AuthStaticFileHandler.get_query_argument" class="function">get_query_argument</dd>
-                <dd id="AuthStaticFileHandler.get_query_arguments" class="function">get_query_arguments</dd>
-                <dd id="AuthStaticFileHandler.decode_argument" class="function">decode_argument</dd>
-                <dd id="AuthStaticFileHandler.cookies" class="variable">cookies</dd>
-                <dd id="AuthStaticFileHandler.get_cookie" class="function">get_cookie</dd>
-                <dd id="AuthStaticFileHandler.set_cookie" class="function">set_cookie</dd>
-                <dd id="AuthStaticFileHandler.clear_cookie" class="function">clear_cookie</dd>
-                <dd id="AuthStaticFileHandler.clear_all_cookies" class="function">clear_all_cookies</dd>
-                <dd id="AuthStaticFileHandler.set_signed_cookie" class="function">set_signed_cookie</dd>
-                <dd id="AuthStaticFileHandler.set_secure_cookie" class="function">set_secure_cookie</dd>
-                <dd id="AuthStaticFileHandler.create_signed_value" class="function">create_signed_value</dd>
-                <dd id="AuthStaticFileHandler.get_signed_cookie" class="function">get_signed_cookie</dd>
-                <dd id="AuthStaticFileHandler.get_secure_cookie" class="function">get_secure_cookie</dd>
-                <dd id="AuthStaticFileHandler.get_signed_cookie_key_version" class="function">get_signed_cookie_key_version</dd>
-                <dd id="AuthStaticFileHandler.get_secure_cookie_key_version" class="function">get_secure_cookie_key_version</dd>
-                <dd id="AuthStaticFileHandler.redirect" class="function">redirect</dd>
-                <dd id="AuthStaticFileHandler.write" class="function">write</dd>
-                <dd id="AuthStaticFileHandler.render" class="function">render</dd>
-                <dd id="AuthStaticFileHandler.render_linked_js" class="function">render_linked_js</dd>
-                <dd id="AuthStaticFileHandler.render_embed_js" class="function">render_embed_js</dd>
-                <dd id="AuthStaticFileHandler.render_linked_css" class="function">render_linked_css</dd>
-                <dd id="AuthStaticFileHandler.render_embed_css" class="function">render_embed_css</dd>
-                <dd id="AuthStaticFileHandler.render_string" class="function">render_string</dd>
-                <dd id="AuthStaticFileHandler.get_template_namespace" class="function">get_template_namespace</dd>
-                <dd id="AuthStaticFileHandler.create_template_loader" class="function">create_template_loader</dd>
-                <dd id="AuthStaticFileHandler.flush" class="function">flush</dd>
-                <dd id="AuthStaticFileHandler.finish" class="function">finish</dd>
-                <dd id="AuthStaticFileHandler.detach" class="function">detach</dd>
-                <dd id="AuthStaticFileHandler.send_error" class="function">send_error</dd>
-                <dd id="AuthStaticFileHandler.write_error" class="function">write_error</dd>
-                <dd id="AuthStaticFileHandler.locale" class="variable">locale</dd>
-                <dd id="AuthStaticFileHandler.get_user_locale" class="function">get_user_locale</dd>
-                <dd id="AuthStaticFileHandler.get_browser_locale" class="function">get_browser_locale</dd>
-                <dd id="AuthStaticFileHandler.current_user" class="variable">current_user</dd>
-                <dd id="AuthStaticFileHandler.get_login_url" class="function">get_login_url</dd>
-                <dd id="AuthStaticFileHandler.get_template_path" class="function">get_template_path</dd>
-                <dd id="AuthStaticFileHandler.xsrf_token" class="variable">xsrf_token</dd>
-                <dd id="AuthStaticFileHandler.check_xsrf_cookie" class="function">check_xsrf_cookie</dd>
-                <dd id="AuthStaticFileHandler.xsrf_form_html" class="function">xsrf_form_html</dd>
-                <dd id="AuthStaticFileHandler.static_url" class="function">static_url</dd>
-                <dd id="AuthStaticFileHandler.require_setting" class="function">require_setting</dd>
-                <dd id="AuthStaticFileHandler.reverse_url" class="function">reverse_url</dd>
-                <dd id="AuthStaticFileHandler.set_etag_header" class="function">set_etag_header</dd>
-                <dd id="AuthStaticFileHandler.check_etag_header" class="function">check_etag_header</dd>
-                <dd id="AuthStaticFileHandler.data_received" class="function">data_received</dd>
-                <dd id="AuthStaticFileHandler.log_exception" class="function">log_exception</dd>
-
-            </div>
-            <div><dt>blueshed.gust.utils.UserMixin</dt>
-                                <dd id="AuthStaticFileHandler.cookie_name" class="variable">cookie_name</dd>
-                <dd id="AuthStaticFileHandler.get_current_user" class="function">get_current_user</dd>
-                <dd id="AuthStaticFileHandler.set_current_user" class="function">set_current_user</dd>
-                <dd id="AuthStaticFileHandler.not_authenticated" class="function">not_authenticated</dd>
-
-            </div>
-            <div><dt>tornado.web.StaticFileHandler</dt>
-                                <dd id="AuthStaticFileHandler.CACHE_MAX_AGE" class="variable">CACHE_MAX_AGE</dd>
-                <dd id="AuthStaticFileHandler.reset" class="function">reset</dd>
-                <dd id="AuthStaticFileHandler.head" class="function">head</dd>
-                <dd id="AuthStaticFileHandler.compute_etag" class="function">compute_etag</dd>
-                <dd id="AuthStaticFileHandler.set_headers" class="function">set_headers</dd>
-                <dd id="AuthStaticFileHandler.should_return_304" class="function">should_return_304</dd>
-                <dd id="AuthStaticFileHandler.get_absolute_path" class="function">get_absolute_path</dd>
-                <dd id="AuthStaticFileHandler.validate_absolute_path" class="function">validate_absolute_path</dd>
-                <dd id="AuthStaticFileHandler.get_content" class="function">get_content</dd>
-                <dd id="AuthStaticFileHandler.get_content_version" class="function">get_content_version</dd>
-                <dd id="AuthStaticFileHandler.get_content_size" class="function">get_content_size</dd>
-                <dd id="AuthStaticFileHandler.get_modified_time" class="function">get_modified_time</dd>
-                <dd id="AuthStaticFileHandler.get_content_type" class="function">get_content_type</dd>
-                <dd id="AuthStaticFileHandler.set_extra_headers" class="function">set_extra_headers</dd>
-                <dd id="AuthStaticFileHandler.get_cache_time" class="function">get_cache_time</dd>
-                <dd id="AuthStaticFileHandler.make_static_url" class="function">make_static_url</dd>
-                <dd id="AuthStaticFileHandler.parse_url_path" class="function">parse_url_path</dd>
-                <dd id="AuthStaticFileHandler.get_version" class="function">get_version</dd>
-
-            </div>
-                                </dl>
                             </div>
                 </section>
     </main>

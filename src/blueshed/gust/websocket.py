@@ -3,10 +3,10 @@
 import asyncio
 import logging
 from collections import defaultdict
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from tornado.util import unicode_type
-from tornado.websocket import WebSocketHandler
+from tornado.websocket import WebSocketClosedError, WebSocketHandler
 
 from . import context, json_utils
 from .utils import JsonRpcException, JsonRpcResponse, UserMixin
@@ -195,3 +195,50 @@ class Websocket(UserMixin, WebSocketHandler):
                 ):
                     continue
                 client.queue_message(message)
+
+    def create_stream(self, gen: Any, stream_id: str = None) -> str:
+        """Create a stream and set it to run in the background."""
+        task = asyncio.create_task(
+            self.stream_results(gen, stream_id), name=stream_id
+        )
+        self._tasks_.add(task)
+        task.add_done_callback(self.stream_done)
+        return stream_id
+
+    async def stream_message(self, stream_id: str, **kwargs: Any):
+        """Write a stream message."""
+        log.debug('streaming: %s', kwargs)
+        await self.write_message(
+            json_utils.dumps({'stream_id': stream_id} | kwargs)
+        )
+
+    async def stream_results(self, gen: Any, stream_id: str = None):
+        """Write out stream results."""
+        if stream_id is None:
+            # stream_id will be the first item
+            stream_id = await anext(gen)
+            log.debug('stream_id: %s', stream_id)
+        count = 0
+        async for item in gen:
+            await self.stream_message(stream_id, args=item)
+            count = count + 1
+        await self.stream_message(stream_id, count=count)
+
+    def stream_done(self, task: asyncio.Task):
+        """Handle task completion."""
+        self._tasks_.discard(task)
+        try:
+            task.result()
+        except WebSocketClosedError:
+            pass
+        except Exception as ex:
+            log.exception(ex)
+            self.queue_message(
+                json_utils.dumps(
+                    {
+                        'stream_id': task.get_name(),
+                        'args': self.stream_message,
+                        'error': str(ex),
+                    }
+                )
+            )

@@ -47,6 +47,11 @@ class Gust(Application):
                 self.call_in_context, handler, func, args, kwargs
             )
             result = await asyncio.to_thread(partial)
+        if result:
+            if inspect.isawaitable(result):
+                result = await result
+            if inspect.isasyncgen(result):
+                result = handler.create_stream(result)
         return result
 
     def call_in_context(self, handler, func, args, kwargs):

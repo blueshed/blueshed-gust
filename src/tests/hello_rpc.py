@@ -2,9 +2,10 @@
 
 import asyncio
 
-from blueshed.gust import Gust, web
 from tornado.log import enable_pretty_logging
 from tornado.options import options
+
+from blueshed.gust import Gust, web
 
 
 @web.get('/(.*)')

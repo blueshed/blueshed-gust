@@ -15,7 +15,7 @@ class Routes:
 
     def __init__(self) -> None:
         self.route_map = {}
-        self.broadcaster = None
+        self.broadcaster: Websocket
 
     def get(
         self,

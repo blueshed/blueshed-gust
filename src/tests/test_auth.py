@@ -6,9 +6,10 @@ import logging
 import urllib.parse
 
 import pytest
-from blueshed.gust import Gust, web
 from tornado.httpclient import HTTPRequest
 from tornado.websocket import websocket_connect
+
+from blueshed.gust import Gust, web
 
 PATH = '/bar/'
 
