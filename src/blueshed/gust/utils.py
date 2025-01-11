@@ -46,6 +46,18 @@ class JsonRpcResponse:
     error: Any
     jsonrpc: str = '2.0'
 
+    def to_json(self):
+        """serialize for json"""
+        result = {
+            'id': self.id,
+            'jsonrpc': self.jsonrpc,
+        }
+        if self.error:
+            result['error'] = self.error
+        else:
+            result['result'] = self.result
+        return result
+
     def __post_init__(self):
         """stringify error"""
         if self.error:

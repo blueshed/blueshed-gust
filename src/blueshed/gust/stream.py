@@ -10,4 +10,5 @@ class Stream:
         self.gen = gen
 
     def to_json(self) -> dict:
+        """We're just a response"""
         return {'stream_id': self.id}
