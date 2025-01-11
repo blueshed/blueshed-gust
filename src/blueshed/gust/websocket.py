@@ -8,6 +8,8 @@ from typing import Any, List, Optional
 from tornado.util import unicode_type
 from tornado.websocket import WebSocketClosedError, WebSocketHandler
 
+from blueshed.gust.stream import Stream
+
 from . import context, json_utils
 from .utils import JsonRpcException, JsonRpcResponse, UserMixin
 
@@ -119,6 +121,8 @@ class Websocket(UserMixin, WebSocketHandler):
                     )
                 )
             )
+            if result and isinstance(result, Stream):
+                self.create_stream(result.gen, result.id)
 
     async def open(self, *args, **kwargs):
         """websocket open"""
