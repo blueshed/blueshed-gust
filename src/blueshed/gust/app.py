@@ -10,6 +10,8 @@ from typing import Any, Callable, List, Optional
 from tornado.options import define, options
 from tornado.web import Application
 
+from blueshed.gust import json_utils
+
 from . import context
 from .web import web
 from .websocket import Websocket
@@ -89,3 +91,7 @@ class Gust(Application):
 
     async def off_line(self, handler: Websocket):
         """called when a websocket closes"""
+
+    def to_json(self, value: dict) -> str:
+        """called by websocket and webhandler"""
+        return self.settings.get('json_encoder', json_utils.dumps)(value)

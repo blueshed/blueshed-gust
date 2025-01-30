@@ -3,7 +3,7 @@
 import asyncio
 import logging
 from collections import defaultdict
-from typing import Any, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from tornado.util import unicode_type
 from tornado.websocket import WebSocketClosedError, WebSocketHandler
@@ -169,6 +169,16 @@ class Websocket(UserMixin, WebSocketHandler):
             await self.write_message(message)
         else:
             log.warning('message sent after close: %s', message)
+
+    def write_message(
+        self, message: Union[bytes, str, Dict[str, Any]], binary: bool = False
+    ) -> 'asyncio.Future[None]':
+        """override to json_encode."""
+        if self.ws_connection is None or self.ws_connection.is_closing():
+            raise WebSocketClosedError()
+        if isinstance(message, dict):
+            message = self.application.to_json(message)
+        return self.ws_connection.write_message(message, binary=binary)
 
     def queue_message(self, message):
         """

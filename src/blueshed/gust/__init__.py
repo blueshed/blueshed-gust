@@ -10,7 +10,7 @@ from .stream import Stream
 from .utils import Redirect, stream
 from .web import web
 
-VERSION = '0.0.24'
+VERSION = '0.0.25'
 
 __all__ = [
     'Gust',
