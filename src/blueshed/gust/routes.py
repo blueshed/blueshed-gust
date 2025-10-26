@@ -122,7 +122,11 @@ class Routes:
            # Handler must implement: async def call(method, params)
         """
         return self.default_wrap(
-            method='ws_rpc', path=path, template=None, auth=auth, handler=handler
+            method='ws_rpc',
+            path=path,
+            template=None,
+            auth=auth,
+            handler=handler,
         )
 
     def broadcast(self, path: str, message: str, client_ids: List[int] = None):

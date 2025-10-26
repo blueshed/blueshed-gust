@@ -547,9 +547,18 @@
             const outputId = ws._lastOutputId || 'output-add';
 
             if (response.error) {
-                log('error', `✗ Error: ${response.error.message}`, outputId);
+                // Display database error with recovery status
+                const errorMsg = response.error.message || response.error;
+                const isRecovered = errorMsg.includes('Connection rolled back');
+
+                log('error', `✗ Error: ${errorMsg}`, outputId);
+
+                if (isRecovered) {
+                    log('success', '✓ Transaction rolled back - Connection recovered', outputId);
+                    log('success', '→ Ready to retry', outputId);
+                }
             } else {
-                log('success', `← Result: ${JSON.stringify(response.result, null, 2)}`, outputId);
+                log('success', `✓ Result: ${JSON.stringify(response.result, null, 2)}`, outputId);
             }
         }
 

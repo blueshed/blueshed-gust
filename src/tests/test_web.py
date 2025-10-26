@@ -159,10 +159,17 @@ async def test_a_add_wrong(ws_client, caplog):
         await client.write_message(json_utils.dumps(message))
         response = await client.read_message()
         print(response)
-        assert (
-            json_utils.loads(response)['error']
-            == "unsupported operand type(s) for +: 'int' and 'str'"
-        )
+        error = json_utils.loads(response)['error']
+        # Error can be dict (with code and message) or string
+        if isinstance(error, dict):
+            assert (
+                error['message']
+                == "unsupported operand type(s) for +: 'int' and 'str'"
+            )
+        else:
+            assert (
+                error == "unsupported operand type(s) for +: 'int' and 'str'"
+            )
     client.close()
     await asyncio.sleep(0.01)
 

@@ -112,28 +112,32 @@ get_all_users() -> TABLE(id INT, username TEXT, email TEXT)
 
 ## Integration with Gust
 
-### WebSocket JSON-RPC Endpoint
+### Handler-Based Routing (Direct PostgreSQL Function Calling)
+
+The PostgreSQL RPC feature uses handler-based routing - you can register handler objects directly to WebSocket endpoints:
 
 ```python
 from blueshed.gust import Gust, web, PostgresRPC, AuthPostgresRPC
-import psycopg
+from psycopg import AsyncConnection
 
-pool = psycopg.AsyncConnectionPool(conninfo="postgresql://gust_user:gust_pass@localhost/gust_test")
+async def main():
+    # Create database connection
+    conn = await AsyncConnection.connect("postgresql://gust_user:gust_pass@localhost/gust_test")
 
-# Unauthenticated endpoint
-pg_rpc = PostgresRPC(pool)
+    # Create handlers
+    pg_rpc = PostgresRPC(conn)
+    auth_rpc = AuthPostgresRPC(conn)
 
-@web.ws_json_rpc('/api')
-async def db_query(method: str, params=None):
-    return await pg_rpc.call(method, params)
+    # Register handlers directly to WebSocket endpoints
+    web.ws_json_rpc('/api', handler=pg_rpc)
+    web.ws_json_rpc('/api/auth', handler=auth_rpc)
 
-# Authenticated endpoint - user automatically injected
-auth_rpc = AuthPostgresRPC(pool)
-
-@web.ws_json_rpc('/api/auth')
-async def db_query_auth(method: str, params=None):
-    return await auth_rpc.call(method, params)
+    # Start the application
+    app = Gust(port=8080)
+    await app._run_()
 ```
+
+This eliminates wrapper functions and directly dispatches to the handler's `call(method, params)` method.
 
 ### Client Usage
 
@@ -229,3 +233,51 @@ docker-compose down -v
 - ✅ Various return types (int, text, JSON, tables)
 - ✅ Function signature caching
 - ✅ Private function blocking (functions starting with `_`)
+- ✅ Handler-based routing (no wrapper functions)
+- ✅ Proper error handling with transaction rollback
+- ✅ Meaningful error messages to client
+
+## Recent Improvements (v1.1)
+
+### 1. Handler-Based Routing
+Eliminated wrapper functions - handlers are now registered directly to WebSocket endpoints. This provides a clean separation between the Gust framework and PostgreSQL RPC logic.
+
+### 2. Error Handling
+- Transaction rollback after failed queries (prevents "current transaction is aborted" errors)
+- Proper error messages extracted from PostgreSQL exceptions
+- Error details returned to client for debugging
+
+### 3. Enhanced UI
+- Error details displayed in the UI
+- Recovery status indicator ("Transaction rolled back - Connection recovered")
+- Ready to retry message
+
+### 4. Bug Fixes
+- Fixed function signature lookup to use `routine_name` with proper JOIN
+- Fixed array type casting for proper parameter marshalling
+- Proper psycopg3 placeholder syntax (%s)
+
+## Testing
+
+### Run Integration Tests
+
+```bash
+# Start PostgreSQL (if not already running)
+docker compose up -d
+
+# Run tests
+cd ../..
+export PYTHONPATH="src:$PYTHONPATH"
+pytest src/tests/test_postgres_rpc.py -v
+```
+
+Tests validate:
+- Function calling (positional and named parameters)
+- Parameter marshalling and signature caching
+- Error handling and transaction rollback
+- Authentication and user injection
+- Edge cases and error conditions
+
+### Manual Testing
+
+Use the interactive web UI at `http://localhost:8080` to test all functions manually with real-time error feedback.

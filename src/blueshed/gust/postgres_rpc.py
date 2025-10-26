@@ -125,7 +125,9 @@ class PostgresRPC:
                 positional_params.append(params[param_name])
             params = positional_params
         elif not isinstance(params, list):
-            raise ValueError('Params must be list (positional) or dict (named)')
+            raise ValueError(
+                'Params must be list (positional) or dict (named)'
+            )
 
         # Build SQL: SELECT method(%s, %s, ...)
         # Note: psycopg3 uses %s placeholders, not $1, $2
@@ -134,13 +136,22 @@ class PostgresRPC:
 
         log.debug('PostgreSQL RPC: %s with params %r', sql, params)
 
-        # Execute function
-        async with self.connection.cursor() as cur:
-            await cur.execute(sql, params)
-            result = await cur.fetchone()
-
-        # Return first column of first row, or None
-        return result[0] if result else None
+        # Execute function with error handling
+        try:
+            async with self.connection.cursor() as cur:
+                await cur.execute(sql, params)
+                result = await cur.fetchone()
+            # Return first column of first row, or None
+            return result[0] if result else None
+        except Exception as e:
+            # Rollback failed transaction to reset connection state
+            try:
+                await self.connection.rollback()
+                log.info('Transaction rolled back after error')
+            except Exception as rollback_err:
+                log.error('Failed to rollback transaction: %s', rollback_err)
+            # Re-raise the original error with details
+            raise
 
     async def _get_function_signature(
         self, function_name: str
@@ -166,13 +177,16 @@ class PostgresRPC:
         # Query information_schema for function signature
         async with self.connection.cursor() as cur:
             await cur.execute(
-                '''
-                SELECT array_agg(parameter_name ORDER BY ordinal_position)
-                FROM information_schema.parameters
-                WHERE routine_schema = %s
-                  AND routine_name = %s
-                  AND parameter_mode IN ('IN', 'INOUT')
-                ''',
+                """
+                SELECT array_agg(p.parameter_name ORDER BY p.ordinal_position)::text[]
+                FROM information_schema.parameters p
+                JOIN information_schema.routines r
+                  ON r.specific_schema = p.specific_schema
+                  AND r.specific_name = p.specific_name
+                WHERE r.routine_schema = %s
+                  AND r.routine_name = %s
+                  AND p.parameter_mode IN ('IN', 'INOUT')
+                """,
                 [self.schema, function_name],
             )
 
@@ -265,7 +279,9 @@ class AuthPostgresRPC(PostgresRPC):
             # The user will be first in the function signature
             params_with_user = {**params, '_user': current_user}
         else:
-            raise ValueError('Params must be list (positional) or dict (named)')
+            raise ValueError(
+                'Params must be list (positional) or dict (named)'
+            )
 
         log.debug(
             'AuthPostgresRPC: calling %s with user=%s, params=%r',

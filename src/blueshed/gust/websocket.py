@@ -22,7 +22,9 @@ class Websocket(UserMixin, WebSocketHandler):
     def initialize(self, method_settings, ws_clients=None, ws_tasks=None):
         """setup variables"""
         self.method_settings = method_settings
-        self._clients_ = ws_clients if ws_clients is not None else defaultdict(list)
+        self._clients_ = (
+            ws_clients if ws_clients is not None else defaultdict(list)
+        )
         self._tasks_ = ws_tasks if ws_tasks is not None else set()
         log.debug('%r', method_settings)
 
@@ -114,7 +116,14 @@ class Websocket(UserMixin, WebSocketHandler):
                     log.debug('have result: %s', result)
             except Exception as ex:  # pylint: disable=W0703
                 log.exception('%s: %r', method, data)
-                error = ex
+                # Extract meaningful error message from database exceptions
+                error_msg = str(ex)
+                # For psycopg3 errors, try to get the primary diagnostic message
+                if hasattr(ex, 'diag') and hasattr(ex.diag, 'message_primary'):
+                    error_msg = (
+                        f'{ex.diag.message_primary} (Connection rolled back)'
+                    )
+                error = JsonRpcException(-32603, error_msg)
             finally:
                 # close is a synchronous so we tidy up
                 if method == 'ws_close':
