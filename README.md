@@ -56,4 +56,21 @@ ws.onmessage = function (evt) {
 };
 ```
 
+## Direct PostgreSQL Function Calling
+
+Gust also supports calling PostgreSQL stored functions directly via WebSocket JSON-RPC:
+
+```python
+from blueshed.gust import Gust, web, PostgresRPC
+from psycopg import AsyncConnection
+
+async def main():
+    conn = await AsyncConnection.connect("postgresql://user:pass@localhost/mydb")
+    pg_rpc = PostgresRPC(conn)
+    web.ws_json_rpc('/api', handler=pg_rpc)
+    Gust(port=8080).run()
+```
+
+Call any PostgreSQL function using the same JSON-RPC protocol shown above. An authenticated variant (`AuthPostgresRPC`) is available for automatic user injection. See `samples/postgres_rpc_demo/` for complete examples.
+
 There are simple sample apps in src/tests.

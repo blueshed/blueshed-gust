@@ -11,7 +11,7 @@ from .stream import Stream
 from .utils import Redirect, stream
 from .web import web
 
-VERSION = '0.0.25'
+VERSION = '0.0.26'
 
 __all__ = [
     'Gust',

@@ -139,6 +139,63 @@ async def main():
 
 This eliminates wrapper functions and directly dispatches to the handler's `call(method, params)` method.
 
+### Minimal Example
+
+Here's the simplest possible PostgreSQL RPC setup:
+
+**1. Create a PostgreSQL function:**
+```sql
+CREATE FUNCTION greet(name TEXT)
+RETURNS TEXT AS $$
+  SELECT 'Hello, ' || name || '!';
+$$ LANGUAGE SQL;
+```
+
+**2. Create your Gust server:**
+```python
+import asyncio
+from blueshed.gust import Gust, web, PostgresRPC
+from psycopg import AsyncConnection
+
+async def main():
+    # Connect to database
+    conn = await AsyncConnection.connect("postgresql://user:pass@localhost/mydb")
+
+    # Create and register RPC handler
+    pg_rpc = PostgresRPC(conn)
+    web.ws_json_rpc('/api', handler=pg_rpc)
+
+    # Run server
+    app = Gust(port=8080)
+    await app._run_()
+
+asyncio.run(main())
+```
+
+**3. Call from client:**
+```python
+import asyncio
+import json
+import websockets
+
+async def test():
+    async with websockets.connect('ws://localhost:8080/api') as ws:
+        # Call the greet function
+        await ws.send(json.dumps({
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "greet",
+            "params": ["Alice"]
+        }))
+        response = await ws.recv()
+        print(json.loads(response))
+        # Output: {"jsonrpc": "2.0", "id": 1, "result": "Hello, Alice!"}
+
+asyncio.run(test())
+```
+
+That's it! Direct PostgreSQL function calling over WebSocket.
+
 ### Client Usage
 
 ```javascript

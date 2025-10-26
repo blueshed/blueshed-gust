@@ -23,7 +23,10 @@
 
             <h2>Contents</h2>
             <ul>
-  <li><a href="#gust">Gust</a></li>
+  <li><a href="#gust">Gust</a>
+  <ul>
+    <li><a href="#direct-postgresql-function-calling">Direct PostgreSQL Function Calling</a></li>
+  </ul></li>
 </ul>
 
 
@@ -278,6 +281,24 @@ blueshed<wbr>.gust    </h1>
 </code></pre>
 </div>
 
+<h2 id="direct-postgresql-function-calling">Direct PostgreSQL Function Calling</h2>
+
+<p>Gust also supports calling PostgreSQL stored functions directly via WebSocket JSON-RPC:</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn"><a href="">blueshed.gust</a></span> <span class="kn">import</span> <span class="n">Gust</span><span class="p">,</span> <span class="n">web</span><span class="p">,</span> <span class="n">PostgresRPC</span>
+<span class="kn">from</span> <span class="nn">psycopg</span> <span class="kn">import</span> <span class="n">AsyncConnection</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AsyncConnection</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;postgresql://user:pass@localhost/mydb&quot;</span><span class="p">)</span>
+    <span class="n">pg_rpc</span> <span class="o">=</span> <span class="n">PostgresRPC</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+    <span class="n">web</span><span class="o">.</span><span class="n">ws_json_rpc</span><span class="p">(</span><span class="s1">&#39;/api&#39;</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="n">pg_rpc</span><span class="p">)</span>
+    <span class="n">Gust</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p>Call any PostgreSQL function using the same JSON-RPC protocol shown above. An authenticated variant (<code><a href="#AuthPostgresRPC">AuthPostgresRPC</a></code>) is available for automatic user injection. See <code>samples/postgres_rpc_demo/</code> for complete examples.</p>
+
 <p>There are simple sample apps in src/tests.</p>
 </div>
 
@@ -298,7 +319,7 @@ blueshed<wbr>.gust    </h1>
 </span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a><span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">Redirect</span><span class="p">,</span> <span class="n">stream</span>
 </span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="kn">from</span> <span class="nn">.web</span> <span class="kn">import</span> <span class="n">web</span>
 </span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>
-</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="n">VERSION</span> <span class="o">=</span> <span class="s1">&#39;0.0.25&#39;</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="n">VERSION</span> <span class="o">=</span> <span class="s1">&#39;0.0.26&#39;</span>
 </span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>
 </span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
 </span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>    <span class="s1">&#39;Gust&#39;</span><span class="p">,</span>
