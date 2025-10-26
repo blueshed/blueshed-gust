@@ -113,20 +113,19 @@ async def test_harry_put(http_server_client):
 async def test_add(ws_client, caplog):
     """test add function via websocket"""
     with caplog.at_level(logging.DEBUG):
-        ws_client = await ws_client
+        client = await ws_client
         message = {
             'jsonrpc': '2.0',
             'id': '1a',
             'method': 'add',
             'params': [2, 2],
         }
-        await ws_client.write_message(json_utils.dumps(message))
-        await asyncio.sleep(0.01)
-        # response = await ws_client.read_message()
-        # print(response)
-        # assert json_utils.loads(response)['result'] == 4
+        await client.write_message(json_utils.dumps(message))
+        response = await client.read_message()
+        result = json_utils.loads(response)
+        assert result['result'] == 4
 
-    ws_client.close()
+    client.close()
     await asyncio.sleep(0.01)
 
 

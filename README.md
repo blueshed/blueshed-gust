@@ -41,7 +41,7 @@ And use a javascript websocket client to call the function:
 const ws = new WebSocket("ws://localhost:8080/websocket");
 ws.onopen = function () {
   ws.send(
-    JSON.stringigy({
+    JSON.stringify({
       jsonrpc: "2.0",
       id: 1,
       method: "add",

@@ -5,6 +5,7 @@ import functools
 import inspect
 import logging
 import os
+from collections import defaultdict
 from typing import Any, Callable, List, Optional
 
 from tornado.options import define, options
@@ -34,8 +35,20 @@ class Gust(Application):
         self.port: int = port if port else int(os.getenv('PORT', options.port))
         if 'debug' not in kwargs:
             kwargs['debug'] = options.debug
+
+        # WebSocket state per-instance (not shared across apps)
+        self.ws_clients = defaultdict(list)
+        self.ws_tasks = set()
+
         super().__init__(routes, **kwargs)
         web.install(self)
+
+        # Warn about debug mode security implications
+        if self.settings.get('debug') is True:
+            log.warning(
+                '⚠️  DEBUG MODE ENABLED - CORS HEADERS ARE WIDE OPEN AND '
+                'WEBSOCKET ORIGIN CHECKING IS DISABLED. DO NOT USE IN PRODUCTION.'
+            )
 
     async def perform(self, handler, func: Callable, *args, **kwargs) -> Any:
         """await a function or call in a thread_pool, better yet call redis"""
@@ -61,10 +74,9 @@ class Gust(Application):
         with context.gust(handler):
             return func(*args, **kwargs)
 
-    @classmethod
-    def broadcast(cls, path, message, client_ids):
-        """pass through, maybe point for redis gust"""
-        Websocket.broadcast(path, message, client_ids)
+    def broadcast(self, path, message, client_ids=None):
+        """Broadcast to WebSocket clients at a path"""
+        Websocket.broadcast(self.ws_clients, path, message, client_ids)
 
     async def _run_(self):  # pragma: no cover
         """listen on self.port and run io_loop"""

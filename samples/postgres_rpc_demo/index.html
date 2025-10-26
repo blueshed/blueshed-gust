@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostgreSQL RPC Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .status {
+            padding: 15px 30px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.connected {
+            background: #4caf50;
+        }
+
+        .status-dot.disconnected {
+            background: #f44336;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .content {
+            display: flex;
+            min-height: 600px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #f9f9f9;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .demo-list {
+            list-style: none;
+        }
+
+        .demo-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: white;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .demo-item:hover {
+            background: #f0f0f0;
+            border-color: #667eea;
+        }
+
+        .demo-item.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .main {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .demo-section {
+            display: none;
+        }
+
+        .demo-section.active {
+            display: block;
+        }
+
+        .demo-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .demo-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .controls {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .control-group input,
+        .control-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button.secondary {
+            background: #999;
+        }
+
+        button.secondary:hover {
+            background: #777;
+        }
+
+        .output-section {
+            margin-top: 30px;
+        }
+
+        .output-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .output-box {
+            background: #1e1e1e;
+            color: #0ff;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #333;
+            line-height: 1.5;
+        }
+
+        .output-line {
+            margin-bottom: 5px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .output-error {
+            color: #ff4444;
+        }
+
+        .output-success {
+            color: #44ff44;
+        }
+
+        .output-request {
+            color: #ffaa00;
+        }
+
+        .output-response {
+            color: #00aaff;
+        }
+
+        .json-output {
+            background: white;
+            color: #333;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .json-output pre {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+                display: flex;
+                gap: 10px;
+                overflow-x: auto;
+            }
+
+            .demo-list {
+                display: flex;
+                gap: 5px;
+            }
+
+            .demo-item {
+                margin-bottom: 0;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 PostgreSQL RPC Demo</h1>
+            <p>Real-time WebSocket JSON-RPC to PostgreSQL Functions</p>
+        </header>
+
+        <div class="status">
+            <div class="status-indicator">
+                <div class="status-dot disconnected" id="statusDot"></div>
+                <span id="statusText">Connecting...</span>
+            </div>
+            <div>
+                <span id="connectionInfo"></span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="sidebar">
+                <ul class="demo-list">
+                    <li class="demo-item active" data-demo="addition">➕ Addition</li>
+                    <li class="demo-item" data-demo="multiplication">✖️ Multiplication</li>
+                    <li class="demo-item" data-demo="greeting">👋 Greeting</li>
+                    <li class="demo-item" data-demo="profile">👤 User Profile</li>
+                    <li class="demo-item" data-demo="orders">📦 Orders</li>
+                    <li class="demo-item" data-demo="auth">🔐 Authenticated</li>
+                    <li class="demo-item" data-demo="authtest">🔐 Auth Test</li>
+                </ul>
+            </div>
+
+            <div class="main">
+                <!-- Addition Demo -->
+                <div class="demo-section active" id="demo-addition">
+                    <h2 class="demo-title">➕ Simple Addition</h2>
+                    <p class="demo-description">Call the <code>add(a INT, b INT)</code> function</p>
+                    <div class="controls">
+                        <div class="control-group">
+                            <label>Number A:</label>
+                            <input type="number" id="add-a" value="5">
+                        </div>
+                        <div class="control-group">
+                            <label>Number B:</label>
+                            <input type="number" id="add-b" value="3">
+                        </div>
+                        <div class="button-group">
+                            <button onclick="callAdd()">Calculate</button>
+                        </div>
+                    </div>
+                    <div class="output-section">
+                        <div class="output-title">Output:</div>
+                        <div class="output-box" id="output-add"></div>
+                    </div>
+                </div>
+
+                <!-- Multiplication Demo -->
+                <div class="demo-section" id="demo-multiplication">
+                    <h2 class="demo-title">✖️ Multiplication</h2>
+                    <p class="demo-description">Call the <code>multiply(x INT, y INT)</code> function with named parameters</p>
+                    <div class="controls">
+                        <div class="control-group">
+                            <label>Number X:</label>
+                            <input type="number" id="mul-x" value="6">
+                        </div>
+                        <div class="control-group">
+                            <label>Number Y:</label>
+                            <input type="number" id="mul-y" value="7">
+                        </div>
+                        <div class="button-group">
+                            <button onclick="callMultiply()">Calculate</button>
+                        </div>
+                    </div>
+                    <div class="output-section">
+                        <div class="output-title">Output:</div>
+                        <div class="output-box" id="output-multiply"></div>
+                    </div>
+                </div>
+
+                <!-- Greeting Demo -->
+                <div class="demo-section" id="demo-greeting">
+                    <h2 class="demo-title">👋 Greeting</h2>
+                    <p class="demo-description">Call the <code>greet(name TEXT)</code> function</p>
+                    <div class="controls">
+                        <div class="control-group">
+                            <label>Your Name:</label>
+                            <input type="text" id="greet-name" value="World">
+                        </div>
+                        <div class="button-group">
+                            <button onclick="callGreet()">Greet Me</button>
+                        </div>
+                    </div>
+                    <div class="output-section">
+                        <div class="output-title">Output:</div>
+                        <div class="output-box" id="output-greeting"></div>
+                    </div>
+                </div>
+
+                <!-- User Profile Demo -->
+                <div class="demo-section" id="demo-profile">
+                    <h2 class="demo-title">👤 User Profile (JSON)</h2>
+                    <p class="demo-description">Call the <code>get_user_profile(user_id INT)</code> function - returns JSON</p>
+                    <div class="controls">
+                        <div class="control-group">
+                            <label>User ID:</label>
+                            <input type="number" id="profile-id" value="123">
+                        </div>
+                        <div class="button-group">
+                            <button onclick="callProfile()">Get Profile</button>
+                        </div>
+                    </div>
+                    <div class="output-section">
+                        <div class="output-title">Output:</div>
+                        <div class="output-box" id="output-profile"></div>
+                        <div class="json-output" id="json-profile"></div>
+                    </div>
+                </div>
+
+                <!-- Orders Demo -->
+                <div class="demo-section" id="demo-orders">
+                    <h2 class="demo-title">📦 User Orders</h2>
+                    <p class="demo-description">Call the <code>get_user_orders(user_id INT, year INT)</code> function</p>
+                    <div class="controls">
+                        <div class="control-group">
+                            <label>User ID:</label>
+                            <input type="number" id="orders-uid" value="1">
+                        </div>
+                        <div class="control-group">
+                            <label>Year:</label>
+                            <input type="number" id="orders-year" value="2024">
+                        </div>
+                        <div class="button-group">
+                            <button onclick="callOrders()">Get Orders</button>
+                        </div>
+                    </div>
+                    <div class="output-section">
+                        <div class="output-title">Output:</div>
+                        <div class="output-box" id="output-orders"></div>
+                    </div>
+                </div>
+
+                <!-- Authenticated Demo -->
+                <div class="demo-section" id="demo-auth">
+                    <h2 class="demo-title">🔐 Authenticated Call</h2>
+                    <p class="demo-description">Demonstrate <strong>user injection</strong> - set user context and call function</p>
+                    <div class="controls">
+                        <div class="control-group">
+                            <label>Current User ID:</label>
+                            <input type="number" id="auth-user" value="42">
+                        </div>
+                        <div class="button-group">
+                            <button onclick="callAuthEcho()">Echo Current User</button>
+                        </div>
+                    </div>
+                    <div class="output-section">
+                        <div class="output-title">Output (user automatically injected as first parameter):</div>
+                        <div class="output-box" id="output-auth"></div>
+                    </div>
+                </div>
+
+                <!-- Auth Test Demo -->
+                <div class="demo-section" id="demo-authtest">
+                    <h2 class="demo-title">🔐 Auth Test</h2>
+                    <p class="demo-description">Test authentication enforcement</p>
+                    <div class="controls">
+                        <div class="button-group">
+                            <button onclick="callAuthWithUser()">Call With User (42)</button>
+                            <button onclick="callAuthWithoutUser()">Call Without User</button>
+                        </div>
+                    </div>
+                    <div class="output-section">
+                        <div class="output-title">Output:</div>
+                        <div class="output-box" id="output-authtest"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let ws = null;
+        let requestId = 1;
+
+        // Initialize WebSocket connection
+        function initWebSocket() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const host = window.location.hostname;
+            const port = window.location.port || 8080;
+            ws = new WebSocket(`${protocol}//${host}:${port}/api`);
+
+            ws.onopen = () => {
+                updateStatus(true, 'Connected');
+                log('info', '✅ WebSocket Connected', 'output-add');
+            };
+
+            ws.onerror = (error) => {
+                updateStatus(false, 'Connection Error');
+                log('error', `❌ WebSocket Error: ${error}`, 'output-add');
+            };
+
+            ws.onclose = () => {
+                updateStatus(false, 'Disconnected');
+                log('error', '❌ WebSocket Disconnected', 'output-add');
+                // Attempt to reconnect after 3 seconds
+                setTimeout(initWebSocket, 3000);
+            };
+
+            ws.onmessage = (event) => {
+                const response = JSON.parse(event.data);
+                handleResponse(response);
+            };
+        }
+
+        function updateStatus(connected, text) {
+            const dot = document.getElementById('statusDot');
+            const statusText = document.getElementById('statusText');
+
+            if (connected) {
+                dot.classList.remove('disconnected');
+                dot.classList.add('connected');
+            } else {
+                dot.classList.remove('connected');
+                dot.classList.add('disconnected');
+            }
+
+            statusText.textContent = text;
+        }
+
+        function sendRPC(method, params, outputId) {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                log('error', '❌ Not connected', outputId);
+                return;
+            }
+
+            const id = requestId++;
+            // Direct handler-based routing: send PostgreSQL function name as method
+            const request = {
+                jsonrpc: '2.0',
+                id: id,
+                method: method,      // PostgreSQL function name directly
+                params: params       // PostgreSQL function parameters directly
+            };
+
+            log('request', `→ Calling PostgreSQL function: ${method}`, outputId);
+            log('request', JSON.stringify(request, null, 2), outputId);
+
+            ws.send(JSON.stringify(request));
+            ws._lastOutputId = outputId;
+        }
+
+        function handleResponse(response) {
+            const outputId = ws._lastOutputId || 'output-add';
+
+            if (response.error) {
+                log('error', `✗ Error: ${response.error.message}`, outputId);
+            } else {
+                log('success', `← Result: ${JSON.stringify(response.result, null, 2)}`, outputId);
+            }
+        }
+
+        function log(type, message, outputId) {
+            const output = document.getElementById(outputId);
+            if (!output) return;
+
+            const line = document.createElement('div');
+            line.className = `output-line output-${type}`;
+            line.textContent = message;
+            output.appendChild(line);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        // Demo functions
+        function callAdd() {
+            const a = parseInt(document.getElementById('add-a').value);
+            const b = parseInt(document.getElementById('add-b').value);
+            const output = document.getElementById('output-add');
+            output.innerHTML = '';
+            sendRPC('add', [a, b], 'output-add');
+        }
+
+        function callMultiply() {
+            const x = parseInt(document.getElementById('mul-x').value);
+            const y = parseInt(document.getElementById('mul-y').value);
+            const output = document.getElementById('output-multiply');
+            output.innerHTML = '';
+            sendRPC('multiply', { x: x, y: y }, 'output-multiply');
+        }
+
+        function callGreet() {
+            const name = document.getElementById('greet-name').value;
+            const output = document.getElementById('output-greeting');
+            output.innerHTML = '';
+            sendRPC('greet', [name], 'output-greeting');
+        }
+
+        function callProfile() {
+            const id = parseInt(document.getElementById('profile-id').value);
+            const output = document.getElementById('output-profile');
+            output.innerHTML = '';
+            document.getElementById('json-profile').innerHTML = '';
+            sendRPC('get_user_profile', [id], 'output-profile');
+            ws._jsonOutputId = 'json-profile';
+        }
+
+        function callOrders() {
+            const uid = parseInt(document.getElementById('orders-uid').value);
+            const year = parseInt(document.getElementById('orders-year').value);
+            const output = document.getElementById('output-orders');
+            output.innerHTML = '';
+            sendRPC('get_user_orders', [uid, year], 'output-orders');
+        }
+
+        function callAuthEcho() {
+            const user = parseInt(document.getElementById('auth-user').value);
+            const output = document.getElementById('output-auth');
+            output.innerHTML = '';
+
+            // Note: In a real app, you'd set the user in the request headers/cookies
+            // For now, we'll log what should happen
+            log('info', `Setting user context to: ${user}`, 'output-auth');
+            log('info', 'In a real app, this would be the authenticated user', 'output-auth');
+            log('info', 'The user would be automatically injected as the first parameter', 'output-auth');
+
+            // This demonstrates the concept (unauthenticated)
+            sendRPC('get_current_user_id', [user], 'output-auth');
+        }
+
+        function callAuthWithUser() {
+            const output = document.getElementById('output-authtest');
+            output.innerHTML = '';
+            log('info', 'This would call an auth-protected endpoint', 'output-authtest');
+            log('info', 'With user context set, the function would receive user as first param', 'output-authtest');
+        }
+
+        function callAuthWithoutUser() {
+            const output = document.getElementById('output-authtest');
+            output.innerHTML = '';
+            log('info', 'This would call an auth-protected endpoint WITHOUT user', 'output-authtest');
+            log('error', 'Expected error: "Authentication required: no current user"', 'output-authtest');
+        }
+
+        // Demo navigation
+        document.querySelectorAll('.demo-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                document.querySelectorAll('.demo-item').forEach(i => i.classList.remove('active'));
+                document.querySelectorAll('.demo-section').forEach(s => s.classList.remove('active'));
+
+                e.target.classList.add('active');
+                const demoId = `demo-${e.target.dataset.demo}`;
+                document.getElementById(demoId).classList.add('active');
+            });
+        });
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            initWebSocket();
+        });
+    </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 """our configuration dataclasses"""
 
 from dataclasses import dataclass, field
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 
 @dataclass
@@ -35,4 +35,5 @@ class WsConfig:
     ws_open: Optional[WebMethod] = None
     ws_close: Optional[WebMethod] = None
     ws_rpc: Dict[str, WebMethod] = field(default_factory=dict)
+    ws_rpc_handler: Optional[Any] = None
     auth: bool = False

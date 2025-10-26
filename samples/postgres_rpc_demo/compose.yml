@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: gust_postgres_test
+    environment:
+      POSTGRES_USER: gust_user
+      POSTGRES_PASSWORD: gust_pass
+      POSTGRES_DB: gust_test
+      POSTGRES_INITDB_ARGS: "-E UTF8"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./test_db_init.sql:/docker-entrypoint-initdb.d/01-init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gust_user -d gust_test"]
+      interval: 2s
+      timeout: 5s
+      retries: 10

@@ -106,10 +106,23 @@ class Routes:
         self,
         path,
         auth=False,
+        handler=None,
     ):
-        """wrap a json remote procedure"""
+        """
+        Wrap a json remote procedure endpoint.
+
+        Can be used in two ways:
+        1. With a function decorator:
+           @web.ws_json_rpc('/api')
+           async def my_rpc(method: str, params=None):
+               return await handler.call(method, params)
+
+        2. With a handler object:
+           web.ws_json_rpc('/api', handler=my_handler)
+           # Handler must implement: async def call(method, params)
+        """
         return self.default_wrap(
-            method='ws_rpc', path=path, template=None, auth=auth
+            method='ws_rpc', path=path, template=None, auth=auth, handler=handler
         )
 
     def broadcast(self, path: str, message: str, client_ids: List[int] = None):
@@ -122,8 +135,17 @@ class Routes:
         path,
         template=None,
         auth=False,
+        handler=None,
     ):
         """wrap a method"""
+
+        # If handler is provided directly (no decorator on function)
+        if handler is not None:
+            cfg = self.route_map.setdefault(path, WsConfig())
+            cfg.ws_rpc_handler = handler
+            if auth is True:
+                cfg.auth = True
+            return handler
 
         def inner_decorator(func):
             """we have the function"""
@@ -146,10 +168,17 @@ class Routes:
     def install(self, app):
         routes = []
         for path, cfg in self.route_map.items():
-            handler = (
-                WebHandler if isinstance(cfg, (WebConfig,)) else Websocket
-            )
-            routes.append((rf'{path}', handler, {'method_settings': cfg}))
+            if isinstance(cfg, WebConfig):
+                handler = WebHandler
+                init_dict = {'method_settings': cfg}
+            else:
+                handler = Websocket
+                init_dict = {
+                    'method_settings': cfg,
+                    'ws_clients': app.ws_clients,
+                    'ws_tasks': app.ws_tasks,
+                }
+            routes.append((rf'{path}', handler, init_dict))
         routes.sort(reverse=True)
         self.broadcaster = app
         app.add_handlers('.*', routes)

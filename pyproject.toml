@@ -14,6 +14,9 @@ requires-python = ">=3.12"
 dependencies = ["python-dotenv", "tornado"]
 
 [dependency-groups]
+postgres = [
+    "psycopg>=3.0",
+]
 dev = [
     "invoke",
     "ruff",
@@ -25,6 +28,7 @@ dev = [
     "twine",
     "build",
     "pdoc>=15.0.1",
+    "psycopg>=3.0",
 ]
 
 [project.urls]

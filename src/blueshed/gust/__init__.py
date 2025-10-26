@@ -4,6 +4,7 @@
 
 from .app import Gust
 from .context import get_handler
+from .postgres_rpc import AuthPostgresRPC, PostgresRPC
 from .routes import Routes
 from .static_file_handler import AuthStaticFileHandler
 from .stream import Stream
@@ -21,4 +22,6 @@ __all__ = [
     'web',
     'get_handler',
     'AuthStaticFileHandler',
+    'PostgresRPC',
+    'AuthPostgresRPC',
 ]

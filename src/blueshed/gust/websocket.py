@@ -19,27 +19,24 @@ log = logging.getLogger(__name__)
 class Websocket(UserMixin, WebSocketHandler):
     """Websocket Class"""
 
-    _clients_ = defaultdict(list)
-    _tasks_ = set()
-
-    def initialize(self, method_settings):
+    def initialize(self, method_settings, ws_clients=None, ws_tasks=None):
         """setup variables"""
         self.method_settings = method_settings
+        self._clients_ = ws_clients if ws_clients is not None else defaultdict(list)
+        self._tasks_ = ws_tasks if ws_tasks is not None else set()
         log.debug('%r', method_settings)
 
-    @classmethod
-    def _done_(cls, task: asyncio.Task):
+    def _done_(self, task: asyncio.Task):
         """task complete, remove reference"""
         try:
-            cls._tasks_.remove(task)
+            self._tasks_.remove(task)
         except KeyError:
             log.warning('Task [%s] not found in _tasks_ set', task.get_name())
 
-    @classmethod
-    def _background_(cls, *tasks: asyncio.Task):
+    def _background_(self, *tasks: asyncio.Task):
         for task in tasks:
-            cls._tasks_.add(task)
-            task.add_done_callback(cls._done_)
+            self._tasks_.add(task)
+            task.add_done_callback(self._done_)
 
     def check_origin(self, origin):
         """in development allow ws from anywhere"""
@@ -59,7 +56,7 @@ class Websocket(UserMixin, WebSocketHandler):
         handling = args = kwargs = None
 
         ref = None
-        if data and data.startswith('{"jsonrpc":'):
+        if data and isinstance(data, str) and data.startswith('{"jsonrpc":'):
             content = json_utils.loads(data)
             log.debug(content)
             ref = content.get('id', None)
@@ -67,10 +64,23 @@ class Websocket(UserMixin, WebSocketHandler):
             if proc is None:
                 error = JsonRpcException(-32600, 'no method')
 
+            # Check for handler-based routing first (dynamic method dispatch)
+            elif self.method_settings.ws_rpc_handler is not None:
+                handling = self.method_settings.ws_rpc_handler.call
+                params = content.get('params', {})
+                if params and not isinstance(content['params'], (dict, list)):
+                    error = JsonRpcException(
+                        -32602, 'Params neither list or dict'
+                    )
+                # Handler.call(method, params)
+                args = [proc]  # method name as first arg
+                if params:
+                    args.append(params)
+                kwargs = {}
             elif proc not in self.method_settings.ws_rpc:
                 error = JsonRpcException(-32600, 'not method')
 
-            if error is None:
+            if error is None and handling is None:
                 handling = self.method_settings.ws_rpc[proc].func
 
                 params = content.get('params', {})
@@ -190,9 +200,9 @@ class Websocket(UserMixin, WebSocketHandler):
         task = asyncio.create_task(self.send_message(message))
         self._background_(task)
 
-    @classmethod
+    @staticmethod
     def broadcast(
-        cls,
+        ws_clients: dict,
         tornado_path: str,
         message: str,
         client_ids: Optional[List[int]] = None,
@@ -200,12 +210,14 @@ class Websocket(UserMixin, WebSocketHandler):
         """send to all connected"""
         if not isinstance(message, (bytes, unicode_type)):
             message = json_utils.dumps(message)
-        clients = cls._clients_.get(tornado_path)  # should be a match
+        clients = ws_clients.get(tornado_path)  # should be a match
         if clients:
+            # Convert client_ids to set for O(1) lookup
+            client_ids_set = set(client_ids) if client_ids else None
             for client in clients:
-                if client_ids and (
+                if client_ids_set and (
                     client.current_user is None
-                    or client.current_user.get('id') not in client_ids
+                    or client.current_user.get('id') not in client_ids_set
                 ):
                     continue
                 client.queue_message(message)
@@ -215,7 +227,7 @@ class Websocket(UserMixin, WebSocketHandler):
         task = asyncio.create_task(
             self.stream_results(gen, stream_id), name=stream_id
         )
-        self._tasks_.add(task)
+        self._background_(task)
         task.add_done_callback(self.stream_done)
         return stream_id
 
@@ -251,7 +263,6 @@ class Websocket(UserMixin, WebSocketHandler):
                 json_utils.dumps(
                     {
                         'stream_id': task.get_name(),
-                        'args': self.stream_message,
                         'error': str(ex),
                     }
                 )
