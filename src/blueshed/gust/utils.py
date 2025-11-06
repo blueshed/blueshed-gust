@@ -35,6 +35,34 @@ class JsonRpcException(Exception):
         return {'code': self.js_code, 'message': self.js_message}
 
 
+class JsonRpcErrorCode:
+    """
+    JSON-RPC 2.0 error codes as defined in the specification.
+
+    See: https://www.jsonrpc.org/specification#error_object
+
+    Standard JSON-RPC 2.0 errors:
+    - PARSE_ERROR (-32700): Invalid JSON was received
+    - INVALID_REQUEST (-32600): The JSON sent is not a valid Request object
+    - METHOD_NOT_FOUND (-32601): The method does not exist / is not available
+    - INVALID_PARAMS (-32602): Invalid method parameter(s)
+    - INTERNAL_ERROR (-32603): Internal JSON-RPC error
+
+    Server errors (-32000 to -32099) are reserved for implementation-defined
+    server errors.
+    """
+
+    # Standard JSON-RPC 2.0 errors
+    PARSE_ERROR = -32700  # Invalid JSON
+    INVALID_REQUEST = -32600  # Invalid JSON-RPC request
+    METHOD_NOT_FOUND = -32601  # Method does not exist
+    INVALID_PARAMS = -32602  # Invalid method parameters
+    INTERNAL_ERROR = -32603  # Internal JSON-RPC error
+
+    # Server errors (-32000 to -32099 reserved for implementation-defined)
+    # Add custom error codes here if needed in the future
+
+
 @dataclass
 class JsonRpcResponse:
     """

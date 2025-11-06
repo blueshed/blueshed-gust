@@ -8,7 +8,7 @@ from .postgres_rpc import AuthPostgresRPC, PostgresRPC
 from .routes import Routes
 from .static_file_handler import AuthStaticFileHandler
 from .stream import Stream
-from .utils import Redirect, stream
+from .utils import JsonRpcErrorCode, Redirect, stream
 from .web import web
 
 VERSION = '0.0.26'
@@ -24,4 +24,5 @@ __all__ = [
     'AuthStaticFileHandler',
     'PostgresRPC',
     'AuthPostgresRPC',
+    'JsonRpcErrorCode',
 ]
