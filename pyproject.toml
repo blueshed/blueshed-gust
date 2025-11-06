@@ -24,6 +24,7 @@ dev = [
     "pytest-cov",
     "pytest-tornado",
     "pytest-tornasync",
+    "pytest-asyncio",
     "bump-my-version",
     "twine",
     "build",
@@ -87,6 +88,8 @@ addopts = "-p no:warnings --capture=sys --cov blueshed.gust --cov-report term-mi
 filterwarnings = ["ignore::DeprecationWarning"]
 testpaths = ["src/tests"]
 cache_dir = ".venv/cache/pytest"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
 
 [tool.coverage.run]
 data_file = ".venv/cache/.coverage"
