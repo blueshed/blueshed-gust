@@ -183,6 +183,8 @@ class Routes:
                     'ws_tasks': app.ws_tasks,
                 }
             routes.append((rf'{path}', handler, init_dict))
+        # Sort routes in reverse order so longer paths are matched first
+        # This prevents shorter regex patterns from shadowing longer ones
         routes.sort(reverse=True)
         self.broadcaster = app
         app.add_handlers('.*', routes)
