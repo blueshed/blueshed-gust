@@ -18,7 +18,6 @@ from psycopg import AsyncConnection
 
 from blueshed.gust.postgres_rpc import (
     _FUNCTION_SIGNATURE_CACHE,
-    AuthPostgresRPC,
     PostgresRPC,
 )
 

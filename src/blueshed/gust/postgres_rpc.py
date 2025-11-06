@@ -143,7 +143,7 @@ class PostgresRPC:
                 result = await cur.fetchone()
             # Return first column of first row, or None
             return result[0] if result else None
-        except Exception as e:
+        except Exception:
             # Rollback failed transaction to reset connection state
             try:
                 await self.connection.rollback()
