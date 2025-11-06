@@ -7,7 +7,7 @@ import logging
 import pytest
 from tornado.template import DictLoader
 
-from blueshed.gust import Gust, json_utils, web
+from blueshed.gust import Gust, JsonRpcErrorCode, json_utils, web
 
 PATH = '/foo/'
 
@@ -187,9 +187,10 @@ async def test_mising_method(ws_client, caplog):
         await asyncio.sleep(0.01)
     response = await client.read_message()
     print(response)
-    assert {'code': -32600, 'message': 'no method'} == json_utils.loads(
-        response
-    )['error']
+    assert {
+        'code': JsonRpcErrorCode.INVALID_REQUEST,
+        'message': 'no method',
+    } == json_utils.loads(response)['error']
     client.close()
     await asyncio.sleep(0.01)
 
@@ -208,9 +209,9 @@ async def test_not_method(ws_client, caplog):
         await asyncio.sleep(0.01)
     response = await client.read_message()
     print(response)
-    assert {'code': -32600, 'message': 'not method'} == json_utils.loads(
-        response
-    )['error']
+    error = json_utils.loads(response)['error']
+    assert error['code'] == JsonRpcErrorCode.METHOD_NOT_FOUND
+    assert 'Method not found: foo' == error['message']
     client.close()
     await asyncio.sleep(0.01)
 

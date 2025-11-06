@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive CLAUDE.md project guidance for AI-assisted development
 - GitHub issue templates for planned improvements (9 issues)
 - Code documentation comments (route sorting explanation)
+- `JsonRpcErrorCode` class with named constants for JSON-RPC 2.0 error codes
+- Documentation section in README with error code reference
+
+### Changed
+- WebSocket error handling now uses `JsonRpcErrorCode` constants instead of magic numbers
+- METHOD_NOT_FOUND error now correctly uses error code -32601 (was incorrectly -32600)
+- Error messages for method not found now include the method name
 
 ### Fixed
 - pytest-cov dependency (was incorrectly named pytest-coverage)

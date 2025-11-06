@@ -73,6 +73,28 @@ async def main():
 
 Call any PostgreSQL function using the same JSON-RPC protocol shown above. An authenticated variant (`AuthPostgresRPC`) is available for automatic user injection. See `samples/postgres_rpc_demo/` for complete examples.
 
+## JSON-RPC Error Codes
+
+Gust provides standard JSON-RPC 2.0 error codes as constants:
+
+```python
+from blueshed.gust import JsonRpcErrorCode
+from blueshed.gust.utils import JsonRpcException
+
+# Use constants instead of magic numbers
+raise JsonRpcException(
+    JsonRpcErrorCode.INVALID_PARAMS,
+    "Missing required parameter: user_id"
+)
+```
+
+Available error codes:
+- `PARSE_ERROR` (-32700): Invalid JSON
+- `INVALID_REQUEST` (-32600): Invalid JSON-RPC request
+- `METHOD_NOT_FOUND` (-32601): Method doesn't exist
+- `INVALID_PARAMS` (-32602): Invalid parameters
+- `INTERNAL_ERROR` (-32603): Internal server error
+
 There are simple sample apps in src/tests.
 
 ## Documentation

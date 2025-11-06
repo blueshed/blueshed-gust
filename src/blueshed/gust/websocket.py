@@ -11,7 +11,7 @@ from tornado.websocket import WebSocketClosedError, WebSocketHandler
 from blueshed.gust.stream import Stream
 
 from . import context, json_utils
-from .utils import JsonRpcException, JsonRpcResponse, UserMixin
+from .utils import JsonRpcErrorCode, JsonRpcException, JsonRpcResponse, UserMixin
 
 log = logging.getLogger(__name__)
 
@@ -64,7 +64,9 @@ class Websocket(UserMixin, WebSocketHandler):
             ref = content.get('id', None)
             proc = content.get('method')
             if proc is None:
-                error = JsonRpcException(-32600, 'no method')
+                error = JsonRpcException(
+                    JsonRpcErrorCode.INVALID_REQUEST, 'no method'
+                )
 
             # Check for handler-based routing first (dynamic method dispatch)
             elif self.method_settings.ws_rpc_handler is not None:
@@ -72,7 +74,8 @@ class Websocket(UserMixin, WebSocketHandler):
                 params = content.get('params', {})
                 if params and not isinstance(content['params'], (dict, list)):
                     error = JsonRpcException(
-                        -32602, 'Params neither list or dict'
+                        JsonRpcErrorCode.INVALID_PARAMS,
+                        'Params neither list or dict',
                     )
                 # Handler.call(method, params)
                 args = [proc]  # method name as first arg
@@ -80,7 +83,9 @@ class Websocket(UserMixin, WebSocketHandler):
                     args.append(params)
                 kwargs = {}
             elif proc not in self.method_settings.ws_rpc:
-                error = JsonRpcException(-32600, 'not method')
+                error = JsonRpcException(
+                    JsonRpcErrorCode.METHOD_NOT_FOUND, f'Method not found: {proc}'
+                )
 
             if error is None and handling is None:
                 handling = self.method_settings.ws_rpc[proc].func
@@ -88,7 +93,8 @@ class Websocket(UserMixin, WebSocketHandler):
                 params = content.get('params', {})
                 if params and not isinstance(content['params'], (dict, list)):
                     error = JsonRpcException(
-                        -32602, 'Params neither list or dict'
+                        JsonRpcErrorCode.INVALID_PARAMS,
+                        'Params neither list or dict',
                     )
 
                 args = params if params and isinstance(params, (list,)) else []
@@ -123,7 +129,7 @@ class Websocket(UserMixin, WebSocketHandler):
                     error_msg = (
                         f'{ex.diag.message_primary} (Connection rolled back)'
                     )
-                error = JsonRpcException(-32603, error_msg)
+                error = JsonRpcException(JsonRpcErrorCode.INTERNAL_ERROR, error_msg)
             finally:
                 # close is a synchronous so we tidy up
                 if method == 'ws_close':
