@@ -76,7 +76,7 @@ async def test_places(ws_client, caplog):
         }
         await ws_client.write_message(json_utils.dumps(message))
         await asyncio.sleep(0.01)
-        msg = await ws_client.read_message()
+        await ws_client.read_message()
         for _ in range(4):
             data = await ws_client.read_message()
             result: dict = json_utils.loads(data)

@@ -28,10 +28,15 @@ sys.path.insert(0, '../../src')
 from blueshed.gust import AuthPostgresRPC, Gust, PostgresRPC, web
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 )
 log = logging.getLogger(__name__)
+
+# Enable DEBUG logging for Gust modules to see request/response activity
+logging.getLogger('blueshed.gust').setLevel(logging.DEBUG)
+logging.getLogger('tornado.access').setLevel(logging.INFO)
+logging.getLogger('tornado.application').setLevel(logging.DEBUG)
 
 # Global connection
 _conn = None
