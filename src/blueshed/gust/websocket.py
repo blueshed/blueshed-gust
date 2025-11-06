@@ -11,7 +11,12 @@ from tornado.websocket import WebSocketClosedError, WebSocketHandler
 from blueshed.gust.stream import Stream
 
 from . import context, json_utils
-from .utils import JsonRpcErrorCode, JsonRpcException, JsonRpcResponse, UserMixin
+from .utils import (
+    JsonRpcErrorCode,
+    JsonRpcException,
+    JsonRpcResponse,
+    UserMixin,
+)
 
 log = logging.getLogger(__name__)
 
@@ -84,7 +89,8 @@ class Websocket(UserMixin, WebSocketHandler):
                 kwargs = {}
             elif proc not in self.method_settings.ws_rpc:
                 error = JsonRpcException(
-                    JsonRpcErrorCode.METHOD_NOT_FOUND, f'Method not found: {proc}'
+                    JsonRpcErrorCode.METHOD_NOT_FOUND,
+                    f'Method not found: {proc}',
                 )
 
             if error is None and handling is None:
@@ -129,7 +135,9 @@ class Websocket(UserMixin, WebSocketHandler):
                     error_msg = (
                         f'{ex.diag.message_primary} (Connection rolled back)'
                     )
-                error = JsonRpcException(JsonRpcErrorCode.INTERNAL_ERROR, error_msg)
+                error = JsonRpcException(
+                    JsonRpcErrorCode.INTERNAL_ERROR, error_msg
+                )
             finally:
                 # close is a synchronous so we tidy up
                 if method == 'ws_close':
