@@ -21,7 +21,7 @@ dev = [
     "invoke",
     "ruff",
     "pytest",
-    "pytest-coverage",
+    "pytest-cov",
     "pytest-tornado",
     "pytest-tornasync",
     "bump-my-version",

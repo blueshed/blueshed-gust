@@ -7,3 +7,7 @@ build
 dist
 src/artwork
 src/blueshed_gust.egg-info
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info
