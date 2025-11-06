@@ -74,3 +74,10 @@ async def main():
 Call any PostgreSQL function using the same JSON-RPC protocol shown above. An authenticated variant (`AuthPostgresRPC`) is available for automatic user injection. See `samples/postgres_rpc_demo/` for complete examples.
 
 There are simple sample apps in src/tests.
+
+## Documentation
+
+- **[API Documentation](https://blueshed.github.io/blueshed-gust/blueshed/gust.html)** - Complete API reference
+- **[CHANGELOG](CHANGELOG.md)** - Version history and release notes
+- **[CLAUDE.md](CLAUDE.md)** - Project guidance for AI-assisted development
+- **[Samples](samples/)** - Example applications and demos
