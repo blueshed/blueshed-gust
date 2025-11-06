@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Code documentation comments (route sorting explanation)
 - `JsonRpcErrorCode` class with named constants for JSON-RPC 2.0 error codes
 - Documentation section in README with error code reference
+- **CI/CD Pipeline** with GitHub Actions:
+  - Automated testing on every PR and push to main
+  - Automated code formatting checks with ruff
+  - Automated linting with ruff
+  - Coverage reporting with pytest-cov
+  - Automated PyPI publishing on releases
+  - Build status badge in README
 
 ### Changed
 - WebSocket error handling now uses `JsonRpcErrorCode` constants instead of magic numbers

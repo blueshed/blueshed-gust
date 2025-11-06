@@ -4,6 +4,7 @@
 
 # Gust
 
+![Tests](https://github.com/blueshed/blueshed-gust/workflows/Tests/badge.svg)
 ![PyPI - Version](https://img.shields.io/pypi/v/blueshed-gust?pypiBaseUrl=https%3A%2F%2Fpypi.org&style=social)
 
 Gust is a wrapper of [tornado](https://www.tornadoweb.org/en/stable/). It allows for a hello world such as:
