@@ -11,7 +11,7 @@ from .stream import Stream
 from .utils import JsonRpcErrorCode, Redirect, stream
 from .web import web
 
-VERSION = '0.0.26'
+VERSION = '0.0.27'
 
 __all__ = [
     'Gust',

@@ -25,5 +25,7 @@ class AuthStaticFileHandler(UserMixin, StaticFileHandler):
     def get(self, path, include_body=True):
         """safe to return what you need"""
         if self.current_user is None and path not in self.allow:
+            # redirects (GET/HEAD) or raises 403; do not serve the file
             self.not_authenticated()
+            return None
         return StaticFileHandler.get(self, path, include_body)

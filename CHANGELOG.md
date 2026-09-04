@@ -7,7 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.27] - 2026-09-05
+
+Security patch. Gust is now in maintenance mode: bug and security fixes
+only, no new features planned.
+
+### Security
+- `PostgresRPC` / `AuthPostgresRPC`: the JSON-RPC method name and the schema
+  name were interpolated into SQL unchecked, allowing SQL injection from any
+  WebSocket client. Both are now validated as plain SQL identifiers
+  (`[A-Za-z_][A-Za-z0-9_]*`) before any query is built.
+- `AuthPostgresRPC` with named (dict) params injected the user under a
+  literal `_user` key that never matched the function signature, so the
+  server-side user was dropped and a client could supply the user parameter
+  itself. The user now always occupies the first parameter slot and named
+  params are marshalled against the remaining signature; client values for
+  the first parameter are ignored.
+- `auth=True` HTTP routes and `AuthStaticFileHandler` redirected anonymous
+  GET/HEAD requests to the login page but then still executed the protected
+  handler (or served the file path), followed by a write-after-finish error.
+  The request now stops at the redirect.
+
 ### Added
+- `AuthPostgresRPC(user_field='id')` to pass one field of a dict user (as
+  stored by Gust's cookie) rather than the whole dict, which psycopg cannot
+  adapt.
+- Unit tests for RPC name validation and parameter marshalling that run
+  without PostgreSQL.
+- Maintenance-mode notice in README
 - BSD-3-Clause LICENSE file
 - Comprehensive CLAUDE.md project guidance for AI-assisted development
 - GitHub issue templates for planned improvements (9 issues)

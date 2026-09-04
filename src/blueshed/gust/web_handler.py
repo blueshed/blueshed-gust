@@ -43,7 +43,10 @@ class WebHandler(UserMixin, RequestHandler):
 
         template, auth = settings.template, settings.auth
         if auth and self.current_user is None:
+            # redirects (GET/HEAD) or raises 403; either way stop here so
+            # the protected function never runs for an anonymous request
             self.not_authenticated()
+            return
 
         try:
             result = await self.application.perform(self, settings.func, self)

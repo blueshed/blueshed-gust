@@ -7,6 +7,10 @@
 ![Tests](https://github.com/blueshed/blueshed-gust/workflows/Tests/badge.svg)
 ![PyPI - Version](https://img.shields.io/pypi/v/blueshed-gust?pypiBaseUrl=https%3A%2F%2Fpypi.org&style=social)
 
+> **Maintenance mode.** Gust is stable and still works with current Tornado,
+> but it is no longer actively developed. Bug and security fixes are accepted;
+> new features are not planned. See `CHANGELOG.md` for known issues.
+
 Gust is a wrapper of [tornado](https://www.tornadoweb.org/en/stable/). It allows for a hello world such as:
 
 ```python

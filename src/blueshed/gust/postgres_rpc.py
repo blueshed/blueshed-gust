@@ -38,6 +38,7 @@ Example usage with JSON-RPC WebSocket:
 """
 
 import logging
+import re
 from typing import Any, Dict, List, Optional, Union
 
 from . import context
@@ -47,6 +48,17 @@ log = logging.getLogger(__name__)
 # Global cache for PostgreSQL function signatures
 # Maps function_name -> list of parameter names in order
 _FUNCTION_SIGNATURE_CACHE: Dict[str, List[str]] = {}
+
+# Function and schema names are interpolated into SQL, so they must be
+# plain identifiers. Anything else is rejected before touching the DB.
+_IDENTIFIER = re.compile(r'^[A-Za-z_][A-Za-z0-9_]*$')
+
+
+def _check_identifier(kind: str, value: Any) -> str:
+    """Return value if it is a safe SQL identifier, else raise ValueError"""
+    if not isinstance(value, str) or not _IDENTIFIER.match(value):
+        raise ValueError(f'Invalid {kind} name: {value!r}')
+    return value
 
 
 class PostgresRPC:
@@ -72,7 +84,7 @@ class PostgresRPC:
             schema: PostgreSQL schema to search for functions (default: 'public')
         """
         self.connection = connection
-        self.schema = schema
+        self.schema = _check_identifier('schema', schema)
 
     async def call(
         self,
@@ -98,37 +110,65 @@ class PostgresRPC:
 
         Raises:
             ValueError: If function name starts with '_' (private convention)
+            ValueError: If function name is not a plain SQL identifier
             ValueError: If function not found or parameters are invalid
             Exception: If PostgreSQL execution fails
         """
-        # Security: reject private functions (starting with underscore)
+        params = await self._marshal(method, params)
+        return await self._execute(method, params)
+
+    async def _marshal(
+        self,
+        method: str,
+        params: Union[List, Dict, None],
+        skip: int = 0,
+    ) -> List:
+        """
+        Validate the method name and convert params to a positional list.
+
+        Args:
+            method: PostgreSQL function name
+            params: list, dict or None as received from JSON-RPC
+            skip: number of leading signature parameters that the caller
+                  supplies itself (used by AuthPostgresRPC for the user);
+                  client-supplied values for those names are ignored
+
+        Returns:
+            Positional parameter list covering signature[skip:]
+        """
+        # Security: the name is interpolated into SQL, so it must be a
+        # plain identifier, and private functions are not callable.
+        _check_identifier('function', method)
         if method.startswith('_'):
             raise ValueError(f'Cannot call private function: {method}')
 
-        # Normalize and validate params
         if params is None:
-            params = []
-        elif isinstance(params, dict):
-            # Named parameters: need to look up function signature
-            signature = await self._get_function_signature(method)
-            if not signature:
-                raise ValueError(f'Function not found: {method}')
-
-            # Reorder params according to function signature
-            positional_params = []
-            for param_name in signature:
-                if param_name not in params:
-                    raise ValueError(
-                        f'Missing required parameter: {param_name} '
-                        f'for function {method}'
-                    )
-                positional_params.append(params[param_name])
-            params = positional_params
-        elif not isinstance(params, list):
+            return []
+        if isinstance(params, list):
+            return list(params)
+        if not isinstance(params, dict):
             raise ValueError(
                 'Params must be list (positional) or dict (named)'
             )
 
+        # Named parameters: need to look up function signature
+        signature = await self._get_function_signature(method)
+        if not signature:
+            raise ValueError(f'Function not found: {method}')
+
+        # Reorder params according to function signature
+        positional_params = []
+        for param_name in signature[skip:]:
+            if param_name not in params:
+                raise ValueError(
+                    f'Missing required parameter: {param_name} '
+                    f'for function {method}'
+                )
+            positional_params.append(params[param_name])
+        return positional_params
+
+    async def _execute(self, method: str, params: List) -> Any:
+        """Run SELECT schema.method(params...) and return the first column"""
         # Build SQL: SELECT method(%s, %s, ...)
         # Note: psycopg3 uses %s placeholders, not $1, $2
         param_placeholders = ', '.join(['%s'] * len(params))
@@ -228,12 +268,32 @@ class AuthPostgresRPC(PostgresRPC):
     - Multi-tenant systems (functions can enforce tenant isolation)
 
     The current user is obtained from the request context and must be
-    available via context.get_current_user().
+    available via context.get_current_user(). The first parameter of the
+    called function is always the server-side user; a client can neither
+    omit it nor supply its own value for it, whatever the parameter is
+    named. With named params the client supplies the remaining parameters.
 
     Example PostgreSQL function signature:
         CREATE FUNCTION get_user_orders(current_user_id INT, ...)
             RETURNS TABLE(...)
+
+    Args:
+        connection: as for PostgresRPC
+        schema: as for PostgresRPC
+        user_field: when the current user is a dict (as it is when Gust
+            stores a user object in the cookie), pass this field of it,
+            e.g. 'id', instead of the whole dict. None passes the user
+            value through unchanged.
     """
+
+    def __init__(
+        self,
+        connection,
+        schema: str = 'public',
+        user_field: Optional[str] = None,
+    ):
+        super().__init__(connection, schema)
+        self.user_field = user_field
 
     async def call(
         self,
@@ -268,20 +328,12 @@ class AuthPostgresRPC(PostgresRPC):
         if current_user is None and require_auth:
             raise ValueError('Authentication required: no current user')
 
-        # Prepare params with user prepended
-        if params is None:
-            params_with_user = [current_user]
-        elif isinstance(params, list):
-            # Positional params: prepend user to the list
-            params_with_user = [current_user] + params
-        elif isinstance(params, dict):
-            # Named params: prepend user and let parent handle reordering
-            # The user will be first in the function signature
-            params_with_user = {**params, '_user': current_user}
-        else:
-            raise ValueError(
-                'Params must be list (positional) or dict (named)'
-            )
+        if self.user_field and isinstance(current_user, dict):
+            current_user = current_user.get(self.user_field)
+
+        # Named params are marshalled against signature[1:], so the user
+        # always occupies the first slot and client values for it are ignored
+        params = await self._marshal(method, params, skip=1)
 
         log.debug(
             'AuthPostgresRPC: calling %s with user=%s, params=%r',
@@ -290,5 +342,4 @@ class AuthPostgresRPC(PostgresRPC):
             params,
         )
 
-        # Call parent with user-injected params
-        return await super().call(method, params_with_user)
+        return await self._execute(method, [current_user, *params])

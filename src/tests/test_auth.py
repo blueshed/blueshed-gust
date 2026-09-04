@@ -60,18 +60,40 @@ async def ws_client(http_server, http_server_port, cookie):
     return result
 
 
-async def test_no_auth(http_server_client, http_client, http_server_port):
-    """do we redirect to login"""
+async def test_no_auth(
+    http_server_client, http_client, http_server_port, caplog
+):
+    """do we redirect to login, without running the protected handler"""
+    from . import auth_assets as assets
+
+    assets.HOME_GET_CALLS = 0
+    with caplog.at_level(logging.ERROR):
+        response = await http_server_client.fetch(
+            PATH, follow_redirects=False, raise_error=False
+        )
+        assert response.code == 302
+        response = await http_client.fetch(
+            f'http://localhost:{http_server_port[1]}{PATH}',
+            follow_redirects=False,
+            raise_error=False,
+        )
+        assert response.code == 302
+    assert assets.HOME_GET_CALLS == 0, 'auth handler ran for anonymous user'
+    assert not [
+        r for r in caplog.records if r.levelno >= logging.ERROR
+    ], 'redirect should not be followed by a write-after-finish error'
+
+
+async def test_no_auth_post(http_server_client):
+    """non-GET methods get a 403 rather than a redirect"""
     response = await http_server_client.fetch(
-        PATH, follow_redirects=False, raise_error=False
-    )
-    assert response.code == 302
-    response = await http_client.fetch(
-        f'http://localhost:{http_server_port[1]}{PATH}',
+        f'{PATH}private',
+        method='POST',
+        body='',
         follow_redirects=False,
         raise_error=False,
     )
-    assert response.code == 302
+    assert response.code == 403
 
 
 async def test_auth(http_server_client, cookie, caplog):

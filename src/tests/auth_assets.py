@@ -17,10 +17,21 @@ class User:
     email: str
 
 
+HOME_GET_CALLS = 0
+
+
 @web.get(f'{PATH}(.*)', auth=True)
 async def home_get(request):
     """simple get"""
+    global HOME_GET_CALLS
+    HOME_GET_CALLS += 1
     return 'hello, world'
+
+
+@web.post(f'{PATH}private', auth=True)
+async def private_post(request):
+    """should never run unauthenticated"""
+    return {'ok': True}
 
 
 @web.post(f'{PATH}login')
