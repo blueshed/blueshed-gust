@@ -8,7 +8,7 @@ This repository uses GitHub Actions for automated testing and publishing.
 - Automated testing with pytest
 - Code formatting check with ruff
 - Linting with ruff
-- Coverage reporting
+- Coverage report printed in the job log (term-missing)
 
 ### 2. PyPI Publishing (runs on releases)
 - Automated package building
@@ -37,25 +37,6 @@ To enable automated PyPI publishing, you need to configure a PyPI API token:
 3. **Test the Setup**
    - Create a GitHub release
    - The workflow will automatically build and publish to PyPI
-
-### For Coverage Reporting (Optional)
-
-To enable coverage reporting to Codecov:
-
-1. **Sign up for Codecov**
-   - Go to https://codecov.io/
-   - Sign in with GitHub
-   - Add the blueshed-gust repository
-
-2. **Add Codecov Token to GitHub Secrets**
-   - Get token from https://codecov.io/gh/blueshed/blueshed-gust
-   - Go to https://github.com/blueshed/blueshed-gust/settings/secrets/actions
-   - Click "New repository secret"
-   - Name: `CODECOV_TOKEN`
-   - Value: Paste the token
-   - Click "Add secret"
-
-**Note:** Coverage reporting is optional and set to `continue-on-error: true`, so tests will pass even if Codecov upload fails.
 
 ## Workflow Files
 
@@ -96,6 +77,3 @@ To publish a new version to PyPI:
 - Check token has correct permissions
 - Ensure version number is incremented (PyPI doesn't allow re-uploading same version)
 
-### Coverage Upload Fails
-- This is non-critical - tests will still pass
-- Verify `CODECOV_TOKEN` is set if you want coverage reporting
